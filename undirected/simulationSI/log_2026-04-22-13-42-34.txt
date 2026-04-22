@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/lnf/Desktop/SI_connected_undirected_skm/undirected/simulationSI/00_sim_SI_un.py", line 11, in <module>
+    from step_un import *
+  File "/home/lnf/Desktop/SI_connected_undirected_skm/undirected/simulationSI/step_un.py", line 244
+    deg, m, S, I deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,
+                 ^^^^^
+SyntaxError: invalid syntax

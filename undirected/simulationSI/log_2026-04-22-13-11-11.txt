@@ -1,0 +1,43 @@
+Main process pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+Reserved free cores: [18, 19]
+Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+Reserved free cores: [18, 19]
+Scheduling 2 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Parallel execution failed (index 1 is out of bounds for axis 0 with size 1), falling back to serial loop
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/concurrent/futures/process.py", line 263, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lnf/Desktop/SI_connected_undirected_skm/undirected/simulationSI/sim_unit_un.py", line 197, in run_realization_chunk
+    results.append(run_one_realization(args_template))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lnf/Desktop/SI_connected_undirected_skm/undirected/simulationSI/sim_unit_un.py", line 117, in run_one_realization
+    skm[k][m_i] += 1
+    ~~~~~~^^^^^
+IndexError: index 1 is out of bounds for axis 0 with size 1
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/lnf/Desktop/SI_connected_undirected_skm/undirected/simulationSI/sim_unit_un.py", line 407, in run_sim
+    chunk_results = fut.result()
+                    ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+IndexError: index 1 is out of bounds for axis 0 with size 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lnf/Desktop/SI_connected_undirected_skm/undirected/simulationSI/00_sim_SI_un.py", line 100, in <module>
+    run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_states,n_edge_types,fractions_initial,
+  File "/home/lnf/Desktop/SI_connected_undirected_skm/undirected/simulationSI/sim_unit_un.py", line 667, in run_sim
+    projected_edge_type_counts,
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'projected_edge_type_counts' where it is not associated with a value

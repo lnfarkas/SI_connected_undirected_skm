@@ -90,8 +90,6 @@ def run_one_realization(args):
     m[v1_sorted] += vertex_states[v2_sorted_by_v1]
     m[v2_sorted_by_v1] += vertex_states[v1_sorted]
 
-    #tripoint_type_current_counts = np.zeros(6, dtype=int) #np.bincount(tripoint_types, minlength=n_tripoint_types) # (SSS,SSI = ISS,ISI,SIS,SII = IIS ,III) -  ignore for now
-    tripoint_type_current_counts = np.zeros(6, dtype=int)
     S = (vertex_states == 0)
     I = (vertex_states == 1)
 
@@ -104,6 +102,34 @@ def run_one_realization(args):
     deg_i = deg[I]
     m_i = m[I]
     degmm_i = degmm[I]
+
+    # =====================================================
+    # SKM INITIALIZATION (dense, vectorized)
+    # =====================================================
+
+    k_max = deg.max()
+
+    # Dense matrix: rows = k, cols = m
+    skm = np.zeros((k_max + 1, k_max + 1), dtype=np.int64)
+
+    # Accumulate counts
+    np.add.at(skm, (deg_s, m_s), 1)
+
+    '''
+    skm = np.empty(k_max + 1, dtype=object)
+    for k in range(k_max + 1):
+        skm[k] = np.zeros(k + 1, dtype=np.int64)
+
+    for i in S:
+        k = deg[i]
+        m_i = m[i]
+        skm[k][m_i] += 1
+    '''
+    # for some k, s will be empty, but i do this for easier comparison between realizations and with numerics
+    # acess as s[k][m]
+
+    #tripoint_type_current_counts = np.zeros(6, dtype=int) #np.bincount(tripoint_types, minlength=n_tripoint_types) # (SSS,SSI = ISS,ISI,SIS,SII = IIS ,III) -  ignore for now
+    tripoint_type_current_counts = np.zeros(6, dtype=int)
 
     tripoint_type_current_counts[0] = np.sum(degmm_s * (degmm_s - 1) // 2)
     tripoint_type_current_counts[1] = np.sum(m_s*degmm_s)
@@ -140,13 +166,13 @@ def run_one_realization(args):
          num_new_2_outstars,
          edge_type_current_counts,
          tripoint_type_current_counts,
-         m
-        ) = step(
+         m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,skm) = step(
                                         causal,
                                         causal_in,
                                         causal_out,
                                         N_edges,
                                         vertex_states,
+                                        skm,
                                         events,
                                         edge_types,
                                         allowed_edges,
@@ -157,7 +183,7 @@ def run_one_realization(args):
                                         v2_sorted_by_v1,
                                         v1_sorted_by_v2,
                                         edge_ids_sorted_by_v2,
-                                        deg, m,
+                                        deg, m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,
                                         ptr_v1,
                                         ptr_v2,
                                         n_states,
@@ -471,7 +497,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
                             if processed in stability_checker:
                                 curves_path = curves_dir / f"curves_instanceNo{n_valid_graphs:04d}_Nprocesses{processed}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
-                                curves_path_full = curves_dir_full / f"curves_FULL_instanceNo{n_valid_graphs:04d}_Nprocesses{i_process+1}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
+                                curves_path_full = curves_dir_full / f"curves_FULL_instanceNo{n_valid_graphs:04d}_Nprocesses{processed}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
                                 check_disk_space(hrcak, min_free_GB=5)
                                 np.savez_compressed(
                                     curves_path,
@@ -534,6 +560,32 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                 m[v1_sorted] += vertex_states[v2_sorted_by_v1]
                 m[v2_sorted_by_v1] += vertex_states[v1_sorted]
 
+                S = (vertex_states == 0)
+                I = (vertex_states == 1)
+
+                degmm = deg - m
+
+                deg_s = deg[S]
+                m_s = m[S]
+                degmm_s = degmm[S]
+
+                deg_i = deg[I]
+                m_i = m[I]
+                degmm_i = degmm[I]
+
+
+                # =====================================================
+                # SKM INITIALIZATION (dense, vectorized)
+                # =====================================================
+
+                k_max = deg.max()
+
+                # Dense matrix: rows = k, cols = m
+                skm = np.zeros((k_max + 1, k_max + 1), dtype=np.int64)
+
+                # Accumulate counts
+                np.add.at(skm, (deg_s, m_s), 1)
+
                 # =====================================================
                 # TRACKING
                 # =====================================================
@@ -594,12 +646,13 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                     num_new_2_outstars,
                     edge_type_current_counts,
                     tripoint_type_current_counts,
-                    m) = step(
+                    m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,skm) = step(
                         causal,
                         causal_in,
                         causal_out,
                         N_edges,
                         vertex_states,
+                        skm,
                         events,
                         edge_types,
                         allowed_edges,
@@ -610,7 +663,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                         v2_sorted_by_v1,
                         v1_sorted_by_v2,
                         edge_ids_sorted_by_v2,
-                        deg, m,
+                        deg, m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,
                         ptr_v1,
                         ptr_v2,
                         n_states,
@@ -634,6 +687,9 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                     M2_counts_in_time_in_one_instance
                 )
 
+
+                projected_edge_type_counts = project_to_time_grid(times, edge_type_counts_in_time, time_grid_t)
+
                 (mean_edge_type_counts_in_time_in_one_instance,
                 M2_edge_type_counts_in_time_in_one_instance) = update_online_mean_var(
                     projected_edge_type_counts,
@@ -641,6 +697,8 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                     mean_edge_type_counts_in_time_in_one_instance,
                     M2_edge_type_counts_in_time_in_one_instance
                 )
+
+                projected_tripoint_type_counts = project_to_time_grid(times, tripoint_type_counts_in_time, time_grid_t)
 
                 (mean_tripoint_type_counts_in_time_in_one_instance,
                 M2_tripoint_type_counts_in_time_in_one_instance) = update_online_mean_var(
