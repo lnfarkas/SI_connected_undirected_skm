@@ -1,0 +1,12 @@
+Main process pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+Reserved free cores: [18, 19]
+Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+Reserved free cores: [18, 19]
+Scheduling 2 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Traceback (most recent call last):
+  File "/home/lnf/Desktop/SI_connected_undirected_3pont_count/undirected/simulationSI/00_sim_SI_un.py", line 100, in <module>
+    run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_states,n_edge_types,fractions_initial,
+  File "/home/lnf/Desktop/SI_connected_undirected_3pont_count/undirected/simulationSI/sim_unit_un.py", line 319, in run_sim
+    deg, m,
+         ^
+UnboundLocalError: cannot access local variable 'm' where it is not associated with a value

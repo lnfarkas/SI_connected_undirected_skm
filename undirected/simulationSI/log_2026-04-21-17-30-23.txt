@@ -1,0 +1,43 @@
+Main process pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+Reserved free cores: [18, 19]
+Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+Reserved free cores: [18, 19]
+Scheduling 2 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Parallel execution failed (name 'tripoint_type_counts' is not defined), falling back to serial loop
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/concurrent/futures/process.py", line 263, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lnf/Desktop/SI_connected_undirected_3pont_count/undirected/simulationSI/sim_unit_un.py", line 154, in run_realization_chunk
+    results.append(run_one_realization(args_template))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lnf/Desktop/SI_connected_undirected_3pont_count/undirected/simulationSI/sim_unit_un.py", line 141, in run_one_realization
+    projected_tripoint_type_counts = project_to_time_grid(times, tripoint_type_counts, time_grid_t)
+                                                                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'tripoint_type_counts' is not defined. Did you mean: 'tripoint_type_counts_in_time'?
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/lnf/Desktop/SI_connected_undirected_3pont_count/undirected/simulationSI/sim_unit_un.py", line 362, in run_sim
+    chunk_results = fut.result()
+                    ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+NameError: name 'tripoint_type_counts' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lnf/Desktop/SI_connected_undirected_3pont_count/undirected/simulationSI/00_sim_SI_un.py", line 100, in <module>
+    run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_states,n_edge_types,fractions_initial,
+  File "/home/lnf/Desktop/SI_connected_undirected_3pont_count/undirected/simulationSI/sim_unit_un.py", line 598, in run_sim
+    projected_edge_type_counts,
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'projected_edge_type_counts' where it is not associated with a value

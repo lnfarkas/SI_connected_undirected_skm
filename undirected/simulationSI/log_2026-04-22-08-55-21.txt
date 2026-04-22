@@ -1,0 +1,9 @@
+Main process pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+Reserved free cores: [18, 19]
+Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+Reserved free cores: [18, 19]
+Scheduling 2 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Parallel execution failed (cannot access local variable 'i_process' where it is not associated with a value), falling back to serial loop
+Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+Reserved free cores: [18, 19]
+Scheduling 2 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30

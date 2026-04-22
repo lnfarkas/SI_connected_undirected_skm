@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/lnf/Desktop/SI_connected_undirected/undirected/simulationSI/00_sim_SI_un.py", line 75, in <module>
+    T_max, N_time_bins, time_grid = make_time_grid(N_vertices_full, k, edge_rates[2], 7, 5)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lnf/Desktop/SI_connected_undirected/undirected/simulationSI/time_grid.py", line 15, in make_time_grid
+    t_grid = np.linspace(0, T_max, N_time_bins)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/numpy/core/function_base.py", line 124, in linspace
+    raise ValueError("Number of samples, %s, must be non-negative." % num)
+ValueError: Number of samples, -500, must be non-negative.
