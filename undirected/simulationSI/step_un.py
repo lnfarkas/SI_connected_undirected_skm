@@ -4,8 +4,9 @@
 import numpy as np
 
 # change update rules here
-def change_state_by_contact_process(vertex_states,v_affecting,v_affected):
+def change_state_by_contact_process(vertex_states, not_vertex_states,v_affecting,v_affected):
     vertex_states[v_affected]=vertex_states[v_affecting]
+    not_vertex_states[v_affected] = not_vertex_states[v_affecting]
 
 def change_vertex_state_by_vertex_event(vertex_states,vertex,state):
     vertex_states[vertex] = state
@@ -102,23 +103,26 @@ def undirected_edge_type(a, b):
 
 def update_edges_after_vertex_change_undirected(
     vertex,
-    vertex_states,
+    vertex_states, not_vertex_states,
     v1_sorted,
     v2_sorted_by_v1,
     v1_sorted_by_v2,
     edge_ids_sorted_by_v2,
     ptr_v1,
     ptr_v2,
+    deg, m, degmm,
     n_states,
     edge_types,
     events,
     allowed,
     inv_rates,
     current_time,
+    Skm_current,
     causal,
     causal_in,
     causal_out
 ):
+    # vertex already changed!
     v_state = vertex_states[vertex]
 
     # =========================================================
@@ -190,6 +194,34 @@ def update_edges_after_vertex_change_undirected(
             num_new_2_instars = num_new_1_edge_causal * (num_new_1_edge_causal - 1) / 2
             num_new_2_outstars = np.sum(causal_out[src[new_causal_mask]] - 1) if np.any(new_causal_mask) else 0
 
+    # =========================================================
+    # update m (infected neighbor counts) after vertex change
+    # But also update S and I and m_i, m_s, degmm_i, degmm_s
+    # =========================================================
+
+    if vertex_states[vertex] == 1:
+        s0, s1 = ptr_v1[vertex], ptr_v1[vertex + 1]
+        if s1 > s0:
+            nbrs = v2_sorted_by_v1[s0:s1]
+            S_nbrs = nbrs[vertex_states[nbrs] == 0]
+            k_S_nbrs = deg[S_nbrs]
+            m_S_old_nbrs = m[S_nbrs]
+            np.add.at(Skm_current, (k_S_nbrs, m_S_old_nbrs), -1)
+            np.add.at(Skm_current, (k_S_nbrs, m_S_old_nbrs + 1), +1)
+            m[nbrs] += 1
+            degmm[nbrs] += 1
+
+        t0, t1 = ptr_v2[vertex], ptr_v2[vertex + 1]
+        if t1 > t0:
+            nbrs = v1_sorted_by_v2[t0:t1]
+            S_nbrs = nbrs[vertex_states[nbrs] == 0]
+            k_S_nbrs = deg[S_nbrs]
+            m_S_old_nbrs = m[S_nbrs]
+            np.add.at(Skm_current, (k_S_nbrs, m_S_old_nbrs), -1)
+            np.add.at(Skm_current, (k_S_nbrs, m_S_old_nbrs + 1), +1)
+            m[nbrs] += 1   
+            degmm[nbrs] += 1 
+
     return (
         num_new_1_edge_causal,
         num_new_2_chains,
@@ -205,7 +237,7 @@ def step(
     causal_in,
     causal_out,
     N_edges,
-    vertex_states,
+    vertex_states, not_vertex_states,
     events,
     edge_types,
     allowed_edges,
@@ -218,9 +250,11 @@ def step(
     edge_ids_sorted_by_v2,
     ptr_v1,
     ptr_v2,
+    deg, m, degmm,
     n_states,
     current_time,
-    current_counts
+    current_counts,
+    Skm_current
 ):
 
     allowed_edge_mask = allowed_edges[edge_types]
@@ -259,7 +293,7 @@ def step(
         else:
             src, tgt = v2, v1
 
-        change_state_by_contact_process(vertex_states, src, tgt)
+        change_state_by_contact_process(vertex_states, not_vertex_states, src, tgt)
 
         # updated vertex is the one that changed state (the target)
         updated_vertex = tgt
@@ -269,6 +303,11 @@ def step(
         vertex = next_idx - N_edges
         change_vertex_state_by_vertex_event(vertex_states, vertex, 0)
         updated_vertex = vertex
+
+    k_val = deg[updated_vertex]
+    m_val = m[updated_vertex]
+
+    Skm_current[k_val, m_val] -= 1
 
     # =========================================================
     # vertex event refresh
@@ -293,19 +332,21 @@ def step(
         num_new_2_outstars
     ) = update_edges_after_vertex_change_undirected(
         updated_vertex,
-        vertex_states,
+        vertex_states, not_vertex_states,
         v1_sorted,
         v2_sorted_by_v1,
         v1_sorted_by_v2,
         edge_ids_sorted_by_v2,
         ptr_v1,
         ptr_v2,
+        deg, m, degmm,
         n_states,
         edge_types,
         events,
         allowed_edges,
         inv_edge_rates,
         current_time,
+        Skm_current,
         causal,
         causal_in,
         causal_out

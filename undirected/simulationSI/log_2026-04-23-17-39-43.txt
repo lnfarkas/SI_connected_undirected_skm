@@ -1,0 +1,21 @@
+Main process pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+Reserved free cores: [18, 19]
+Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+Reserved free cores: [18, 19]
+Scheduling 2 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Parallel execution failed (cannot access local variable 'i_process' where it is not associated with a value), falling back to serial loop
+Traceback (most recent call last):
+  File "/home/lnf/Desktop/SI_connected_undirected_skm/undirected/simulationSI/sim_unit_un.py", line 419, in run_sim
+    curves_path_full = curves_dir_full / f"curves_FULL_instanceNo{n_valid_graphs:04d}_Nprocesses{i_process+1}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
+                                                                                                 ^^^^^^^^^
+UnboundLocalError: cannot access local variable 'i_process' where it is not associated with a value
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lnf/Desktop/SI_connected_undirected_skm/undirected/simulationSI/00_sim_SI_un.py", line 95, in <module>
+    run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_states,fractions_initial,
+  File "/home/lnf/Desktop/SI_connected_undirected_skm/undirected/simulationSI/sim_unit_un.py", line 535, in run_sim
+    Skm_in_time.append(Skm_current)
+    ^^^^^^^^^^^
+NameError: name 'Skm_in_time' is not defined

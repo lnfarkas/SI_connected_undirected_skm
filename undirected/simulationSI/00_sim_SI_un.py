@@ -33,11 +33,11 @@ base_outdir = hrcak /f"00_sim_SI" / filename
 
 CHUNK_SIZE = 100   # paralelization chunk
 
-N_instances = 100 #100
+N_instances = 2 #100
 
-N_v = [1000] #10000
+N_v = [20] #10000
 
-multiplier = 10 # N_processes_per_instance = multiplier * N_vertices_full
+#multiplier = 10 # N_processes_per_instance = multiplier * N_vertices_full
 
 ks =  [2] # [2,5,10,20,50,100,200,500,1000,2000,5000,10000]
 
@@ -68,13 +68,13 @@ for N_vertices_full in N_v:
 
             p_edges = k / (N_vertices_full - 1)
 
-
-            N_processes_per_instance = multiplier*N_vertices_full
+            N_processes_per_instance = 2
+            #N_processes_per_instance = multiplier*N_vertices_full
 
             T_max, N_time_bins, time_grid = make_time_grid(N_vertices_full, k, edge_rates[1], 7, 5)
 
-            
-            stability_checker = [N_vertices_full * i for i in range(1, multiplier+1)]
+            stability_checker = [1,2,3,4,5,6,7,8,9,10]
+            #stability_checker = [N_vertices_full * i for i in range(1, multiplier+1)]
 
             spec_outdir = base_outdir / f"N{N_vertices_full}_k{k}"
 

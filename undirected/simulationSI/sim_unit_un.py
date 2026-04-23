@@ -36,7 +36,7 @@ def run_one_realization(args):
     (N_vertices_full,N_vertices_in_LCC, v1_sorted,
     v2_sorted_by_v1,
     v1_sorted_by_v2,
-    edge_ids_sorted_by_v2,
+    edge_ids_sorted_by_v2, deg,
     ptr_v1,
     ptr_v2, N_edges, n_states,
      fractions_initial, allowed_edges, inv_edge_rates, allowed_vertices, inv_vertex_rates,
@@ -47,6 +47,7 @@ def run_one_realization(args):
 
     # INITIALIZE STATES
     vertex_states = initial_vertex_states_SI(N_vertices_in_LCC,np.arange(N_vertices_in_LCC), fractions_initial)
+    not_vertex_states = ~vertex_states
     edge_types = find_edge_types(v1_sorted, v2_sorted_by_v1, vertex_states, n_states)
     edge_events = init_edge_events(edge_types, allowed_edges, inv_edge_rates)
     vertex_events = init_vertex_events(vertex_states, allowed_vertices, inv_vertex_rates, N_edges)
@@ -75,9 +76,31 @@ def run_one_realization(args):
     num_of_2_chains_in_time = []
     num_of_2_instars_in_time = []
     num_of_2_outstars_in_time = []
+    Skm_in_time = []
 
     current_time = 0.0
     current_counts = np.bincount(vertex_states, minlength=n_states)
+
+    m = np.zeros(N_vertices_in_LCC, dtype=np.int64)
+
+    m[v1_sorted] += vertex_states[v2_sorted_by_v1]
+    m[v2_sorted_by_v1] += vertex_states[v1_sorted]
+
+    degmm = deg - m
+
+
+    is_S = (vertex_states == 0)   # susceptible only
+
+    k_vals = deg[is_S]
+    m_vals = m[is_S]
+
+    k_max_global = N_vertices_full-1
+
+    Skm_current = np.zeros((k_max_global + 1, k_max_global + 1), dtype=np.int32)
+
+    np.add.at(Skm_current, (k_vals, m_vals), 1)
+
+
     check = 1
 
     while current_time < T_max and check:
@@ -92,6 +115,7 @@ def run_one_realization(args):
         num_of_2_chains_in_time.append(total_2_chains)
         num_of_2_instars_in_time.append(total_2_instars)
         num_of_2_outstars_in_time.append(total_2_outstars)
+        Skm_in_time.append(Skm_current)
 
 
 
@@ -106,7 +130,7 @@ def run_one_realization(args):
                                         causal_in,
                                         causal_out,
                                         N_edges,
-                                        vertex_states,
+                                        vertex_states, not_vertex_states,
                                         events,
                                         edge_types,
                                         allowed_edges,
@@ -119,9 +143,11 @@ def run_one_realization(args):
                                         edge_ids_sorted_by_v2,
                                         ptr_v1,
                                         ptr_v2,
+                                        deg, m, degmm,
                                         n_states,
                                         current_time,
-                                        current_counts
+                                        current_counts,
+                                        Skm_current
                                     )
 
     projected_counts = project_to_time_grid(times, counts_in_time, time_grid_t)
@@ -171,6 +197,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
     #******
     t_max_reached=[]
     #******
+    K_max_global = N_vertices_full - 1 
 
     while n_valid_graphs < N_instances:
 
@@ -198,6 +225,13 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
         N_edges = len(v1_sorted)
 
+        deg = np.zeros(N_vertices_in_LCC, dtype=np.int64)
+        # k_max_global = N_vertices_full - 1  -> different instances have different k_max,
+        # but we want an average over instances so we put a global cap on this
+    
+        np.add.at(deg, v1_sorted, 1)
+        np.add.at(deg, v2_sorted_by_v1, 1)
+
         ptr_v1 = v1_pointer(v1_sorted, N_vertices_in_LCC)
         ptr_v2 = v2_pointer(v2_sorted, N_vertices_in_LCC)
 
@@ -220,6 +254,15 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
         mean_counts_in_time_in_one_instance = np.zeros((N_time_bins, n_states))
         M2_counts_in_time_in_one_instance = np.zeros((N_time_bins, n_states))
+
+        mean_Skm_in_time_in_one_instance = np.zeros(
+            (N_time_bins, K_max_global + 1, K_max_global + 1),
+            dtype=np.float64
+        )
+
+        M2_Skm_in_time_in_one_instance = np.zeros_like(
+            mean_Skm_in_time_in_one_instance
+        )
 
         mean_num_of_1_edge_causal_in_time_in_one_instance = np.zeros(N_time_bins)
         M2_num_of_1_edge_causal_in_time_in_one_instance = np.zeros(N_time_bins)
@@ -268,7 +311,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                          v1_sorted,
                          v2_sorted_by_v1,
                          v1_sorted_by_v2,
-                         edge_ids_sorted_by_v2,
+                         edge_ids_sorted_by_v2, deg,
                          ptr_v1,
                          ptr_v2,
                          N_edges,
@@ -412,6 +455,8 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                     fractions_initial
                 )
 
+                not_vertex_states = ~vertex_states
+
                 edge_types = find_edge_types(
                     v1_sorted,
                     v2_sorted_by_v1,
@@ -449,8 +494,28 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                 num_of_2_instars_in_time = []
                 num_of_2_outstars_in_time = []
 
+                Skm_in_time = []
+
                 current_time = 0.0
                 current_counts = np.bincount(vertex_states, minlength=n_states)
+
+
+                m = np.zeros(N_vertices_in_LCC, dtype=np.int64)
+
+                m[v1_sorted] += vertex_states[v2_sorted_by_v1]
+                m[v2_sorted_by_v1] += vertex_states[v1_sorted]
+
+                degmm = deg - m
+
+                is_S = (vertex_states == 0)   # susceptible only
+
+                k_vals = deg[is_S]
+                m_vals = m[is_S]
+
+                k_max_global = N_vertices_full-1
+
+                Skm_current = np.zeros((k_max_global + 1, k_max_global + 1), dtype=np.int32)
+
                 check = 1
 
                 # =====================================================
@@ -459,7 +524,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                 while current_time < T_max and check:
 
                     times.append(current_time)
-                    counts_in_time.append(current_counts)
+                    counts_in_time.append(current_counts.copy())
 
                     total_1_edge_causal += num_new_1_edge_causal
                     total_2_chains += num_new_2_chains
@@ -470,6 +535,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                     num_of_2_chains_in_time.append(total_2_chains)
                     num_of_2_instars_in_time.append(total_2_instars)
                     num_of_2_outstars_in_time.append(total_2_outstars)
+                    Skm_in_time.append(Skm_current.copy())
 
                     
 
@@ -484,7 +550,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                         causal_in,
                         causal_out,
                         N_edges,
-                        vertex_states,
+                        vertex_states, not_vertex_states,
                         events,
                         edge_types,
                         allowed_edges,
@@ -497,9 +563,11 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                         edge_ids_sorted_by_v2,
                         ptr_v1,
                         ptr_v2,
+                        deg, m, degmm,
                         n_states,
                         current_time,
-                        current_counts
+                        current_counts,
+                        Skm_current
                     )
 
                 # =====================================================
