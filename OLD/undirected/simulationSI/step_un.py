@@ -1,6 +1,8 @@
 
 # current
 
+from curses.ascii import SI
+
 import numpy as np
 
 # change update rules here
@@ -107,9 +109,12 @@ def update_edges_after_vertex_change_undirected(
     v2_sorted_by_v1,
     v1_sorted_by_v2,
     edge_ids_sorted_by_v2,
+    deg, m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,
+    skm,
     ptr_v1,
     ptr_v2,
     n_states,
+    n_edge_types,
     edge_types,
     events,
     allowed,
@@ -190,11 +195,30 @@ def update_edges_after_vertex_change_undirected(
             num_new_2_instars = num_new_1_edge_causal * (num_new_1_edge_causal - 1) / 2
             num_new_2_outstars = np.sum(causal_out[src[new_causal_mask]] - 1) if np.any(new_causal_mask) else 0
 
+    # =========================================================
+    # update m (infected neighbor counts) after vertex change
+    # But also update S and I and m_i, m_s, degmm_i, degmm_s
+    # =========================================================
+    if vertex_states[vertex] == 1:
+        s0, s1 = ptr_v1[vertex], ptr_v1[vertex + 1]
+        if s1 > s0:
+            m[v2_sorted_by_v1[s0:s1]] += 1
+
+        t0, t1 = ptr_v2[vertex], ptr_v2[vertex + 1]
+        if t1 > t0:
+            m[v1_sorted_by_v2[t0:t1]] += 1    
+
+    # =========================================================
+    # update skm
+    # =========================================================
+
     return (
         num_new_1_edge_causal,
         num_new_2_chains,
         num_new_2_instars,
-        num_new_2_outstars #THEY ARE WRONG; IGNORE 
+        num_new_2_outstars, #THEY ARE WRONG; IGNORE
+        m, S, I, m_s, m_i, degmm_s, degmm_s,
+        skm
     )
 
 
@@ -206,6 +230,7 @@ def step(
     causal_out,
     N_edges,
     vertex_states,
+    skm,
     events,
     edge_types,
     allowed_edges,
@@ -216,9 +241,11 @@ def step(
     v2_sorted_by_v1,
     v1_sorted_by_v2,
     edge_ids_sorted_by_v2,
+    deg, m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,
     ptr_v1,
     ptr_v2,
     n_states,
+    n_edge_types,
     current_time,
     current_counts
 ):
@@ -229,7 +256,7 @@ def step(
     allowed_mask = np.concatenate((allowed_edge_mask, allowed_vertex_mask))
 
     if not allowed_mask.any():
-        return 0, current_time, current_counts, 0, 0, 0, 0
+        return 0, current_time, current_counts, np.zeros(3, dtype=int),np.zeros(6, dtype=int), 0, 0, 0, 0, m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,skm
 
     next_idx = np.argmin(np.where(allowed_mask, events[:, 1], np.inf))
     if next_idx >= N_edges:
@@ -264,6 +291,9 @@ def step(
         # updated vertex is the one that changed state (the target)
         updated_vertex = tgt
 
+        S[updated_vertex] = 0
+        I[updated_vertex] = 1
+
     else:
         # vertex event
         vertex = next_idx - N_edges
@@ -290,7 +320,9 @@ def step(
         num_new_1_edge_causal,
         num_new_2_chains,
         num_new_2_instars,
-        num_new_2_outstars
+        num_new_2_outstars,
+        m, S, I, m_s, m_i, degmm_s, degmm_s,
+        skm
     ) = update_edges_after_vertex_change_undirected(
         updated_vertex,
         vertex_states,
@@ -298,9 +330,12 @@ def step(
         v2_sorted_by_v1,
         v1_sorted_by_v2,
         edge_ids_sorted_by_v2,
+        deg, m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,
+        skm,
         ptr_v1,
         ptr_v2,
         n_states,
+        n_edge_types,
         edge_types,
         events,
         allowed_edges,
@@ -308,10 +343,34 @@ def step(
         current_time,
         causal,
         causal_in,
-        causal_out
+        causal_out,
     )
 
     current_counts = np.bincount(vertex_states, minlength=n_states)
+
+    edge_type_current_counts = np.bincount(edge_types, minlength=n_edge_types) # (SS,SI,II)
+
+    tripoint_type_current_counts = np.zeros(6, dtype=int) # (SSS,SSI = ISS,ISI,SIS,SII = IIS ,III) -  ignore for now 
+    '''
+    degmm = deg - m
+    
+    S = (vertex_states == 0)
+    I = (vertex_states == 1)
+
+    deg_s = deg[S]
+    m_s = m[S]
+    degmm_s = degmm[S]
+
+    deg_i = deg[I]
+    m_i = m[I]
+    degmm_i = degmm[I]
+    '''
+    tripoint_type_current_counts[0] = np.sum(degmm_s * (degmm_s - 1) // 2)
+    tripoint_type_current_counts[1] = np.sum(m_s*degmm_s)
+    tripoint_type_current_counts[2] = np.sum(m_s*(m_s-1) // 2)
+    tripoint_type_current_counts[3] = np.sum(degmm_i * (degmm_i - 1) // 2)
+    tripoint_type_current_counts[4] = np.sum(m_i*degmm_i)
+    tripoint_type_current_counts[5] = np.sum(m_i*(m_i-1) // 2)
 
     return (
         1,
@@ -320,5 +379,8 @@ def step(
         num_new_1_edge_causal,
         num_new_2_chains,
         num_new_2_instars,
-        num_new_2_outstars   # IGNORE THE CAUSAL STUFF FOR NOW; IT IS WRONG!
-    )
+        num_new_2_outstars,   # IGNORE THE CAUSAL STUFF FOR NOW; IT IS WRONG!
+        edge_type_current_counts,
+        tripoint_type_current_counts,
+        m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,skm
+        )

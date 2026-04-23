@@ -42,6 +42,10 @@ def run_one_realization(args):
      fractions_initial, allowed_edges, inv_edge_rates, allowed_vertices, inv_vertex_rates,
      time_grid_t, N_time_bins, T_max) = args
     
+    print("\n\nNEW REALIZATION STARTED\n")
+    print(f"\nThis realization is running on the following instance (N = {N_vertices_full}, {N_vertices_in_LCC} in LCC):\n")
+    graph_show = np.column_stack((v1_sorted, v2_sorted_by_v1))
+    print("\n",graph_show,"\n")
 
 
 
@@ -93,7 +97,8 @@ def run_one_realization(args):
         num_of_2_instars_in_time.append(total_2_instars)
         num_of_2_outstars_in_time.append(total_2_outstars)
 
-
+        print("t: ",current_time)
+        print("vertex states:", vertex_states)
 
         (check,
          current_time,
@@ -145,7 +150,7 @@ def run_realization_chunk(args):
 def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_states,fractions_initial,
                      allowed_edges,inv_edge_rates,allowed_vertices,inv_vertex_rates,
                      time_grid_t,N_time_bins,T_max,
-                     filename,graphs_dir,curves_dir,curves_dir_full,hrcak,
+                     filename,graphs_dir,curves_dir,hrcak,
                      stability_checker,
                     parallel_mode='realizations', num_workers=None, nice_level=10,
                     inner_num_workers=1, chunk_size=10):
@@ -160,8 +165,8 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
     try:
         os.sched_setaffinity(0, allowed_cores)
-        print(f"Main process pinned to cores: {allowed_cores}")
-        print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
+        #print(f"Main process pinned to cores: {allowed_cores}")
+        #print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
     except Exception:
         pass
 
@@ -253,15 +258,15 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
         _n_workers = min(_n_workers, len(allowed_cores))
         MAX_IN_FLIGHT = 2 * _n_workers
 
-        print(f"Workers pinned to cores: {sorted(allowed_cores)}")
-        print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
-        
+        #print(f"Workers pinned to cores: {sorted(allowed_cores)}")
+        #print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
+        '''
         print(
             f"Scheduling {N_processes_per_instance} realizations "
             f"using {_n_workers} workers, chunk_size={chunk_size}, "
             f"MAX_IN_FLIGHT={MAX_IN_FLIGHT}"
         )
-        
+        '''
         args_template = (
                          N_vertices_full,
                          N_vertices_in_LCC,
@@ -374,7 +379,6 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
                             if processed in stability_checker:
                                 curves_path = curves_dir / f"curves_instanceNo{n_valid_graphs:04d}_Nprocesses{processed}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
-                                curves_path_full = curves_dir_full / f"curves_FULL_instanceNo{n_valid_graphs:04d}_Nprocesses{i_process+1}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
                                 check_disk_space(hrcak, min_free_GB=5)
                                 np.savez_compressed(
                                     curves_path,
@@ -471,7 +475,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                     num_of_2_instars_in_time.append(total_2_instars)
                     num_of_2_outstars_in_time.append(total_2_outstars)
 
-                    
+                    print("t:", current_time)
 
                     (check,
                     current_time,
@@ -567,7 +571,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
                 if i_process + 1 in stability_checker:
                     curves_path = curves_dir / f"curves_instanceNo{n_valid_graphs:04d}_Nprocesses{i_process+1}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
-                    curves_path_full = curves_dir_full / f"curves_FULL_instanceNo{n_valid_graphs:04d}_Nprocesses{i_process+1}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
+
                     check_disk_space(hrcak, min_free_GB=5)
 
                     np.savez_compressed(
@@ -594,33 +598,9 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                         var_num_of_2_outstars_in_time_in_one_instance=M2_num_of_2_outstars_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, i_process),
                     )
 
-                    np.savez_compressed(
-                        curves_path_full,
-                        instance_number=n_valid_graphs,
-                        N_vertices_full=N_vertices_full,
-                        p_edges=p_edges,
-                        N_vertices_in_LCC=N_vertices_full,
-                        N_processes=i_process + 1,
-                        time_grid=time_grid_t,
-                        mean_fractions_full=mean_counts_in_time_in_one_instance / N_vertices_full,
-                        var_fractions_full=(M2_counts_in_time_in_one_instance / (N_vertices_full**2) / max(1, i_process)),
-
-                        mean_num_of_1_edge_causal_in_time_in_one_instance_full=mean_num_of_1_edge_causal_in_time_in_one_instance / N_vertices_full,
-                        var_num_of_1_edge_causal_in_time_in_one_instance_full=M2_num_of_1_edge_causal_in_time_in_one_instance / (N_vertices_full**2) / max(1, i_process),
-
-                        mean_num_of_2_chains_in_time_in_one_instance_full=mean_num_of_2_chains_in_time_in_one_instance / N_vertices_full,
-                        var_num_of_2_chains_in_time_in_one_instance_full=M2_num_of_2_chains_in_time_in_one_instance / (N_vertices_full**2) / max(1, i_process),
-
-                        mean_num_of_2_instars_in_time_in_one_instance_full=mean_num_of_2_instars_in_time_in_one_instance / N_vertices_full,
-                        var_num_of_2_instars_in_time_in_one_instance_full=M2_num_of_2_instars_in_time_in_one_instance / (N_vertices_full**2) / max(1, i_process),
-
-                        mean_num_of_2_outstars_in_time_in_one_instance_full=mean_num_of_2_outstars_in_time_in_one_instance / N_vertices_full,
-                        var_num_of_2_outstars_in_time_in_one_instance_full=M2_num_of_2_outstars_in_time_in_one_instance / (N_vertices_full**2) / max(1, i_process),
-                    )
-
         n_valid_graphs += 1
         i_instance += 1
-        
+        print("\n")
 
     t_max_reached = np.asarray(t_max_reached)
     N_realizations = N_instances*N_processes_per_instance

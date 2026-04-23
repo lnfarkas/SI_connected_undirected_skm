@@ -2,11 +2,11 @@ import numpy as np
 from pathlib import Path
 
 # ------------------ User Parameters ------------------
+tol = float(input("Enter tolerance for the N in LCC(e.g. 0.02 for ±2%): "))
 
-
-simID = "SIsimUNDIRECTED20260415095123" #SIsim20260401112526
-Nv = "1000"
-k = "4"
+simID = "SIsimUNDIRECTED20260421160626" #SIsim20260401112526
+Nv = "20"
+k = "2"
 
 curves_dir = Path(f"/home/lnf/Desktop/00_sim_SI/{simID}/N{Nv}_k{k}/Curves")
 
@@ -28,7 +28,9 @@ for f in files:
 
 nconnected_arr = np.array(nconnected_list)
 mean_nconnected = nconnected_arr.mean()
-lower, upper = mean_nconnected * 0.98, mean_nconnected * 1.02
+
+lower = mean_nconnected * (1 - tol)
+upper = mean_nconnected * (1 + tol)
 
 # Filter files within ±2% of mean
 accepted_files = [f for f, n in zip(files, nconnected_arr) if lower <= n <= upper]

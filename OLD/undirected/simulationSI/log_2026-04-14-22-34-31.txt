@@ -1,8 +1,8 @@
-Main process pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Main process pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 0] processed 100/10000
 [instance 0] processed 200/10000
 [instance 0] processed 300/10000
@@ -14,9 +14,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 0] processed 900/10000
 [instance 0] processed 1000/10000
 Parallel execution failed (cannot access local variable 'i_process' where it is not associated with a value), falling back to serial loop
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 1] processed 100/10000
 [instance 1] processed 200/10000
 [instance 1] processed 300/10000
@@ -117,9 +117,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 1] processed 9800/10000
 [instance 1] processed 9900/10000
 [instance 1] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 2] processed 100/10000
 [instance 2] processed 200/10000
 [instance 2] processed 300/10000
@@ -220,9 +220,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 2] processed 9800/10000
 [instance 2] processed 9900/10000
 [instance 2] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 3] processed 100/10000
 [instance 3] processed 200/10000
 [instance 3] processed 300/10000
@@ -323,9 +323,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 3] processed 9800/10000
 [instance 3] processed 9900/10000
 [instance 3] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 4] processed 100/10000
 [instance 4] processed 200/10000
 [instance 4] processed 300/10000
@@ -426,9 +426,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 4] processed 9800/10000
 [instance 4] processed 9900/10000
 [instance 4] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 5] processed 100/10000
 [instance 5] processed 200/10000
 [instance 5] processed 300/10000
@@ -529,9 +529,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 5] processed 9800/10000
 [instance 5] processed 9900/10000
 [instance 5] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 6] processed 100/10000
 [instance 6] processed 200/10000
 [instance 6] processed 300/10000
@@ -632,9 +632,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 6] processed 9800/10000
 [instance 6] processed 9900/10000
 [instance 6] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 7] processed 100/10000
 [instance 7] processed 200/10000
 [instance 7] processed 300/10000
@@ -735,9 +735,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 7] processed 9800/10000
 [instance 7] processed 9900/10000
 [instance 7] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 8] processed 100/10000
 [instance 8] processed 200/10000
 [instance 8] processed 300/10000
@@ -838,9 +838,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 8] processed 9800/10000
 [instance 8] processed 9900/10000
 [instance 8] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 9] processed 100/10000
 [instance 9] processed 200/10000
 [instance 9] processed 300/10000
@@ -941,9 +941,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 9] processed 9800/10000
 [instance 9] processed 9900/10000
 [instance 9] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 10] processed 100/10000
 [instance 10] processed 200/10000
 [instance 10] processed 300/10000
@@ -1044,9 +1044,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 10] processed 9800/10000
 [instance 10] processed 9900/10000
 [instance 10] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 11] processed 100/10000
 [instance 11] processed 200/10000
 [instance 11] processed 300/10000
@@ -1147,9 +1147,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 11] processed 9800/10000
 [instance 11] processed 9900/10000
 [instance 11] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 12] processed 100/10000
 [instance 12] processed 200/10000
 [instance 12] processed 300/10000
@@ -1250,9 +1250,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 12] processed 9800/10000
 [instance 12] processed 9900/10000
 [instance 12] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 13] processed 100/10000
 [instance 13] processed 200/10000
 [instance 13] processed 300/10000
@@ -1353,9 +1353,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 13] processed 9800/10000
 [instance 13] processed 9900/10000
 [instance 13] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 14] processed 100/10000
 [instance 14] processed 200/10000
 [instance 14] processed 300/10000
@@ -1456,9 +1456,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 14] processed 9800/10000
 [instance 14] processed 9900/10000
 [instance 14] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 15] processed 100/10000
 [instance 15] processed 200/10000
 [instance 15] processed 300/10000
@@ -1559,9 +1559,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 15] processed 9800/10000
 [instance 15] processed 9900/10000
 [instance 15] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 16] processed 100/10000
 [instance 16] processed 200/10000
 [instance 16] processed 300/10000
@@ -1662,9 +1662,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 16] processed 9800/10000
 [instance 16] processed 9900/10000
 [instance 16] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 17] processed 100/10000
 [instance 17] processed 200/10000
 [instance 17] processed 300/10000
@@ -1765,9 +1765,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 17] processed 9800/10000
 [instance 17] processed 9900/10000
 [instance 17] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 18] processed 100/10000
 [instance 18] processed 200/10000
 [instance 18] processed 300/10000
@@ -1868,9 +1868,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 18] processed 9800/10000
 [instance 18] processed 9900/10000
 [instance 18] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 19] processed 100/10000
 [instance 19] processed 200/10000
 [instance 19] processed 300/10000
@@ -1971,9 +1971,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 19] processed 9800/10000
 [instance 19] processed 9900/10000
 [instance 19] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 20] processed 100/10000
 [instance 20] processed 200/10000
 [instance 20] processed 300/10000
@@ -2074,9 +2074,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 20] processed 9800/10000
 [instance 20] processed 9900/10000
 [instance 20] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 21] processed 100/10000
 [instance 21] processed 200/10000
 [instance 21] processed 300/10000
@@ -2177,9 +2177,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 21] processed 9800/10000
 [instance 21] processed 9900/10000
 [instance 21] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 22] processed 100/10000
 [instance 22] processed 200/10000
 [instance 22] processed 300/10000
@@ -2280,9 +2280,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 22] processed 9800/10000
 [instance 22] processed 9900/10000
 [instance 22] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 23] processed 100/10000
 [instance 23] processed 200/10000
 [instance 23] processed 300/10000
@@ -2383,9 +2383,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 23] processed 9800/10000
 [instance 23] processed 9900/10000
 [instance 23] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 24] processed 100/10000
 [instance 24] processed 200/10000
 [instance 24] processed 300/10000
@@ -2486,9 +2486,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 24] processed 9800/10000
 [instance 24] processed 9900/10000
 [instance 24] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 25] processed 100/10000
 [instance 25] processed 200/10000
 [instance 25] processed 300/10000
@@ -2589,9 +2589,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 25] processed 9800/10000
 [instance 25] processed 9900/10000
 [instance 25] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 26] processed 100/10000
 [instance 26] processed 200/10000
 [instance 26] processed 300/10000
@@ -2692,9 +2692,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 26] processed 9800/10000
 [instance 26] processed 9900/10000
 [instance 26] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 27] processed 100/10000
 [instance 27] processed 200/10000
 [instance 27] processed 300/10000
@@ -2795,9 +2795,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 27] processed 9800/10000
 [instance 27] processed 9900/10000
 [instance 27] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 28] processed 100/10000
 [instance 28] processed 200/10000
 [instance 28] processed 300/10000
@@ -2898,9 +2898,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 28] processed 9800/10000
 [instance 28] processed 9900/10000
 [instance 28] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 29] processed 100/10000
 [instance 29] processed 200/10000
 [instance 29] processed 300/10000
@@ -3001,9 +3001,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 29] processed 9800/10000
 [instance 29] processed 9900/10000
 [instance 29] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 30] processed 100/10000
 [instance 30] processed 200/10000
 [instance 30] processed 300/10000
@@ -3104,9 +3104,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 30] processed 9800/10000
 [instance 30] processed 9900/10000
 [instance 30] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 31] processed 100/10000
 [instance 31] processed 200/10000
 [instance 31] processed 300/10000
@@ -3207,9 +3207,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 31] processed 9800/10000
 [instance 31] processed 9900/10000
 [instance 31] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 32] processed 100/10000
 [instance 32] processed 200/10000
 [instance 32] processed 300/10000
@@ -3310,9 +3310,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 32] processed 9800/10000
 [instance 32] processed 9900/10000
 [instance 32] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 33] processed 100/10000
 [instance 33] processed 200/10000
 [instance 33] processed 300/10000
@@ -3413,9 +3413,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 33] processed 9800/10000
 [instance 33] processed 9900/10000
 [instance 33] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 34] processed 100/10000
 [instance 34] processed 200/10000
 [instance 34] processed 300/10000
@@ -3516,9 +3516,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 34] processed 9800/10000
 [instance 34] processed 9900/10000
 [instance 34] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 35] processed 100/10000
 [instance 35] processed 200/10000
 [instance 35] processed 300/10000
@@ -3619,9 +3619,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 35] processed 9800/10000
 [instance 35] processed 9900/10000
 [instance 35] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 36] processed 100/10000
 [instance 36] processed 200/10000
 [instance 36] processed 300/10000
@@ -3722,9 +3722,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 36] processed 9800/10000
 [instance 36] processed 9900/10000
 [instance 36] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 37] processed 100/10000
 [instance 37] processed 200/10000
 [instance 37] processed 300/10000
@@ -3825,9 +3825,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 37] processed 9800/10000
 [instance 37] processed 9900/10000
 [instance 37] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 38] processed 100/10000
 [instance 38] processed 200/10000
 [instance 38] processed 300/10000
@@ -3928,9 +3928,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 38] processed 9800/10000
 [instance 38] processed 9900/10000
 [instance 38] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 39] processed 100/10000
 [instance 39] processed 200/10000
 [instance 39] processed 300/10000
@@ -4031,9 +4031,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 39] processed 9800/10000
 [instance 39] processed 9900/10000
 [instance 39] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 40] processed 100/10000
 [instance 40] processed 200/10000
 [instance 40] processed 300/10000
@@ -4134,9 +4134,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 40] processed 9800/10000
 [instance 40] processed 9900/10000
 [instance 40] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 41] processed 100/10000
 [instance 41] processed 200/10000
 [instance 41] processed 300/10000
@@ -4237,9 +4237,9 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 41] processed 9800/10000
 [instance 41] processed 9900/10000
 [instance 41] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
 [instance 42] processed 100/10000
 [instance 42] processed 200/10000
 [instance 42] processed 300/10000
@@ -4340,6 +4340,2993 @@ Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
 [instance 42] processed 9800/10000
 [instance 42] processed 9900/10000
 [instance 42] processed 10000/10000
-Workers pinned to cores: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-Reserved free cores: [18, 19]
-Scheduling 10000 realizations using 15 workers, chunk_size=100, MAX_IN_FLIGHT=30
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 43] processed 100/10000
+[instance 43] processed 200/10000
+[instance 43] processed 300/10000
+[instance 43] processed 400/10000
+[instance 43] processed 500/10000
+[instance 43] processed 600/10000
+[instance 43] processed 700/10000
+[instance 43] processed 800/10000
+[instance 43] processed 900/10000
+[instance 43] processed 1000/10000
+[instance 43] processed 1100/10000
+[instance 43] processed 1200/10000
+[instance 43] processed 1300/10000
+[instance 43] processed 1400/10000
+[instance 43] processed 1500/10000
+[instance 43] processed 1600/10000
+[instance 43] processed 1700/10000
+[instance 43] processed 1800/10000
+[instance 43] processed 1900/10000
+[instance 43] processed 2000/10000
+[instance 43] processed 2100/10000
+[instance 43] processed 2200/10000
+[instance 43] processed 2300/10000
+[instance 43] processed 2400/10000
+[instance 43] processed 2500/10000
+[instance 43] processed 2600/10000
+[instance 43] processed 2700/10000
+[instance 43] processed 2800/10000
+[instance 43] processed 2900/10000
+[instance 43] processed 3000/10000
+[instance 43] processed 3100/10000
+[instance 43] processed 3200/10000
+[instance 43] processed 3300/10000
+[instance 43] processed 3400/10000
+[instance 43] processed 3500/10000
+[instance 43] processed 3600/10000
+[instance 43] processed 3700/10000
+[instance 43] processed 3800/10000
+[instance 43] processed 3900/10000
+[instance 43] processed 4000/10000
+[instance 43] processed 4100/10000
+[instance 43] processed 4200/10000
+[instance 43] processed 4300/10000
+[instance 43] processed 4400/10000
+[instance 43] processed 4500/10000
+[instance 43] processed 4600/10000
+[instance 43] processed 4700/10000
+[instance 43] processed 4800/10000
+[instance 43] processed 4900/10000
+[instance 43] processed 5000/10000
+[instance 43] processed 5100/10000
+[instance 43] processed 5200/10000
+[instance 43] processed 5300/10000
+[instance 43] processed 5400/10000
+[instance 43] processed 5500/10000
+[instance 43] processed 5600/10000
+[instance 43] processed 5700/10000
+[instance 43] processed 5800/10000
+[instance 43] processed 5900/10000
+[instance 43] processed 6000/10000
+[instance 43] processed 6100/10000
+[instance 43] processed 6200/10000
+[instance 43] processed 6300/10000
+[instance 43] processed 6400/10000
+[instance 43] processed 6500/10000
+[instance 43] processed 6600/10000
+[instance 43] processed 6700/10000
+[instance 43] processed 6800/10000
+[instance 43] processed 6900/10000
+[instance 43] processed 7000/10000
+[instance 43] processed 7100/10000
+[instance 43] processed 7200/10000
+[instance 43] processed 7300/10000
+[instance 43] processed 7400/10000
+[instance 43] processed 7500/10000
+[instance 43] processed 7600/10000
+[instance 43] processed 7700/10000
+[instance 43] processed 7800/10000
+[instance 43] processed 7900/10000
+[instance 43] processed 8000/10000
+[instance 43] processed 8100/10000
+[instance 43] processed 8200/10000
+[instance 43] processed 8300/10000
+[instance 43] processed 8400/10000
+[instance 43] processed 8500/10000
+[instance 43] processed 8600/10000
+[instance 43] processed 8700/10000
+[instance 43] processed 8800/10000
+[instance 43] processed 8900/10000
+[instance 43] processed 9000/10000
+[instance 43] processed 9100/10000
+[instance 43] processed 9200/10000
+[instance 43] processed 9300/10000
+[instance 43] processed 9400/10000
+[instance 43] processed 9500/10000
+[instance 43] processed 9600/10000
+[instance 43] processed 9700/10000
+[instance 43] processed 9800/10000
+[instance 43] processed 9900/10000
+[instance 43] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 44] processed 100/10000
+[instance 44] processed 200/10000
+[instance 44] processed 300/10000
+[instance 44] processed 400/10000
+[instance 44] processed 500/10000
+[instance 44] processed 600/10000
+[instance 44] processed 700/10000
+[instance 44] processed 800/10000
+[instance 44] processed 900/10000
+[instance 44] processed 1000/10000
+[instance 44] processed 1100/10000
+[instance 44] processed 1200/10000
+[instance 44] processed 1300/10000
+[instance 44] processed 1400/10000
+[instance 44] processed 1500/10000
+[instance 44] processed 1600/10000
+[instance 44] processed 1700/10000
+[instance 44] processed 1800/10000
+[instance 44] processed 1900/10000
+[instance 44] processed 2000/10000
+[instance 44] processed 2100/10000
+[instance 44] processed 2200/10000
+[instance 44] processed 2300/10000
+[instance 44] processed 2400/10000
+[instance 44] processed 2500/10000
+[instance 44] processed 2600/10000
+[instance 44] processed 2700/10000
+[instance 44] processed 2800/10000
+[instance 44] processed 2900/10000
+[instance 44] processed 3000/10000
+[instance 44] processed 3100/10000
+[instance 44] processed 3200/10000
+[instance 44] processed 3300/10000
+[instance 44] processed 3400/10000
+[instance 44] processed 3500/10000
+[instance 44] processed 3600/10000
+[instance 44] processed 3700/10000
+[instance 44] processed 3800/10000
+[instance 44] processed 3900/10000
+[instance 44] processed 4000/10000
+[instance 44] processed 4100/10000
+[instance 44] processed 4200/10000
+[instance 44] processed 4300/10000
+[instance 44] processed 4400/10000
+[instance 44] processed 4500/10000
+[instance 44] processed 4600/10000
+[instance 44] processed 4700/10000
+[instance 44] processed 4800/10000
+[instance 44] processed 4900/10000
+[instance 44] processed 5000/10000
+[instance 44] processed 5100/10000
+[instance 44] processed 5200/10000
+[instance 44] processed 5300/10000
+[instance 44] processed 5400/10000
+[instance 44] processed 5500/10000
+[instance 44] processed 5600/10000
+[instance 44] processed 5700/10000
+[instance 44] processed 5800/10000
+[instance 44] processed 5900/10000
+[instance 44] processed 6000/10000
+[instance 44] processed 6100/10000
+[instance 44] processed 6200/10000
+[instance 44] processed 6300/10000
+[instance 44] processed 6400/10000
+[instance 44] processed 6500/10000
+[instance 44] processed 6600/10000
+[instance 44] processed 6700/10000
+[instance 44] processed 6800/10000
+[instance 44] processed 6900/10000
+[instance 44] processed 7000/10000
+[instance 44] processed 7100/10000
+[instance 44] processed 7200/10000
+[instance 44] processed 7300/10000
+[instance 44] processed 7400/10000
+[instance 44] processed 7500/10000
+[instance 44] processed 7600/10000
+[instance 44] processed 7700/10000
+[instance 44] processed 7800/10000
+[instance 44] processed 7900/10000
+[instance 44] processed 8000/10000
+[instance 44] processed 8100/10000
+[instance 44] processed 8200/10000
+[instance 44] processed 8300/10000
+[instance 44] processed 8400/10000
+[instance 44] processed 8500/10000
+[instance 44] processed 8600/10000
+[instance 44] processed 8700/10000
+[instance 44] processed 8800/10000
+[instance 44] processed 8900/10000
+[instance 44] processed 9000/10000
+[instance 44] processed 9100/10000
+[instance 44] processed 9200/10000
+[instance 44] processed 9300/10000
+[instance 44] processed 9400/10000
+[instance 44] processed 9500/10000
+[instance 44] processed 9600/10000
+[instance 44] processed 9700/10000
+[instance 44] processed 9800/10000
+[instance 44] processed 9900/10000
+[instance 44] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 45] processed 100/10000
+[instance 45] processed 200/10000
+[instance 45] processed 300/10000
+[instance 45] processed 400/10000
+[instance 45] processed 500/10000
+[instance 45] processed 600/10000
+[instance 45] processed 700/10000
+[instance 45] processed 800/10000
+[instance 45] processed 900/10000
+[instance 45] processed 1000/10000
+[instance 45] processed 1100/10000
+[instance 45] processed 1200/10000
+[instance 45] processed 1300/10000
+[instance 45] processed 1400/10000
+[instance 45] processed 1500/10000
+[instance 45] processed 1600/10000
+[instance 45] processed 1700/10000
+[instance 45] processed 1800/10000
+[instance 45] processed 1900/10000
+[instance 45] processed 2000/10000
+[instance 45] processed 2100/10000
+[instance 45] processed 2200/10000
+[instance 45] processed 2300/10000
+[instance 45] processed 2400/10000
+[instance 45] processed 2500/10000
+[instance 45] processed 2600/10000
+[instance 45] processed 2700/10000
+[instance 45] processed 2800/10000
+[instance 45] processed 2900/10000
+[instance 45] processed 3000/10000
+[instance 45] processed 3100/10000
+[instance 45] processed 3200/10000
+[instance 45] processed 3300/10000
+[instance 45] processed 3400/10000
+[instance 45] processed 3500/10000
+[instance 45] processed 3600/10000
+[instance 45] processed 3700/10000
+[instance 45] processed 3800/10000
+[instance 45] processed 3900/10000
+[instance 45] processed 4000/10000
+[instance 45] processed 4100/10000
+[instance 45] processed 4200/10000
+[instance 45] processed 4300/10000
+[instance 45] processed 4400/10000
+[instance 45] processed 4500/10000
+[instance 45] processed 4600/10000
+[instance 45] processed 4700/10000
+[instance 45] processed 4800/10000
+[instance 45] processed 4900/10000
+[instance 45] processed 5000/10000
+[instance 45] processed 5100/10000
+[instance 45] processed 5200/10000
+[instance 45] processed 5300/10000
+[instance 45] processed 5400/10000
+[instance 45] processed 5500/10000
+[instance 45] processed 5600/10000
+[instance 45] processed 5700/10000
+[instance 45] processed 5800/10000
+[instance 45] processed 5900/10000
+[instance 45] processed 6000/10000
+[instance 45] processed 6100/10000
+[instance 45] processed 6200/10000
+[instance 45] processed 6300/10000
+[instance 45] processed 6400/10000
+[instance 45] processed 6500/10000
+[instance 45] processed 6600/10000
+[instance 45] processed 6700/10000
+[instance 45] processed 6800/10000
+[instance 45] processed 6900/10000
+[instance 45] processed 7000/10000
+[instance 45] processed 7100/10000
+[instance 45] processed 7200/10000
+[instance 45] processed 7300/10000
+[instance 45] processed 7400/10000
+[instance 45] processed 7500/10000
+[instance 45] processed 7600/10000
+[instance 45] processed 7700/10000
+[instance 45] processed 7800/10000
+[instance 45] processed 7900/10000
+[instance 45] processed 8000/10000
+[instance 45] processed 8100/10000
+[instance 45] processed 8200/10000
+[instance 45] processed 8300/10000
+[instance 45] processed 8400/10000
+[instance 45] processed 8500/10000
+[instance 45] processed 8600/10000
+[instance 45] processed 8700/10000
+[instance 45] processed 8800/10000
+[instance 45] processed 8900/10000
+[instance 45] processed 9000/10000
+[instance 45] processed 9100/10000
+[instance 45] processed 9200/10000
+[instance 45] processed 9300/10000
+[instance 45] processed 9400/10000
+[instance 45] processed 9500/10000
+[instance 45] processed 9600/10000
+[instance 45] processed 9700/10000
+[instance 45] processed 9800/10000
+[instance 45] processed 9900/10000
+[instance 45] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 46] processed 100/10000
+[instance 46] processed 200/10000
+[instance 46] processed 300/10000
+[instance 46] processed 400/10000
+[instance 46] processed 500/10000
+[instance 46] processed 600/10000
+[instance 46] processed 700/10000
+[instance 46] processed 800/10000
+[instance 46] processed 900/10000
+[instance 46] processed 1000/10000
+[instance 46] processed 1100/10000
+[instance 46] processed 1200/10000
+[instance 46] processed 1300/10000
+[instance 46] processed 1400/10000
+[instance 46] processed 1500/10000
+[instance 46] processed 1600/10000
+[instance 46] processed 1700/10000
+[instance 46] processed 1800/10000
+[instance 46] processed 1900/10000
+[instance 46] processed 2000/10000
+[instance 46] processed 2100/10000
+[instance 46] processed 2200/10000
+[instance 46] processed 2300/10000
+[instance 46] processed 2400/10000
+[instance 46] processed 2500/10000
+[instance 46] processed 2600/10000
+[instance 46] processed 2700/10000
+[instance 46] processed 2800/10000
+[instance 46] processed 2900/10000
+[instance 46] processed 3000/10000
+[instance 46] processed 3100/10000
+[instance 46] processed 3200/10000
+[instance 46] processed 3300/10000
+[instance 46] processed 3400/10000
+[instance 46] processed 3500/10000
+[instance 46] processed 3600/10000
+[instance 46] processed 3700/10000
+[instance 46] processed 3800/10000
+[instance 46] processed 3900/10000
+[instance 46] processed 4000/10000
+[instance 46] processed 4100/10000
+[instance 46] processed 4200/10000
+[instance 46] processed 4300/10000
+[instance 46] processed 4400/10000
+[instance 46] processed 4500/10000
+[instance 46] processed 4600/10000
+[instance 46] processed 4700/10000
+[instance 46] processed 4800/10000
+[instance 46] processed 4900/10000
+[instance 46] processed 5000/10000
+[instance 46] processed 5100/10000
+[instance 46] processed 5200/10000
+[instance 46] processed 5300/10000
+[instance 46] processed 5400/10000
+[instance 46] processed 5500/10000
+[instance 46] processed 5600/10000
+[instance 46] processed 5700/10000
+[instance 46] processed 5800/10000
+[instance 46] processed 5900/10000
+[instance 46] processed 6000/10000
+[instance 46] processed 6100/10000
+[instance 46] processed 6200/10000
+[instance 46] processed 6300/10000
+[instance 46] processed 6400/10000
+[instance 46] processed 6500/10000
+[instance 46] processed 6600/10000
+[instance 46] processed 6700/10000
+[instance 46] processed 6800/10000
+[instance 46] processed 6900/10000
+[instance 46] processed 7000/10000
+[instance 46] processed 7100/10000
+[instance 46] processed 7200/10000
+[instance 46] processed 7300/10000
+[instance 46] processed 7400/10000
+[instance 46] processed 7500/10000
+[instance 46] processed 7600/10000
+[instance 46] processed 7700/10000
+[instance 46] processed 7800/10000
+[instance 46] processed 7900/10000
+[instance 46] processed 8000/10000
+[instance 46] processed 8100/10000
+[instance 46] processed 8200/10000
+[instance 46] processed 8300/10000
+[instance 46] processed 8400/10000
+[instance 46] processed 8500/10000
+[instance 46] processed 8600/10000
+[instance 46] processed 8700/10000
+[instance 46] processed 8800/10000
+[instance 46] processed 8900/10000
+[instance 46] processed 9000/10000
+[instance 46] processed 9100/10000
+[instance 46] processed 9200/10000
+[instance 46] processed 9300/10000
+[instance 46] processed 9400/10000
+[instance 46] processed 9500/10000
+[instance 46] processed 9600/10000
+[instance 46] processed 9700/10000
+[instance 46] processed 9800/10000
+[instance 46] processed 9900/10000
+[instance 46] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 47] processed 100/10000
+[instance 47] processed 200/10000
+[instance 47] processed 300/10000
+[instance 47] processed 400/10000
+[instance 47] processed 500/10000
+[instance 47] processed 600/10000
+[instance 47] processed 700/10000
+[instance 47] processed 800/10000
+[instance 47] processed 900/10000
+[instance 47] processed 1000/10000
+[instance 47] processed 1100/10000
+[instance 47] processed 1200/10000
+[instance 47] processed 1300/10000
+[instance 47] processed 1400/10000
+[instance 47] processed 1500/10000
+[instance 47] processed 1600/10000
+[instance 47] processed 1700/10000
+[instance 47] processed 1800/10000
+[instance 47] processed 1900/10000
+[instance 47] processed 2000/10000
+[instance 47] processed 2100/10000
+[instance 47] processed 2200/10000
+[instance 47] processed 2300/10000
+[instance 47] processed 2400/10000
+[instance 47] processed 2500/10000
+[instance 47] processed 2600/10000
+[instance 47] processed 2700/10000
+[instance 47] processed 2800/10000
+[instance 47] processed 2900/10000
+[instance 47] processed 3000/10000
+[instance 47] processed 3100/10000
+[instance 47] processed 3200/10000
+[instance 47] processed 3300/10000
+[instance 47] processed 3400/10000
+[instance 47] processed 3500/10000
+[instance 47] processed 3600/10000
+[instance 47] processed 3700/10000
+[instance 47] processed 3800/10000
+[instance 47] processed 3900/10000
+[instance 47] processed 4000/10000
+[instance 47] processed 4100/10000
+[instance 47] processed 4200/10000
+[instance 47] processed 4300/10000
+[instance 47] processed 4400/10000
+[instance 47] processed 4500/10000
+[instance 47] processed 4600/10000
+[instance 47] processed 4700/10000
+[instance 47] processed 4800/10000
+[instance 47] processed 4900/10000
+[instance 47] processed 5000/10000
+[instance 47] processed 5100/10000
+[instance 47] processed 5200/10000
+[instance 47] processed 5300/10000
+[instance 47] processed 5400/10000
+[instance 47] processed 5500/10000
+[instance 47] processed 5600/10000
+[instance 47] processed 5700/10000
+[instance 47] processed 5800/10000
+[instance 47] processed 5900/10000
+[instance 47] processed 6000/10000
+[instance 47] processed 6100/10000
+[instance 47] processed 6200/10000
+[instance 47] processed 6300/10000
+[instance 47] processed 6400/10000
+[instance 47] processed 6500/10000
+[instance 47] processed 6600/10000
+[instance 47] processed 6700/10000
+[instance 47] processed 6800/10000
+[instance 47] processed 6900/10000
+[instance 47] processed 7000/10000
+[instance 47] processed 7100/10000
+[instance 47] processed 7200/10000
+[instance 47] processed 7300/10000
+[instance 47] processed 7400/10000
+[instance 47] processed 7500/10000
+[instance 47] processed 7600/10000
+[instance 47] processed 7700/10000
+[instance 47] processed 7800/10000
+[instance 47] processed 7900/10000
+[instance 47] processed 8000/10000
+[instance 47] processed 8100/10000
+[instance 47] processed 8200/10000
+[instance 47] processed 8300/10000
+[instance 47] processed 8400/10000
+[instance 47] processed 8500/10000
+[instance 47] processed 8600/10000
+[instance 47] processed 8700/10000
+[instance 47] processed 8800/10000
+[instance 47] processed 8900/10000
+[instance 47] processed 9000/10000
+[instance 47] processed 9100/10000
+[instance 47] processed 9200/10000
+[instance 47] processed 9300/10000
+[instance 47] processed 9400/10000
+[instance 47] processed 9500/10000
+[instance 47] processed 9600/10000
+[instance 47] processed 9700/10000
+[instance 47] processed 9800/10000
+[instance 47] processed 9900/10000
+[instance 47] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 48] processed 100/10000
+[instance 48] processed 200/10000
+[instance 48] processed 300/10000
+[instance 48] processed 400/10000
+[instance 48] processed 500/10000
+[instance 48] processed 600/10000
+[instance 48] processed 700/10000
+[instance 48] processed 800/10000
+[instance 48] processed 900/10000
+[instance 48] processed 1000/10000
+[instance 48] processed 1100/10000
+[instance 48] processed 1200/10000
+[instance 48] processed 1300/10000
+[instance 48] processed 1400/10000
+[instance 48] processed 1500/10000
+[instance 48] processed 1600/10000
+[instance 48] processed 1700/10000
+[instance 48] processed 1800/10000
+[instance 48] processed 1900/10000
+[instance 48] processed 2000/10000
+[instance 48] processed 2100/10000
+[instance 48] processed 2200/10000
+[instance 48] processed 2300/10000
+[instance 48] processed 2400/10000
+[instance 48] processed 2500/10000
+[instance 48] processed 2600/10000
+[instance 48] processed 2700/10000
+[instance 48] processed 2800/10000
+[instance 48] processed 2900/10000
+[instance 48] processed 3000/10000
+[instance 48] processed 3100/10000
+[instance 48] processed 3200/10000
+[instance 48] processed 3300/10000
+[instance 48] processed 3400/10000
+[instance 48] processed 3500/10000
+[instance 48] processed 3600/10000
+[instance 48] processed 3700/10000
+[instance 48] processed 3800/10000
+[instance 48] processed 3900/10000
+[instance 48] processed 4000/10000
+[instance 48] processed 4100/10000
+[instance 48] processed 4200/10000
+[instance 48] processed 4300/10000
+[instance 48] processed 4400/10000
+[instance 48] processed 4500/10000
+[instance 48] processed 4600/10000
+[instance 48] processed 4700/10000
+[instance 48] processed 4800/10000
+[instance 48] processed 4900/10000
+[instance 48] processed 5000/10000
+[instance 48] processed 5100/10000
+[instance 48] processed 5200/10000
+[instance 48] processed 5300/10000
+[instance 48] processed 5400/10000
+[instance 48] processed 5500/10000
+[instance 48] processed 5600/10000
+[instance 48] processed 5700/10000
+[instance 48] processed 5800/10000
+[instance 48] processed 5900/10000
+[instance 48] processed 6000/10000
+[instance 48] processed 6100/10000
+[instance 48] processed 6200/10000
+[instance 48] processed 6300/10000
+[instance 48] processed 6400/10000
+[instance 48] processed 6500/10000
+[instance 48] processed 6600/10000
+[instance 48] processed 6700/10000
+[instance 48] processed 6800/10000
+[instance 48] processed 6900/10000
+[instance 48] processed 7000/10000
+[instance 48] processed 7100/10000
+[instance 48] processed 7200/10000
+[instance 48] processed 7300/10000
+[instance 48] processed 7400/10000
+[instance 48] processed 7500/10000
+[instance 48] processed 7600/10000
+[instance 48] processed 7700/10000
+[instance 48] processed 7800/10000
+[instance 48] processed 7900/10000
+[instance 48] processed 8000/10000
+[instance 48] processed 8100/10000
+[instance 48] processed 8200/10000
+[instance 48] processed 8300/10000
+[instance 48] processed 8400/10000
+[instance 48] processed 8500/10000
+[instance 48] processed 8600/10000
+[instance 48] processed 8700/10000
+[instance 48] processed 8800/10000
+[instance 48] processed 8900/10000
+[instance 48] processed 9000/10000
+[instance 48] processed 9100/10000
+[instance 48] processed 9200/10000
+[instance 48] processed 9300/10000
+[instance 48] processed 9400/10000
+[instance 48] processed 9500/10000
+[instance 48] processed 9600/10000
+[instance 48] processed 9700/10000
+[instance 48] processed 9800/10000
+[instance 48] processed 9900/10000
+[instance 48] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 49] processed 100/10000
+[instance 49] processed 200/10000
+[instance 49] processed 300/10000
+[instance 49] processed 400/10000
+[instance 49] processed 500/10000
+[instance 49] processed 600/10000
+[instance 49] processed 700/10000
+[instance 49] processed 800/10000
+[instance 49] processed 900/10000
+[instance 49] processed 1000/10000
+[instance 49] processed 1100/10000
+[instance 49] processed 1200/10000
+[instance 49] processed 1300/10000
+[instance 49] processed 1400/10000
+[instance 49] processed 1500/10000
+[instance 49] processed 1600/10000
+[instance 49] processed 1700/10000
+[instance 49] processed 1800/10000
+[instance 49] processed 1900/10000
+[instance 49] processed 2000/10000
+[instance 49] processed 2100/10000
+[instance 49] processed 2200/10000
+[instance 49] processed 2300/10000
+[instance 49] processed 2400/10000
+[instance 49] processed 2500/10000
+[instance 49] processed 2600/10000
+[instance 49] processed 2700/10000
+[instance 49] processed 2800/10000
+[instance 49] processed 2900/10000
+[instance 49] processed 3000/10000
+[instance 49] processed 3100/10000
+[instance 49] processed 3200/10000
+[instance 49] processed 3300/10000
+[instance 49] processed 3400/10000
+[instance 49] processed 3500/10000
+[instance 49] processed 3600/10000
+[instance 49] processed 3700/10000
+[instance 49] processed 3800/10000
+[instance 49] processed 3900/10000
+[instance 49] processed 4000/10000
+[instance 49] processed 4100/10000
+[instance 49] processed 4200/10000
+[instance 49] processed 4300/10000
+[instance 49] processed 4400/10000
+[instance 49] processed 4500/10000
+[instance 49] processed 4600/10000
+[instance 49] processed 4700/10000
+[instance 49] processed 4800/10000
+[instance 49] processed 4900/10000
+[instance 49] processed 5000/10000
+[instance 49] processed 5100/10000
+[instance 49] processed 5200/10000
+[instance 49] processed 5300/10000
+[instance 49] processed 5400/10000
+[instance 49] processed 5500/10000
+[instance 49] processed 5600/10000
+[instance 49] processed 5700/10000
+[instance 49] processed 5800/10000
+[instance 49] processed 5900/10000
+[instance 49] processed 6000/10000
+[instance 49] processed 6100/10000
+[instance 49] processed 6200/10000
+[instance 49] processed 6300/10000
+[instance 49] processed 6400/10000
+[instance 49] processed 6500/10000
+[instance 49] processed 6600/10000
+[instance 49] processed 6700/10000
+[instance 49] processed 6800/10000
+[instance 49] processed 6900/10000
+[instance 49] processed 7000/10000
+[instance 49] processed 7100/10000
+[instance 49] processed 7200/10000
+[instance 49] processed 7300/10000
+[instance 49] processed 7400/10000
+[instance 49] processed 7500/10000
+[instance 49] processed 7600/10000
+[instance 49] processed 7700/10000
+[instance 49] processed 7800/10000
+[instance 49] processed 7900/10000
+[instance 49] processed 8000/10000
+[instance 49] processed 8100/10000
+[instance 49] processed 8200/10000
+[instance 49] processed 8300/10000
+[instance 49] processed 8400/10000
+[instance 49] processed 8500/10000
+[instance 49] processed 8600/10000
+[instance 49] processed 8700/10000
+[instance 49] processed 8800/10000
+[instance 49] processed 8900/10000
+[instance 49] processed 9000/10000
+[instance 49] processed 9100/10000
+[instance 49] processed 9200/10000
+[instance 49] processed 9300/10000
+[instance 49] processed 9400/10000
+[instance 49] processed 9500/10000
+[instance 49] processed 9600/10000
+[instance 49] processed 9700/10000
+[instance 49] processed 9800/10000
+[instance 49] processed 9900/10000
+[instance 49] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 50] processed 100/10000
+[instance 50] processed 200/10000
+[instance 50] processed 300/10000
+[instance 50] processed 400/10000
+[instance 50] processed 500/10000
+[instance 50] processed 600/10000
+[instance 50] processed 700/10000
+[instance 50] processed 800/10000
+[instance 50] processed 900/10000
+[instance 50] processed 1000/10000
+[instance 50] processed 1100/10000
+[instance 50] processed 1200/10000
+[instance 50] processed 1300/10000
+[instance 50] processed 1400/10000
+[instance 50] processed 1500/10000
+[instance 50] processed 1600/10000
+[instance 50] processed 1700/10000
+[instance 50] processed 1800/10000
+[instance 50] processed 1900/10000
+[instance 50] processed 2000/10000
+[instance 50] processed 2100/10000
+[instance 50] processed 2200/10000
+[instance 50] processed 2300/10000
+[instance 50] processed 2400/10000
+[instance 50] processed 2500/10000
+[instance 50] processed 2600/10000
+[instance 50] processed 2700/10000
+[instance 50] processed 2800/10000
+[instance 50] processed 2900/10000
+[instance 50] processed 3000/10000
+[instance 50] processed 3100/10000
+[instance 50] processed 3200/10000
+[instance 50] processed 3300/10000
+[instance 50] processed 3400/10000
+[instance 50] processed 3500/10000
+[instance 50] processed 3600/10000
+[instance 50] processed 3700/10000
+[instance 50] processed 3800/10000
+[instance 50] processed 3900/10000
+[instance 50] processed 4000/10000
+[instance 50] processed 4100/10000
+[instance 50] processed 4200/10000
+[instance 50] processed 4300/10000
+[instance 50] processed 4400/10000
+[instance 50] processed 4500/10000
+[instance 50] processed 4600/10000
+[instance 50] processed 4700/10000
+[instance 50] processed 4800/10000
+[instance 50] processed 4900/10000
+[instance 50] processed 5000/10000
+[instance 50] processed 5100/10000
+[instance 50] processed 5200/10000
+[instance 50] processed 5300/10000
+[instance 50] processed 5400/10000
+[instance 50] processed 5500/10000
+[instance 50] processed 5600/10000
+[instance 50] processed 5700/10000
+[instance 50] processed 5800/10000
+[instance 50] processed 5900/10000
+[instance 50] processed 6000/10000
+[instance 50] processed 6100/10000
+[instance 50] processed 6200/10000
+[instance 50] processed 6300/10000
+[instance 50] processed 6400/10000
+[instance 50] processed 6500/10000
+[instance 50] processed 6600/10000
+[instance 50] processed 6700/10000
+[instance 50] processed 6800/10000
+[instance 50] processed 6900/10000
+[instance 50] processed 7000/10000
+[instance 50] processed 7100/10000
+[instance 50] processed 7200/10000
+[instance 50] processed 7300/10000
+[instance 50] processed 7400/10000
+[instance 50] processed 7500/10000
+[instance 50] processed 7600/10000
+[instance 50] processed 7700/10000
+[instance 50] processed 7800/10000
+[instance 50] processed 7900/10000
+[instance 50] processed 8000/10000
+[instance 50] processed 8100/10000
+[instance 50] processed 8200/10000
+[instance 50] processed 8300/10000
+[instance 50] processed 8400/10000
+[instance 50] processed 8500/10000
+[instance 50] processed 8600/10000
+[instance 50] processed 8700/10000
+[instance 50] processed 8800/10000
+[instance 50] processed 8900/10000
+[instance 50] processed 9000/10000
+[instance 50] processed 9100/10000
+[instance 50] processed 9200/10000
+[instance 50] processed 9300/10000
+[instance 50] processed 9400/10000
+[instance 50] processed 9500/10000
+[instance 50] processed 9600/10000
+[instance 50] processed 9700/10000
+[instance 50] processed 9800/10000
+[instance 50] processed 9900/10000
+[instance 50] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 51] processed 100/10000
+[instance 51] processed 200/10000
+[instance 51] processed 300/10000
+[instance 51] processed 400/10000
+[instance 51] processed 500/10000
+[instance 51] processed 600/10000
+[instance 51] processed 700/10000
+[instance 51] processed 800/10000
+[instance 51] processed 900/10000
+[instance 51] processed 1000/10000
+[instance 51] processed 1100/10000
+[instance 51] processed 1200/10000
+[instance 51] processed 1300/10000
+[instance 51] processed 1400/10000
+[instance 51] processed 1500/10000
+[instance 51] processed 1600/10000
+[instance 51] processed 1700/10000
+[instance 51] processed 1800/10000
+[instance 51] processed 1900/10000
+[instance 51] processed 2000/10000
+[instance 51] processed 2100/10000
+[instance 51] processed 2200/10000
+[instance 51] processed 2300/10000
+[instance 51] processed 2400/10000
+[instance 51] processed 2500/10000
+[instance 51] processed 2600/10000
+[instance 51] processed 2700/10000
+[instance 51] processed 2800/10000
+[instance 51] processed 2900/10000
+[instance 51] processed 3000/10000
+[instance 51] processed 3100/10000
+[instance 51] processed 3200/10000
+[instance 51] processed 3300/10000
+[instance 51] processed 3400/10000
+[instance 51] processed 3500/10000
+[instance 51] processed 3600/10000
+[instance 51] processed 3700/10000
+[instance 51] processed 3800/10000
+[instance 51] processed 3900/10000
+[instance 51] processed 4000/10000
+[instance 51] processed 4100/10000
+[instance 51] processed 4200/10000
+[instance 51] processed 4300/10000
+[instance 51] processed 4400/10000
+[instance 51] processed 4500/10000
+[instance 51] processed 4600/10000
+[instance 51] processed 4700/10000
+[instance 51] processed 4800/10000
+[instance 51] processed 4900/10000
+[instance 51] processed 5000/10000
+[instance 51] processed 5100/10000
+[instance 51] processed 5200/10000
+[instance 51] processed 5300/10000
+[instance 51] processed 5400/10000
+[instance 51] processed 5500/10000
+[instance 51] processed 5600/10000
+[instance 51] processed 5700/10000
+[instance 51] processed 5800/10000
+[instance 51] processed 5900/10000
+[instance 51] processed 6000/10000
+[instance 51] processed 6100/10000
+[instance 51] processed 6200/10000
+[instance 51] processed 6300/10000
+[instance 51] processed 6400/10000
+[instance 51] processed 6500/10000
+[instance 51] processed 6600/10000
+[instance 51] processed 6700/10000
+[instance 51] processed 6800/10000
+[instance 51] processed 6900/10000
+[instance 51] processed 7000/10000
+[instance 51] processed 7100/10000
+[instance 51] processed 7200/10000
+[instance 51] processed 7300/10000
+[instance 51] processed 7400/10000
+[instance 51] processed 7500/10000
+[instance 51] processed 7600/10000
+[instance 51] processed 7700/10000
+[instance 51] processed 7800/10000
+[instance 51] processed 7900/10000
+[instance 51] processed 8000/10000
+[instance 51] processed 8100/10000
+[instance 51] processed 8200/10000
+[instance 51] processed 8300/10000
+[instance 51] processed 8400/10000
+[instance 51] processed 8500/10000
+[instance 51] processed 8600/10000
+[instance 51] processed 8700/10000
+[instance 51] processed 8800/10000
+[instance 51] processed 8900/10000
+[instance 51] processed 9000/10000
+[instance 51] processed 9100/10000
+[instance 51] processed 9200/10000
+[instance 51] processed 9300/10000
+[instance 51] processed 9400/10000
+[instance 51] processed 9500/10000
+[instance 51] processed 9600/10000
+[instance 51] processed 9700/10000
+[instance 51] processed 9800/10000
+[instance 51] processed 9900/10000
+[instance 51] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 52] processed 100/10000
+[instance 52] processed 200/10000
+[instance 52] processed 300/10000
+[instance 52] processed 400/10000
+[instance 52] processed 500/10000
+[instance 52] processed 600/10000
+[instance 52] processed 700/10000
+[instance 52] processed 800/10000
+[instance 52] processed 900/10000
+[instance 52] processed 1000/10000
+[instance 52] processed 1100/10000
+[instance 52] processed 1200/10000
+[instance 52] processed 1300/10000
+[instance 52] processed 1400/10000
+[instance 52] processed 1500/10000
+[instance 52] processed 1600/10000
+[instance 52] processed 1700/10000
+[instance 52] processed 1800/10000
+[instance 52] processed 1900/10000
+[instance 52] processed 2000/10000
+[instance 52] processed 2100/10000
+[instance 52] processed 2200/10000
+[instance 52] processed 2300/10000
+[instance 52] processed 2400/10000
+[instance 52] processed 2500/10000
+[instance 52] processed 2600/10000
+[instance 52] processed 2700/10000
+[instance 52] processed 2800/10000
+[instance 52] processed 2900/10000
+[instance 52] processed 3000/10000
+[instance 52] processed 3100/10000
+[instance 52] processed 3200/10000
+[instance 52] processed 3300/10000
+[instance 52] processed 3400/10000
+[instance 52] processed 3500/10000
+[instance 52] processed 3600/10000
+[instance 52] processed 3700/10000
+[instance 52] processed 3800/10000
+[instance 52] processed 3900/10000
+[instance 52] processed 4000/10000
+[instance 52] processed 4100/10000
+[instance 52] processed 4200/10000
+[instance 52] processed 4300/10000
+[instance 52] processed 4400/10000
+[instance 52] processed 4500/10000
+[instance 52] processed 4600/10000
+[instance 52] processed 4700/10000
+[instance 52] processed 4800/10000
+[instance 52] processed 4900/10000
+[instance 52] processed 5000/10000
+[instance 52] processed 5100/10000
+[instance 52] processed 5200/10000
+[instance 52] processed 5300/10000
+[instance 52] processed 5400/10000
+[instance 52] processed 5500/10000
+[instance 52] processed 5600/10000
+[instance 52] processed 5700/10000
+[instance 52] processed 5800/10000
+[instance 52] processed 5900/10000
+[instance 52] processed 6000/10000
+[instance 52] processed 6100/10000
+[instance 52] processed 6200/10000
+[instance 52] processed 6300/10000
+[instance 52] processed 6400/10000
+[instance 52] processed 6500/10000
+[instance 52] processed 6600/10000
+[instance 52] processed 6700/10000
+[instance 52] processed 6800/10000
+[instance 52] processed 6900/10000
+[instance 52] processed 7000/10000
+[instance 52] processed 7100/10000
+[instance 52] processed 7200/10000
+[instance 52] processed 7300/10000
+[instance 52] processed 7400/10000
+[instance 52] processed 7500/10000
+[instance 52] processed 7600/10000
+[instance 52] processed 7700/10000
+[instance 52] processed 7800/10000
+[instance 52] processed 7900/10000
+[instance 52] processed 8000/10000
+[instance 52] processed 8100/10000
+[instance 52] processed 8200/10000
+[instance 52] processed 8300/10000
+[instance 52] processed 8400/10000
+[instance 52] processed 8500/10000
+[instance 52] processed 8600/10000
+[instance 52] processed 8700/10000
+[instance 52] processed 8800/10000
+[instance 52] processed 8900/10000
+[instance 52] processed 9000/10000
+[instance 52] processed 9100/10000
+[instance 52] processed 9200/10000
+[instance 52] processed 9300/10000
+[instance 52] processed 9400/10000
+[instance 52] processed 9500/10000
+[instance 52] processed 9600/10000
+[instance 52] processed 9700/10000
+[instance 52] processed 9800/10000
+[instance 52] processed 9900/10000
+[instance 52] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 53] processed 100/10000
+[instance 53] processed 200/10000
+[instance 53] processed 300/10000
+[instance 53] processed 400/10000
+[instance 53] processed 500/10000
+[instance 53] processed 600/10000
+[instance 53] processed 700/10000
+[instance 53] processed 800/10000
+[instance 53] processed 900/10000
+[instance 53] processed 1000/10000
+[instance 53] processed 1100/10000
+[instance 53] processed 1200/10000
+[instance 53] processed 1300/10000
+[instance 53] processed 1400/10000
+[instance 53] processed 1500/10000
+[instance 53] processed 1600/10000
+[instance 53] processed 1700/10000
+[instance 53] processed 1800/10000
+[instance 53] processed 1900/10000
+[instance 53] processed 2000/10000
+[instance 53] processed 2100/10000
+[instance 53] processed 2200/10000
+[instance 53] processed 2300/10000
+[instance 53] processed 2400/10000
+[instance 53] processed 2500/10000
+[instance 53] processed 2600/10000
+[instance 53] processed 2700/10000
+[instance 53] processed 2800/10000
+[instance 53] processed 2900/10000
+[instance 53] processed 3000/10000
+[instance 53] processed 3100/10000
+[instance 53] processed 3200/10000
+[instance 53] processed 3300/10000
+[instance 53] processed 3400/10000
+[instance 53] processed 3500/10000
+[instance 53] processed 3600/10000
+[instance 53] processed 3700/10000
+[instance 53] processed 3800/10000
+[instance 53] processed 3900/10000
+[instance 53] processed 4000/10000
+[instance 53] processed 4100/10000
+[instance 53] processed 4200/10000
+[instance 53] processed 4300/10000
+[instance 53] processed 4400/10000
+[instance 53] processed 4500/10000
+[instance 53] processed 4600/10000
+[instance 53] processed 4700/10000
+[instance 53] processed 4800/10000
+[instance 53] processed 4900/10000
+[instance 53] processed 5000/10000
+[instance 53] processed 5100/10000
+[instance 53] processed 5200/10000
+[instance 53] processed 5300/10000
+[instance 53] processed 5400/10000
+[instance 53] processed 5500/10000
+[instance 53] processed 5600/10000
+[instance 53] processed 5700/10000
+[instance 53] processed 5800/10000
+[instance 53] processed 5900/10000
+[instance 53] processed 6000/10000
+[instance 53] processed 6100/10000
+[instance 53] processed 6200/10000
+[instance 53] processed 6300/10000
+[instance 53] processed 6400/10000
+[instance 53] processed 6500/10000
+[instance 53] processed 6600/10000
+[instance 53] processed 6700/10000
+[instance 53] processed 6800/10000
+[instance 53] processed 6900/10000
+[instance 53] processed 7000/10000
+[instance 53] processed 7100/10000
+[instance 53] processed 7200/10000
+[instance 53] processed 7300/10000
+[instance 53] processed 7400/10000
+[instance 53] processed 7500/10000
+[instance 53] processed 7600/10000
+[instance 53] processed 7700/10000
+[instance 53] processed 7800/10000
+[instance 53] processed 7900/10000
+[instance 53] processed 8000/10000
+[instance 53] processed 8100/10000
+[instance 53] processed 8200/10000
+[instance 53] processed 8300/10000
+[instance 53] processed 8400/10000
+[instance 53] processed 8500/10000
+[instance 53] processed 8600/10000
+[instance 53] processed 8700/10000
+[instance 53] processed 8800/10000
+[instance 53] processed 8900/10000
+[instance 53] processed 9000/10000
+[instance 53] processed 9100/10000
+[instance 53] processed 9200/10000
+[instance 53] processed 9300/10000
+[instance 53] processed 9400/10000
+[instance 53] processed 9500/10000
+[instance 53] processed 9600/10000
+[instance 53] processed 9700/10000
+[instance 53] processed 9800/10000
+[instance 53] processed 9900/10000
+[instance 53] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 54] processed 100/10000
+[instance 54] processed 200/10000
+[instance 54] processed 300/10000
+[instance 54] processed 400/10000
+[instance 54] processed 500/10000
+[instance 54] processed 600/10000
+[instance 54] processed 700/10000
+[instance 54] processed 800/10000
+[instance 54] processed 900/10000
+[instance 54] processed 1000/10000
+[instance 54] processed 1100/10000
+[instance 54] processed 1200/10000
+[instance 54] processed 1300/10000
+[instance 54] processed 1400/10000
+[instance 54] processed 1500/10000
+[instance 54] processed 1600/10000
+[instance 54] processed 1700/10000
+[instance 54] processed 1800/10000
+[instance 54] processed 1900/10000
+[instance 54] processed 2000/10000
+[instance 54] processed 2100/10000
+[instance 54] processed 2200/10000
+[instance 54] processed 2300/10000
+[instance 54] processed 2400/10000
+[instance 54] processed 2500/10000
+[instance 54] processed 2600/10000
+[instance 54] processed 2700/10000
+[instance 54] processed 2800/10000
+[instance 54] processed 2900/10000
+[instance 54] processed 3000/10000
+[instance 54] processed 3100/10000
+[instance 54] processed 3200/10000
+[instance 54] processed 3300/10000
+[instance 54] processed 3400/10000
+[instance 54] processed 3500/10000
+[instance 54] processed 3600/10000
+[instance 54] processed 3700/10000
+[instance 54] processed 3800/10000
+[instance 54] processed 3900/10000
+[instance 54] processed 4000/10000
+[instance 54] processed 4100/10000
+[instance 54] processed 4200/10000
+[instance 54] processed 4300/10000
+[instance 54] processed 4400/10000
+[instance 54] processed 4500/10000
+[instance 54] processed 4600/10000
+[instance 54] processed 4700/10000
+[instance 54] processed 4800/10000
+[instance 54] processed 4900/10000
+[instance 54] processed 5000/10000
+[instance 54] processed 5100/10000
+[instance 54] processed 5200/10000
+[instance 54] processed 5300/10000
+[instance 54] processed 5400/10000
+[instance 54] processed 5500/10000
+[instance 54] processed 5600/10000
+[instance 54] processed 5700/10000
+[instance 54] processed 5800/10000
+[instance 54] processed 5900/10000
+[instance 54] processed 6000/10000
+[instance 54] processed 6100/10000
+[instance 54] processed 6200/10000
+[instance 54] processed 6300/10000
+[instance 54] processed 6400/10000
+[instance 54] processed 6500/10000
+[instance 54] processed 6600/10000
+[instance 54] processed 6700/10000
+[instance 54] processed 6800/10000
+[instance 54] processed 6900/10000
+[instance 54] processed 7000/10000
+[instance 54] processed 7100/10000
+[instance 54] processed 7200/10000
+[instance 54] processed 7300/10000
+[instance 54] processed 7400/10000
+[instance 54] processed 7500/10000
+[instance 54] processed 7600/10000
+[instance 54] processed 7700/10000
+[instance 54] processed 7800/10000
+[instance 54] processed 7900/10000
+[instance 54] processed 8000/10000
+[instance 54] processed 8100/10000
+[instance 54] processed 8200/10000
+[instance 54] processed 8300/10000
+[instance 54] processed 8400/10000
+[instance 54] processed 8500/10000
+[instance 54] processed 8600/10000
+[instance 54] processed 8700/10000
+[instance 54] processed 8800/10000
+[instance 54] processed 8900/10000
+[instance 54] processed 9000/10000
+[instance 54] processed 9100/10000
+[instance 54] processed 9200/10000
+[instance 54] processed 9300/10000
+[instance 54] processed 9400/10000
+[instance 54] processed 9500/10000
+[instance 54] processed 9600/10000
+[instance 54] processed 9700/10000
+[instance 54] processed 9800/10000
+[instance 54] processed 9900/10000
+[instance 54] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 55] processed 100/10000
+[instance 55] processed 200/10000
+[instance 55] processed 300/10000
+[instance 55] processed 400/10000
+[instance 55] processed 500/10000
+[instance 55] processed 600/10000
+[instance 55] processed 700/10000
+[instance 55] processed 800/10000
+[instance 55] processed 900/10000
+[instance 55] processed 1000/10000
+[instance 55] processed 1100/10000
+[instance 55] processed 1200/10000
+[instance 55] processed 1300/10000
+[instance 55] processed 1400/10000
+[instance 55] processed 1500/10000
+[instance 55] processed 1600/10000
+[instance 55] processed 1700/10000
+[instance 55] processed 1800/10000
+[instance 55] processed 1900/10000
+[instance 55] processed 2000/10000
+[instance 55] processed 2100/10000
+[instance 55] processed 2200/10000
+[instance 55] processed 2300/10000
+[instance 55] processed 2400/10000
+[instance 55] processed 2500/10000
+[instance 55] processed 2600/10000
+[instance 55] processed 2700/10000
+[instance 55] processed 2800/10000
+[instance 55] processed 2900/10000
+[instance 55] processed 3000/10000
+[instance 55] processed 3100/10000
+[instance 55] processed 3200/10000
+[instance 55] processed 3300/10000
+[instance 55] processed 3400/10000
+[instance 55] processed 3500/10000
+[instance 55] processed 3600/10000
+[instance 55] processed 3700/10000
+[instance 55] processed 3800/10000
+[instance 55] processed 3900/10000
+[instance 55] processed 4000/10000
+[instance 55] processed 4100/10000
+[instance 55] processed 4200/10000
+[instance 55] processed 4300/10000
+[instance 55] processed 4400/10000
+[instance 55] processed 4500/10000
+[instance 55] processed 4600/10000
+[instance 55] processed 4700/10000
+[instance 55] processed 4800/10000
+[instance 55] processed 4900/10000
+[instance 55] processed 5000/10000
+[instance 55] processed 5100/10000
+[instance 55] processed 5200/10000
+[instance 55] processed 5300/10000
+[instance 55] processed 5400/10000
+[instance 55] processed 5500/10000
+[instance 55] processed 5600/10000
+[instance 55] processed 5700/10000
+[instance 55] processed 5800/10000
+[instance 55] processed 5900/10000
+[instance 55] processed 6000/10000
+[instance 55] processed 6100/10000
+[instance 55] processed 6200/10000
+[instance 55] processed 6300/10000
+[instance 55] processed 6400/10000
+[instance 55] processed 6500/10000
+[instance 55] processed 6600/10000
+[instance 55] processed 6700/10000
+[instance 55] processed 6800/10000
+[instance 55] processed 6900/10000
+[instance 55] processed 7000/10000
+[instance 55] processed 7100/10000
+[instance 55] processed 7200/10000
+[instance 55] processed 7300/10000
+[instance 55] processed 7400/10000
+[instance 55] processed 7500/10000
+[instance 55] processed 7600/10000
+[instance 55] processed 7700/10000
+[instance 55] processed 7800/10000
+[instance 55] processed 7900/10000
+[instance 55] processed 8000/10000
+[instance 55] processed 8100/10000
+[instance 55] processed 8200/10000
+[instance 55] processed 8300/10000
+[instance 55] processed 8400/10000
+[instance 55] processed 8500/10000
+[instance 55] processed 8600/10000
+[instance 55] processed 8700/10000
+[instance 55] processed 8800/10000
+[instance 55] processed 8900/10000
+[instance 55] processed 9000/10000
+[instance 55] processed 9100/10000
+[instance 55] processed 9200/10000
+[instance 55] processed 9300/10000
+[instance 55] processed 9400/10000
+[instance 55] processed 9500/10000
+[instance 55] processed 9600/10000
+[instance 55] processed 9700/10000
+[instance 55] processed 9800/10000
+[instance 55] processed 9900/10000
+[instance 55] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 56] processed 100/10000
+[instance 56] processed 200/10000
+[instance 56] processed 300/10000
+[instance 56] processed 400/10000
+[instance 56] processed 500/10000
+[instance 56] processed 600/10000
+[instance 56] processed 700/10000
+[instance 56] processed 800/10000
+[instance 56] processed 900/10000
+[instance 56] processed 1000/10000
+[instance 56] processed 1100/10000
+[instance 56] processed 1200/10000
+[instance 56] processed 1300/10000
+[instance 56] processed 1400/10000
+[instance 56] processed 1500/10000
+[instance 56] processed 1600/10000
+[instance 56] processed 1700/10000
+[instance 56] processed 1800/10000
+[instance 56] processed 1900/10000
+[instance 56] processed 2000/10000
+[instance 56] processed 2100/10000
+[instance 56] processed 2200/10000
+[instance 56] processed 2300/10000
+[instance 56] processed 2400/10000
+[instance 56] processed 2500/10000
+[instance 56] processed 2600/10000
+[instance 56] processed 2700/10000
+[instance 56] processed 2800/10000
+[instance 56] processed 2900/10000
+[instance 56] processed 3000/10000
+[instance 56] processed 3100/10000
+[instance 56] processed 3200/10000
+[instance 56] processed 3300/10000
+[instance 56] processed 3400/10000
+[instance 56] processed 3500/10000
+[instance 56] processed 3600/10000
+[instance 56] processed 3700/10000
+[instance 56] processed 3800/10000
+[instance 56] processed 3900/10000
+[instance 56] processed 4000/10000
+[instance 56] processed 4100/10000
+[instance 56] processed 4200/10000
+[instance 56] processed 4300/10000
+[instance 56] processed 4400/10000
+[instance 56] processed 4500/10000
+[instance 56] processed 4600/10000
+[instance 56] processed 4700/10000
+[instance 56] processed 4800/10000
+[instance 56] processed 4900/10000
+[instance 56] processed 5000/10000
+[instance 56] processed 5100/10000
+[instance 56] processed 5200/10000
+[instance 56] processed 5300/10000
+[instance 56] processed 5400/10000
+[instance 56] processed 5500/10000
+[instance 56] processed 5600/10000
+[instance 56] processed 5700/10000
+[instance 56] processed 5800/10000
+[instance 56] processed 5900/10000
+[instance 56] processed 6000/10000
+[instance 56] processed 6100/10000
+[instance 56] processed 6200/10000
+[instance 56] processed 6300/10000
+[instance 56] processed 6400/10000
+[instance 56] processed 6500/10000
+[instance 56] processed 6600/10000
+[instance 56] processed 6700/10000
+[instance 56] processed 6800/10000
+[instance 56] processed 6900/10000
+[instance 56] processed 7000/10000
+[instance 56] processed 7100/10000
+[instance 56] processed 7200/10000
+[instance 56] processed 7300/10000
+[instance 56] processed 7400/10000
+[instance 56] processed 7500/10000
+[instance 56] processed 7600/10000
+[instance 56] processed 7700/10000
+[instance 56] processed 7800/10000
+[instance 56] processed 7900/10000
+[instance 56] processed 8000/10000
+[instance 56] processed 8100/10000
+[instance 56] processed 8200/10000
+[instance 56] processed 8300/10000
+[instance 56] processed 8400/10000
+[instance 56] processed 8500/10000
+[instance 56] processed 8600/10000
+[instance 56] processed 8700/10000
+[instance 56] processed 8800/10000
+[instance 56] processed 8900/10000
+[instance 56] processed 9000/10000
+[instance 56] processed 9100/10000
+[instance 56] processed 9200/10000
+[instance 56] processed 9300/10000
+[instance 56] processed 9400/10000
+[instance 56] processed 9500/10000
+[instance 56] processed 9600/10000
+[instance 56] processed 9700/10000
+[instance 56] processed 9800/10000
+[instance 56] processed 9900/10000
+[instance 56] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 57] processed 100/10000
+[instance 57] processed 200/10000
+[instance 57] processed 300/10000
+[instance 57] processed 400/10000
+[instance 57] processed 500/10000
+[instance 57] processed 600/10000
+[instance 57] processed 700/10000
+[instance 57] processed 800/10000
+[instance 57] processed 900/10000
+[instance 57] processed 1000/10000
+[instance 57] processed 1100/10000
+[instance 57] processed 1200/10000
+[instance 57] processed 1300/10000
+[instance 57] processed 1400/10000
+[instance 57] processed 1500/10000
+[instance 57] processed 1600/10000
+[instance 57] processed 1700/10000
+[instance 57] processed 1800/10000
+[instance 57] processed 1900/10000
+[instance 57] processed 2000/10000
+[instance 57] processed 2100/10000
+[instance 57] processed 2200/10000
+[instance 57] processed 2300/10000
+[instance 57] processed 2400/10000
+[instance 57] processed 2500/10000
+[instance 57] processed 2600/10000
+[instance 57] processed 2700/10000
+[instance 57] processed 2800/10000
+[instance 57] processed 2900/10000
+[instance 57] processed 3000/10000
+[instance 57] processed 3100/10000
+[instance 57] processed 3200/10000
+[instance 57] processed 3300/10000
+[instance 57] processed 3400/10000
+[instance 57] processed 3500/10000
+[instance 57] processed 3600/10000
+[instance 57] processed 3700/10000
+[instance 57] processed 3800/10000
+[instance 57] processed 3900/10000
+[instance 57] processed 4000/10000
+[instance 57] processed 4100/10000
+[instance 57] processed 4200/10000
+[instance 57] processed 4300/10000
+[instance 57] processed 4400/10000
+[instance 57] processed 4500/10000
+[instance 57] processed 4600/10000
+[instance 57] processed 4700/10000
+[instance 57] processed 4800/10000
+[instance 57] processed 4900/10000
+[instance 57] processed 5000/10000
+[instance 57] processed 5100/10000
+[instance 57] processed 5200/10000
+[instance 57] processed 5300/10000
+[instance 57] processed 5400/10000
+[instance 57] processed 5500/10000
+[instance 57] processed 5600/10000
+[instance 57] processed 5700/10000
+[instance 57] processed 5800/10000
+[instance 57] processed 5900/10000
+[instance 57] processed 6000/10000
+[instance 57] processed 6100/10000
+[instance 57] processed 6200/10000
+[instance 57] processed 6300/10000
+[instance 57] processed 6400/10000
+[instance 57] processed 6500/10000
+[instance 57] processed 6600/10000
+[instance 57] processed 6700/10000
+[instance 57] processed 6800/10000
+[instance 57] processed 6900/10000
+[instance 57] processed 7000/10000
+[instance 57] processed 7100/10000
+[instance 57] processed 7200/10000
+[instance 57] processed 7300/10000
+[instance 57] processed 7400/10000
+[instance 57] processed 7500/10000
+[instance 57] processed 7600/10000
+[instance 57] processed 7700/10000
+[instance 57] processed 7800/10000
+[instance 57] processed 7900/10000
+[instance 57] processed 8000/10000
+[instance 57] processed 8100/10000
+[instance 57] processed 8200/10000
+[instance 57] processed 8300/10000
+[instance 57] processed 8400/10000
+[instance 57] processed 8500/10000
+[instance 57] processed 8600/10000
+[instance 57] processed 8700/10000
+[instance 57] processed 8800/10000
+[instance 57] processed 8900/10000
+[instance 57] processed 9000/10000
+[instance 57] processed 9100/10000
+[instance 57] processed 9200/10000
+[instance 57] processed 9300/10000
+[instance 57] processed 9400/10000
+[instance 57] processed 9500/10000
+[instance 57] processed 9600/10000
+[instance 57] processed 9700/10000
+[instance 57] processed 9800/10000
+[instance 57] processed 9900/10000
+[instance 57] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 58] processed 100/10000
+[instance 58] processed 200/10000
+[instance 58] processed 300/10000
+[instance 58] processed 400/10000
+[instance 58] processed 500/10000
+[instance 58] processed 600/10000
+[instance 58] processed 700/10000
+[instance 58] processed 800/10000
+[instance 58] processed 900/10000
+[instance 58] processed 1000/10000
+[instance 58] processed 1100/10000
+[instance 58] processed 1200/10000
+[instance 58] processed 1300/10000
+[instance 58] processed 1400/10000
+[instance 58] processed 1500/10000
+[instance 58] processed 1600/10000
+[instance 58] processed 1700/10000
+[instance 58] processed 1800/10000
+[instance 58] processed 1900/10000
+[instance 58] processed 2000/10000
+[instance 58] processed 2100/10000
+[instance 58] processed 2200/10000
+[instance 58] processed 2300/10000
+[instance 58] processed 2400/10000
+[instance 58] processed 2500/10000
+[instance 58] processed 2600/10000
+[instance 58] processed 2700/10000
+[instance 58] processed 2800/10000
+[instance 58] processed 2900/10000
+[instance 58] processed 3000/10000
+[instance 58] processed 3100/10000
+[instance 58] processed 3200/10000
+[instance 58] processed 3300/10000
+[instance 58] processed 3400/10000
+[instance 58] processed 3500/10000
+[instance 58] processed 3600/10000
+[instance 58] processed 3700/10000
+[instance 58] processed 3800/10000
+[instance 58] processed 3900/10000
+[instance 58] processed 4000/10000
+[instance 58] processed 4100/10000
+[instance 58] processed 4200/10000
+[instance 58] processed 4300/10000
+[instance 58] processed 4400/10000
+[instance 58] processed 4500/10000
+[instance 58] processed 4600/10000
+[instance 58] processed 4700/10000
+[instance 58] processed 4800/10000
+[instance 58] processed 4900/10000
+[instance 58] processed 5000/10000
+[instance 58] processed 5100/10000
+[instance 58] processed 5200/10000
+[instance 58] processed 5300/10000
+[instance 58] processed 5400/10000
+[instance 58] processed 5500/10000
+[instance 58] processed 5600/10000
+[instance 58] processed 5700/10000
+[instance 58] processed 5800/10000
+[instance 58] processed 5900/10000
+[instance 58] processed 6000/10000
+[instance 58] processed 6100/10000
+[instance 58] processed 6200/10000
+[instance 58] processed 6300/10000
+[instance 58] processed 6400/10000
+[instance 58] processed 6500/10000
+[instance 58] processed 6600/10000
+[instance 58] processed 6700/10000
+[instance 58] processed 6800/10000
+[instance 58] processed 6900/10000
+[instance 58] processed 7000/10000
+[instance 58] processed 7100/10000
+[instance 58] processed 7200/10000
+[instance 58] processed 7300/10000
+[instance 58] processed 7400/10000
+[instance 58] processed 7500/10000
+[instance 58] processed 7600/10000
+[instance 58] processed 7700/10000
+[instance 58] processed 7800/10000
+[instance 58] processed 7900/10000
+[instance 58] processed 8000/10000
+[instance 58] processed 8100/10000
+[instance 58] processed 8200/10000
+[instance 58] processed 8300/10000
+[instance 58] processed 8400/10000
+[instance 58] processed 8500/10000
+[instance 58] processed 8600/10000
+[instance 58] processed 8700/10000
+[instance 58] processed 8800/10000
+[instance 58] processed 8900/10000
+[instance 58] processed 9000/10000
+[instance 58] processed 9100/10000
+[instance 58] processed 9200/10000
+[instance 58] processed 9300/10000
+[instance 58] processed 9400/10000
+[instance 58] processed 9500/10000
+[instance 58] processed 9600/10000
+[instance 58] processed 9700/10000
+[instance 58] processed 9800/10000
+[instance 58] processed 9900/10000
+[instance 58] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 59] processed 100/10000
+[instance 59] processed 200/10000
+[instance 59] processed 300/10000
+[instance 59] processed 400/10000
+[instance 59] processed 500/10000
+[instance 59] processed 600/10000
+[instance 59] processed 700/10000
+[instance 59] processed 800/10000
+[instance 59] processed 900/10000
+[instance 59] processed 1000/10000
+[instance 59] processed 1100/10000
+[instance 59] processed 1200/10000
+[instance 59] processed 1300/10000
+[instance 59] processed 1400/10000
+[instance 59] processed 1500/10000
+[instance 59] processed 1600/10000
+[instance 59] processed 1700/10000
+[instance 59] processed 1800/10000
+[instance 59] processed 1900/10000
+[instance 59] processed 2000/10000
+[instance 59] processed 2100/10000
+[instance 59] processed 2200/10000
+[instance 59] processed 2300/10000
+[instance 59] processed 2400/10000
+[instance 59] processed 2500/10000
+[instance 59] processed 2600/10000
+[instance 59] processed 2700/10000
+[instance 59] processed 2800/10000
+[instance 59] processed 2900/10000
+[instance 59] processed 3000/10000
+[instance 59] processed 3100/10000
+[instance 59] processed 3200/10000
+[instance 59] processed 3300/10000
+[instance 59] processed 3400/10000
+[instance 59] processed 3500/10000
+[instance 59] processed 3600/10000
+[instance 59] processed 3700/10000
+[instance 59] processed 3800/10000
+[instance 59] processed 3900/10000
+[instance 59] processed 4000/10000
+[instance 59] processed 4100/10000
+[instance 59] processed 4200/10000
+[instance 59] processed 4300/10000
+[instance 59] processed 4400/10000
+[instance 59] processed 4500/10000
+[instance 59] processed 4600/10000
+[instance 59] processed 4700/10000
+[instance 59] processed 4800/10000
+[instance 59] processed 4900/10000
+[instance 59] processed 5000/10000
+[instance 59] processed 5100/10000
+[instance 59] processed 5200/10000
+[instance 59] processed 5300/10000
+[instance 59] processed 5400/10000
+[instance 59] processed 5500/10000
+[instance 59] processed 5600/10000
+[instance 59] processed 5700/10000
+[instance 59] processed 5800/10000
+[instance 59] processed 5900/10000
+[instance 59] processed 6000/10000
+[instance 59] processed 6100/10000
+[instance 59] processed 6200/10000
+[instance 59] processed 6300/10000
+[instance 59] processed 6400/10000
+[instance 59] processed 6500/10000
+[instance 59] processed 6600/10000
+[instance 59] processed 6700/10000
+[instance 59] processed 6800/10000
+[instance 59] processed 6900/10000
+[instance 59] processed 7000/10000
+[instance 59] processed 7100/10000
+[instance 59] processed 7200/10000
+[instance 59] processed 7300/10000
+[instance 59] processed 7400/10000
+[instance 59] processed 7500/10000
+[instance 59] processed 7600/10000
+[instance 59] processed 7700/10000
+[instance 59] processed 7800/10000
+[instance 59] processed 7900/10000
+[instance 59] processed 8000/10000
+[instance 59] processed 8100/10000
+[instance 59] processed 8200/10000
+[instance 59] processed 8300/10000
+[instance 59] processed 8400/10000
+[instance 59] processed 8500/10000
+[instance 59] processed 8600/10000
+[instance 59] processed 8700/10000
+[instance 59] processed 8800/10000
+[instance 59] processed 8900/10000
+[instance 59] processed 9000/10000
+[instance 59] processed 9100/10000
+[instance 59] processed 9200/10000
+[instance 59] processed 9300/10000
+[instance 59] processed 9400/10000
+[instance 59] processed 9500/10000
+[instance 59] processed 9600/10000
+[instance 59] processed 9700/10000
+[instance 59] processed 9800/10000
+[instance 59] processed 9900/10000
+[instance 59] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 60] processed 100/10000
+[instance 60] processed 200/10000
+[instance 60] processed 300/10000
+[instance 60] processed 400/10000
+[instance 60] processed 500/10000
+[instance 60] processed 600/10000
+[instance 60] processed 700/10000
+[instance 60] processed 800/10000
+[instance 60] processed 900/10000
+[instance 60] processed 1000/10000
+[instance 60] processed 1100/10000
+[instance 60] processed 1200/10000
+[instance 60] processed 1300/10000
+[instance 60] processed 1400/10000
+[instance 60] processed 1500/10000
+[instance 60] processed 1600/10000
+[instance 60] processed 1700/10000
+[instance 60] processed 1800/10000
+[instance 60] processed 1900/10000
+[instance 60] processed 2000/10000
+[instance 60] processed 2100/10000
+[instance 60] processed 2200/10000
+[instance 60] processed 2300/10000
+[instance 60] processed 2400/10000
+[instance 60] processed 2500/10000
+[instance 60] processed 2600/10000
+[instance 60] processed 2700/10000
+[instance 60] processed 2800/10000
+[instance 60] processed 2900/10000
+[instance 60] processed 3000/10000
+[instance 60] processed 3100/10000
+[instance 60] processed 3200/10000
+[instance 60] processed 3300/10000
+[instance 60] processed 3400/10000
+[instance 60] processed 3500/10000
+[instance 60] processed 3600/10000
+[instance 60] processed 3700/10000
+[instance 60] processed 3800/10000
+[instance 60] processed 3900/10000
+[instance 60] processed 4000/10000
+[instance 60] processed 4100/10000
+[instance 60] processed 4200/10000
+[instance 60] processed 4300/10000
+[instance 60] processed 4400/10000
+[instance 60] processed 4500/10000
+[instance 60] processed 4600/10000
+[instance 60] processed 4700/10000
+[instance 60] processed 4800/10000
+[instance 60] processed 4900/10000
+[instance 60] processed 5000/10000
+[instance 60] processed 5100/10000
+[instance 60] processed 5200/10000
+[instance 60] processed 5300/10000
+[instance 60] processed 5400/10000
+[instance 60] processed 5500/10000
+[instance 60] processed 5600/10000
+[instance 60] processed 5700/10000
+[instance 60] processed 5800/10000
+[instance 60] processed 5900/10000
+[instance 60] processed 6000/10000
+[instance 60] processed 6100/10000
+[instance 60] processed 6200/10000
+[instance 60] processed 6300/10000
+[instance 60] processed 6400/10000
+[instance 60] processed 6500/10000
+[instance 60] processed 6600/10000
+[instance 60] processed 6700/10000
+[instance 60] processed 6800/10000
+[instance 60] processed 6900/10000
+[instance 60] processed 7000/10000
+[instance 60] processed 7100/10000
+[instance 60] processed 7200/10000
+[instance 60] processed 7300/10000
+[instance 60] processed 7400/10000
+[instance 60] processed 7500/10000
+[instance 60] processed 7600/10000
+[instance 60] processed 7700/10000
+[instance 60] processed 7800/10000
+[instance 60] processed 7900/10000
+[instance 60] processed 8000/10000
+[instance 60] processed 8100/10000
+[instance 60] processed 8200/10000
+[instance 60] processed 8300/10000
+[instance 60] processed 8400/10000
+[instance 60] processed 8500/10000
+[instance 60] processed 8600/10000
+[instance 60] processed 8700/10000
+[instance 60] processed 8800/10000
+[instance 60] processed 8900/10000
+[instance 60] processed 9000/10000
+[instance 60] processed 9100/10000
+[instance 60] processed 9200/10000
+[instance 60] processed 9300/10000
+[instance 60] processed 9400/10000
+[instance 60] processed 9500/10000
+[instance 60] processed 9600/10000
+[instance 60] processed 9700/10000
+[instance 60] processed 9800/10000
+[instance 60] processed 9900/10000
+[instance 60] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 61] processed 100/10000
+[instance 61] processed 200/10000
+[instance 61] processed 300/10000
+[instance 61] processed 400/10000
+[instance 61] processed 500/10000
+[instance 61] processed 600/10000
+[instance 61] processed 700/10000
+[instance 61] processed 800/10000
+[instance 61] processed 900/10000
+[instance 61] processed 1000/10000
+[instance 61] processed 1100/10000
+[instance 61] processed 1200/10000
+[instance 61] processed 1300/10000
+[instance 61] processed 1400/10000
+[instance 61] processed 1500/10000
+[instance 61] processed 1600/10000
+[instance 61] processed 1700/10000
+[instance 61] processed 1800/10000
+[instance 61] processed 1900/10000
+[instance 61] processed 2000/10000
+[instance 61] processed 2100/10000
+[instance 61] processed 2200/10000
+[instance 61] processed 2300/10000
+[instance 61] processed 2400/10000
+[instance 61] processed 2500/10000
+[instance 61] processed 2600/10000
+[instance 61] processed 2700/10000
+[instance 61] processed 2800/10000
+[instance 61] processed 2900/10000
+[instance 61] processed 3000/10000
+[instance 61] processed 3100/10000
+[instance 61] processed 3200/10000
+[instance 61] processed 3300/10000
+[instance 61] processed 3400/10000
+[instance 61] processed 3500/10000
+[instance 61] processed 3600/10000
+[instance 61] processed 3700/10000
+[instance 61] processed 3800/10000
+[instance 61] processed 3900/10000
+[instance 61] processed 4000/10000
+[instance 61] processed 4100/10000
+[instance 61] processed 4200/10000
+[instance 61] processed 4300/10000
+[instance 61] processed 4400/10000
+[instance 61] processed 4500/10000
+[instance 61] processed 4600/10000
+[instance 61] processed 4700/10000
+[instance 61] processed 4800/10000
+[instance 61] processed 4900/10000
+[instance 61] processed 5000/10000
+[instance 61] processed 5100/10000
+[instance 61] processed 5200/10000
+[instance 61] processed 5300/10000
+[instance 61] processed 5400/10000
+[instance 61] processed 5500/10000
+[instance 61] processed 5600/10000
+[instance 61] processed 5700/10000
+[instance 61] processed 5800/10000
+[instance 61] processed 5900/10000
+[instance 61] processed 6000/10000
+[instance 61] processed 6100/10000
+[instance 61] processed 6200/10000
+[instance 61] processed 6300/10000
+[instance 61] processed 6400/10000
+[instance 61] processed 6500/10000
+[instance 61] processed 6600/10000
+[instance 61] processed 6700/10000
+[instance 61] processed 6800/10000
+[instance 61] processed 6900/10000
+[instance 61] processed 7000/10000
+[instance 61] processed 7100/10000
+[instance 61] processed 7200/10000
+[instance 61] processed 7300/10000
+[instance 61] processed 7400/10000
+[instance 61] processed 7500/10000
+[instance 61] processed 7600/10000
+[instance 61] processed 7700/10000
+[instance 61] processed 7800/10000
+[instance 61] processed 7900/10000
+[instance 61] processed 8000/10000
+[instance 61] processed 8100/10000
+[instance 61] processed 8200/10000
+[instance 61] processed 8300/10000
+[instance 61] processed 8400/10000
+[instance 61] processed 8500/10000
+[instance 61] processed 8600/10000
+[instance 61] processed 8700/10000
+[instance 61] processed 8800/10000
+[instance 61] processed 8900/10000
+[instance 61] processed 9000/10000
+[instance 61] processed 9100/10000
+[instance 61] processed 9200/10000
+[instance 61] processed 9300/10000
+[instance 61] processed 9400/10000
+[instance 61] processed 9500/10000
+[instance 61] processed 9600/10000
+[instance 61] processed 9700/10000
+[instance 61] processed 9800/10000
+[instance 61] processed 9900/10000
+[instance 61] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 62] processed 100/10000
+[instance 62] processed 200/10000
+[instance 62] processed 300/10000
+[instance 62] processed 400/10000
+[instance 62] processed 500/10000
+[instance 62] processed 600/10000
+[instance 62] processed 700/10000
+[instance 62] processed 800/10000
+[instance 62] processed 900/10000
+[instance 62] processed 1000/10000
+[instance 62] processed 1100/10000
+[instance 62] processed 1200/10000
+[instance 62] processed 1300/10000
+[instance 62] processed 1400/10000
+[instance 62] processed 1500/10000
+[instance 62] processed 1600/10000
+[instance 62] processed 1700/10000
+[instance 62] processed 1800/10000
+[instance 62] processed 1900/10000
+[instance 62] processed 2000/10000
+[instance 62] processed 2100/10000
+[instance 62] processed 2200/10000
+[instance 62] processed 2300/10000
+[instance 62] processed 2400/10000
+[instance 62] processed 2500/10000
+[instance 62] processed 2600/10000
+[instance 62] processed 2700/10000
+[instance 62] processed 2800/10000
+[instance 62] processed 2900/10000
+[instance 62] processed 3000/10000
+[instance 62] processed 3100/10000
+[instance 62] processed 3200/10000
+[instance 62] processed 3300/10000
+[instance 62] processed 3400/10000
+[instance 62] processed 3500/10000
+[instance 62] processed 3600/10000
+[instance 62] processed 3700/10000
+[instance 62] processed 3800/10000
+[instance 62] processed 3900/10000
+[instance 62] processed 4000/10000
+[instance 62] processed 4100/10000
+[instance 62] processed 4200/10000
+[instance 62] processed 4300/10000
+[instance 62] processed 4400/10000
+[instance 62] processed 4500/10000
+[instance 62] processed 4600/10000
+[instance 62] processed 4700/10000
+[instance 62] processed 4800/10000
+[instance 62] processed 4900/10000
+[instance 62] processed 5000/10000
+[instance 62] processed 5100/10000
+[instance 62] processed 5200/10000
+[instance 62] processed 5300/10000
+[instance 62] processed 5400/10000
+[instance 62] processed 5500/10000
+[instance 62] processed 5600/10000
+[instance 62] processed 5700/10000
+[instance 62] processed 5800/10000
+[instance 62] processed 5900/10000
+[instance 62] processed 6000/10000
+[instance 62] processed 6100/10000
+[instance 62] processed 6200/10000
+[instance 62] processed 6300/10000
+[instance 62] processed 6400/10000
+[instance 62] processed 6500/10000
+[instance 62] processed 6600/10000
+[instance 62] processed 6700/10000
+[instance 62] processed 6800/10000
+[instance 62] processed 6900/10000
+[instance 62] processed 7000/10000
+[instance 62] processed 7100/10000
+[instance 62] processed 7200/10000
+[instance 62] processed 7300/10000
+[instance 62] processed 7400/10000
+[instance 62] processed 7500/10000
+[instance 62] processed 7600/10000
+[instance 62] processed 7700/10000
+[instance 62] processed 7800/10000
+[instance 62] processed 7900/10000
+[instance 62] processed 8000/10000
+[instance 62] processed 8100/10000
+[instance 62] processed 8200/10000
+[instance 62] processed 8300/10000
+[instance 62] processed 8400/10000
+[instance 62] processed 8500/10000
+[instance 62] processed 8600/10000
+[instance 62] processed 8700/10000
+[instance 62] processed 8800/10000
+[instance 62] processed 8900/10000
+[instance 62] processed 9000/10000
+[instance 62] processed 9100/10000
+[instance 62] processed 9200/10000
+[instance 62] processed 9300/10000
+[instance 62] processed 9400/10000
+[instance 62] processed 9500/10000
+[instance 62] processed 9600/10000
+[instance 62] processed 9700/10000
+[instance 62] processed 9800/10000
+[instance 62] processed 9900/10000
+[instance 62] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 63] processed 100/10000
+[instance 63] processed 200/10000
+[instance 63] processed 300/10000
+[instance 63] processed 400/10000
+[instance 63] processed 500/10000
+[instance 63] processed 600/10000
+[instance 63] processed 700/10000
+[instance 63] processed 800/10000
+[instance 63] processed 900/10000
+[instance 63] processed 1000/10000
+[instance 63] processed 1100/10000
+[instance 63] processed 1200/10000
+[instance 63] processed 1300/10000
+[instance 63] processed 1400/10000
+[instance 63] processed 1500/10000
+[instance 63] processed 1600/10000
+[instance 63] processed 1700/10000
+[instance 63] processed 1800/10000
+[instance 63] processed 1900/10000
+[instance 63] processed 2000/10000
+[instance 63] processed 2100/10000
+[instance 63] processed 2200/10000
+[instance 63] processed 2300/10000
+[instance 63] processed 2400/10000
+[instance 63] processed 2500/10000
+[instance 63] processed 2600/10000
+[instance 63] processed 2700/10000
+[instance 63] processed 2800/10000
+[instance 63] processed 2900/10000
+[instance 63] processed 3000/10000
+[instance 63] processed 3100/10000
+[instance 63] processed 3200/10000
+[instance 63] processed 3300/10000
+[instance 63] processed 3400/10000
+[instance 63] processed 3500/10000
+[instance 63] processed 3600/10000
+[instance 63] processed 3700/10000
+[instance 63] processed 3800/10000
+[instance 63] processed 3900/10000
+[instance 63] processed 4000/10000
+[instance 63] processed 4100/10000
+[instance 63] processed 4200/10000
+[instance 63] processed 4300/10000
+[instance 63] processed 4400/10000
+[instance 63] processed 4500/10000
+[instance 63] processed 4600/10000
+[instance 63] processed 4700/10000
+[instance 63] processed 4800/10000
+[instance 63] processed 4900/10000
+[instance 63] processed 5000/10000
+[instance 63] processed 5100/10000
+[instance 63] processed 5200/10000
+[instance 63] processed 5300/10000
+[instance 63] processed 5400/10000
+[instance 63] processed 5500/10000
+[instance 63] processed 5600/10000
+[instance 63] processed 5700/10000
+[instance 63] processed 5800/10000
+[instance 63] processed 5900/10000
+[instance 63] processed 6000/10000
+[instance 63] processed 6100/10000
+[instance 63] processed 6200/10000
+[instance 63] processed 6300/10000
+[instance 63] processed 6400/10000
+[instance 63] processed 6500/10000
+[instance 63] processed 6600/10000
+[instance 63] processed 6700/10000
+[instance 63] processed 6800/10000
+[instance 63] processed 6900/10000
+[instance 63] processed 7000/10000
+[instance 63] processed 7100/10000
+[instance 63] processed 7200/10000
+[instance 63] processed 7300/10000
+[instance 63] processed 7400/10000
+[instance 63] processed 7500/10000
+[instance 63] processed 7600/10000
+[instance 63] processed 7700/10000
+[instance 63] processed 7800/10000
+[instance 63] processed 7900/10000
+[instance 63] processed 8000/10000
+[instance 63] processed 8100/10000
+[instance 63] processed 8200/10000
+[instance 63] processed 8300/10000
+[instance 63] processed 8400/10000
+[instance 63] processed 8500/10000
+[instance 63] processed 8600/10000
+[instance 63] processed 8700/10000
+[instance 63] processed 8800/10000
+[instance 63] processed 8900/10000
+[instance 63] processed 9000/10000
+[instance 63] processed 9100/10000
+[instance 63] processed 9200/10000
+[instance 63] processed 9300/10000
+[instance 63] processed 9400/10000
+[instance 63] processed 9500/10000
+[instance 63] processed 9600/10000
+[instance 63] processed 9700/10000
+[instance 63] processed 9800/10000
+[instance 63] processed 9900/10000
+[instance 63] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 64] processed 100/10000
+[instance 64] processed 200/10000
+[instance 64] processed 300/10000
+[instance 64] processed 400/10000
+[instance 64] processed 500/10000
+[instance 64] processed 600/10000
+[instance 64] processed 700/10000
+[instance 64] processed 800/10000
+[instance 64] processed 900/10000
+[instance 64] processed 1000/10000
+[instance 64] processed 1100/10000
+[instance 64] processed 1200/10000
+[instance 64] processed 1300/10000
+[instance 64] processed 1400/10000
+[instance 64] processed 1500/10000
+[instance 64] processed 1600/10000
+[instance 64] processed 1700/10000
+[instance 64] processed 1800/10000
+[instance 64] processed 1900/10000
+[instance 64] processed 2000/10000
+[instance 64] processed 2100/10000
+[instance 64] processed 2200/10000
+[instance 64] processed 2300/10000
+[instance 64] processed 2400/10000
+[instance 64] processed 2500/10000
+[instance 64] processed 2600/10000
+[instance 64] processed 2700/10000
+[instance 64] processed 2800/10000
+[instance 64] processed 2900/10000
+[instance 64] processed 3000/10000
+[instance 64] processed 3100/10000
+[instance 64] processed 3200/10000
+[instance 64] processed 3300/10000
+[instance 64] processed 3400/10000
+[instance 64] processed 3500/10000
+[instance 64] processed 3600/10000
+[instance 64] processed 3700/10000
+[instance 64] processed 3800/10000
+[instance 64] processed 3900/10000
+[instance 64] processed 4000/10000
+[instance 64] processed 4100/10000
+[instance 64] processed 4200/10000
+[instance 64] processed 4300/10000
+[instance 64] processed 4400/10000
+[instance 64] processed 4500/10000
+[instance 64] processed 4600/10000
+[instance 64] processed 4700/10000
+[instance 64] processed 4800/10000
+[instance 64] processed 4900/10000
+[instance 64] processed 5000/10000
+[instance 64] processed 5100/10000
+[instance 64] processed 5200/10000
+[instance 64] processed 5300/10000
+[instance 64] processed 5400/10000
+[instance 64] processed 5500/10000
+[instance 64] processed 5600/10000
+[instance 64] processed 5700/10000
+[instance 64] processed 5800/10000
+[instance 64] processed 5900/10000
+[instance 64] processed 6000/10000
+[instance 64] processed 6100/10000
+[instance 64] processed 6200/10000
+[instance 64] processed 6300/10000
+[instance 64] processed 6400/10000
+[instance 64] processed 6500/10000
+[instance 64] processed 6600/10000
+[instance 64] processed 6700/10000
+[instance 64] processed 6800/10000
+[instance 64] processed 6900/10000
+[instance 64] processed 7000/10000
+[instance 64] processed 7100/10000
+[instance 64] processed 7200/10000
+[instance 64] processed 7300/10000
+[instance 64] processed 7400/10000
+[instance 64] processed 7500/10000
+[instance 64] processed 7600/10000
+[instance 64] processed 7700/10000
+[instance 64] processed 7800/10000
+[instance 64] processed 7900/10000
+[instance 64] processed 8000/10000
+[instance 64] processed 8100/10000
+[instance 64] processed 8200/10000
+[instance 64] processed 8300/10000
+[instance 64] processed 8400/10000
+[instance 64] processed 8500/10000
+[instance 64] processed 8600/10000
+[instance 64] processed 8700/10000
+[instance 64] processed 8800/10000
+[instance 64] processed 8900/10000
+[instance 64] processed 9000/10000
+[instance 64] processed 9100/10000
+[instance 64] processed 9200/10000
+[instance 64] processed 9300/10000
+[instance 64] processed 9400/10000
+[instance 64] processed 9500/10000
+[instance 64] processed 9600/10000
+[instance 64] processed 9700/10000
+[instance 64] processed 9800/10000
+[instance 64] processed 9900/10000
+[instance 64] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 65] processed 100/10000
+[instance 65] processed 200/10000
+[instance 65] processed 300/10000
+[instance 65] processed 400/10000
+[instance 65] processed 500/10000
+[instance 65] processed 600/10000
+[instance 65] processed 700/10000
+[instance 65] processed 800/10000
+[instance 65] processed 900/10000
+[instance 65] processed 1000/10000
+[instance 65] processed 1100/10000
+[instance 65] processed 1200/10000
+[instance 65] processed 1300/10000
+[instance 65] processed 1400/10000
+[instance 65] processed 1500/10000
+[instance 65] processed 1600/10000
+[instance 65] processed 1700/10000
+[instance 65] processed 1800/10000
+[instance 65] processed 1900/10000
+[instance 65] processed 2000/10000
+[instance 65] processed 2100/10000
+[instance 65] processed 2200/10000
+[instance 65] processed 2300/10000
+[instance 65] processed 2400/10000
+[instance 65] processed 2500/10000
+[instance 65] processed 2600/10000
+[instance 65] processed 2700/10000
+[instance 65] processed 2800/10000
+[instance 65] processed 2900/10000
+[instance 65] processed 3000/10000
+[instance 65] processed 3100/10000
+[instance 65] processed 3200/10000
+[instance 65] processed 3300/10000
+[instance 65] processed 3400/10000
+[instance 65] processed 3500/10000
+[instance 65] processed 3600/10000
+[instance 65] processed 3700/10000
+[instance 65] processed 3800/10000
+[instance 65] processed 3900/10000
+[instance 65] processed 4000/10000
+[instance 65] processed 4100/10000
+[instance 65] processed 4200/10000
+[instance 65] processed 4300/10000
+[instance 65] processed 4400/10000
+[instance 65] processed 4500/10000
+[instance 65] processed 4600/10000
+[instance 65] processed 4700/10000
+[instance 65] processed 4800/10000
+[instance 65] processed 4900/10000
+[instance 65] processed 5000/10000
+[instance 65] processed 5100/10000
+[instance 65] processed 5200/10000
+[instance 65] processed 5300/10000
+[instance 65] processed 5400/10000
+[instance 65] processed 5500/10000
+[instance 65] processed 5600/10000
+[instance 65] processed 5700/10000
+[instance 65] processed 5800/10000
+[instance 65] processed 5900/10000
+[instance 65] processed 6000/10000
+[instance 65] processed 6100/10000
+[instance 65] processed 6200/10000
+[instance 65] processed 6300/10000
+[instance 65] processed 6400/10000
+[instance 65] processed 6500/10000
+[instance 65] processed 6600/10000
+[instance 65] processed 6700/10000
+[instance 65] processed 6800/10000
+[instance 65] processed 6900/10000
+[instance 65] processed 7000/10000
+[instance 65] processed 7100/10000
+[instance 65] processed 7200/10000
+[instance 65] processed 7300/10000
+[instance 65] processed 7400/10000
+[instance 65] processed 7500/10000
+[instance 65] processed 7600/10000
+[instance 65] processed 7700/10000
+[instance 65] processed 7800/10000
+[instance 65] processed 7900/10000
+[instance 65] processed 8000/10000
+[instance 65] processed 8100/10000
+[instance 65] processed 8200/10000
+[instance 65] processed 8300/10000
+[instance 65] processed 8400/10000
+[instance 65] processed 8500/10000
+[instance 65] processed 8600/10000
+[instance 65] processed 8700/10000
+[instance 65] processed 8800/10000
+[instance 65] processed 8900/10000
+[instance 65] processed 9000/10000
+[instance 65] processed 9100/10000
+[instance 65] processed 9200/10000
+[instance 65] processed 9300/10000
+[instance 65] processed 9400/10000
+[instance 65] processed 9500/10000
+[instance 65] processed 9600/10000
+[instance 65] processed 9700/10000
+[instance 65] processed 9800/10000
+[instance 65] processed 9900/10000
+[instance 65] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 66] processed 100/10000
+[instance 66] processed 200/10000
+[instance 66] processed 300/10000
+[instance 66] processed 400/10000
+[instance 66] processed 500/10000
+[instance 66] processed 600/10000
+[instance 66] processed 700/10000
+[instance 66] processed 800/10000
+[instance 66] processed 900/10000
+[instance 66] processed 1000/10000
+[instance 66] processed 1100/10000
+[instance 66] processed 1200/10000
+[instance 66] processed 1300/10000
+[instance 66] processed 1400/10000
+[instance 66] processed 1500/10000
+[instance 66] processed 1600/10000
+[instance 66] processed 1700/10000
+[instance 66] processed 1800/10000
+[instance 66] processed 1900/10000
+[instance 66] processed 2000/10000
+[instance 66] processed 2100/10000
+[instance 66] processed 2200/10000
+[instance 66] processed 2300/10000
+[instance 66] processed 2400/10000
+[instance 66] processed 2500/10000
+[instance 66] processed 2600/10000
+[instance 66] processed 2700/10000
+[instance 66] processed 2800/10000
+[instance 66] processed 2900/10000
+[instance 66] processed 3000/10000
+[instance 66] processed 3100/10000
+[instance 66] processed 3200/10000
+[instance 66] processed 3300/10000
+[instance 66] processed 3400/10000
+[instance 66] processed 3500/10000
+[instance 66] processed 3600/10000
+[instance 66] processed 3700/10000
+[instance 66] processed 3800/10000
+[instance 66] processed 3900/10000
+[instance 66] processed 4000/10000
+[instance 66] processed 4100/10000
+[instance 66] processed 4200/10000
+[instance 66] processed 4300/10000
+[instance 66] processed 4400/10000
+[instance 66] processed 4500/10000
+[instance 66] processed 4600/10000
+[instance 66] processed 4700/10000
+[instance 66] processed 4800/10000
+[instance 66] processed 4900/10000
+[instance 66] processed 5000/10000
+[instance 66] processed 5100/10000
+[instance 66] processed 5200/10000
+[instance 66] processed 5300/10000
+[instance 66] processed 5400/10000
+[instance 66] processed 5500/10000
+[instance 66] processed 5600/10000
+[instance 66] processed 5700/10000
+[instance 66] processed 5800/10000
+[instance 66] processed 5900/10000
+[instance 66] processed 6000/10000
+[instance 66] processed 6100/10000
+[instance 66] processed 6200/10000
+[instance 66] processed 6300/10000
+[instance 66] processed 6400/10000
+[instance 66] processed 6500/10000
+[instance 66] processed 6600/10000
+[instance 66] processed 6700/10000
+[instance 66] processed 6800/10000
+[instance 66] processed 6900/10000
+[instance 66] processed 7000/10000
+[instance 66] processed 7100/10000
+[instance 66] processed 7200/10000
+[instance 66] processed 7300/10000
+[instance 66] processed 7400/10000
+[instance 66] processed 7500/10000
+[instance 66] processed 7600/10000
+[instance 66] processed 7700/10000
+[instance 66] processed 7800/10000
+[instance 66] processed 7900/10000
+[instance 66] processed 8000/10000
+[instance 66] processed 8100/10000
+[instance 66] processed 8200/10000
+[instance 66] processed 8300/10000
+[instance 66] processed 8400/10000
+[instance 66] processed 8500/10000
+[instance 66] processed 8600/10000
+[instance 66] processed 8700/10000
+[instance 66] processed 8800/10000
+[instance 66] processed 8900/10000
+[instance 66] processed 9000/10000
+[instance 66] processed 9100/10000
+[instance 66] processed 9200/10000
+[instance 66] processed 9300/10000
+[instance 66] processed 9400/10000
+[instance 66] processed 9500/10000
+[instance 66] processed 9600/10000
+[instance 66] processed 9700/10000
+[instance 66] processed 9800/10000
+[instance 66] processed 9900/10000
+[instance 66] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 67] processed 100/10000
+[instance 67] processed 200/10000
+[instance 67] processed 300/10000
+[instance 67] processed 400/10000
+[instance 67] processed 500/10000
+[instance 67] processed 600/10000
+[instance 67] processed 700/10000
+[instance 67] processed 800/10000
+[instance 67] processed 900/10000
+[instance 67] processed 1000/10000
+[instance 67] processed 1100/10000
+[instance 67] processed 1200/10000
+[instance 67] processed 1300/10000
+[instance 67] processed 1400/10000
+[instance 67] processed 1500/10000
+[instance 67] processed 1600/10000
+[instance 67] processed 1700/10000
+[instance 67] processed 1800/10000
+[instance 67] processed 1900/10000
+[instance 67] processed 2000/10000
+[instance 67] processed 2100/10000
+[instance 67] processed 2200/10000
+[instance 67] processed 2300/10000
+[instance 67] processed 2400/10000
+[instance 67] processed 2500/10000
+[instance 67] processed 2600/10000
+[instance 67] processed 2700/10000
+[instance 67] processed 2800/10000
+[instance 67] processed 2900/10000
+[instance 67] processed 3000/10000
+[instance 67] processed 3100/10000
+[instance 67] processed 3200/10000
+[instance 67] processed 3300/10000
+[instance 67] processed 3400/10000
+[instance 67] processed 3500/10000
+[instance 67] processed 3600/10000
+[instance 67] processed 3700/10000
+[instance 67] processed 3800/10000
+[instance 67] processed 3900/10000
+[instance 67] processed 4000/10000
+[instance 67] processed 4100/10000
+[instance 67] processed 4200/10000
+[instance 67] processed 4300/10000
+[instance 67] processed 4400/10000
+[instance 67] processed 4500/10000
+[instance 67] processed 4600/10000
+[instance 67] processed 4700/10000
+[instance 67] processed 4800/10000
+[instance 67] processed 4900/10000
+[instance 67] processed 5000/10000
+[instance 67] processed 5100/10000
+[instance 67] processed 5200/10000
+[instance 67] processed 5300/10000
+[instance 67] processed 5400/10000
+[instance 67] processed 5500/10000
+[instance 67] processed 5600/10000
+[instance 67] processed 5700/10000
+[instance 67] processed 5800/10000
+[instance 67] processed 5900/10000
+[instance 67] processed 6000/10000
+[instance 67] processed 6100/10000
+[instance 67] processed 6200/10000
+[instance 67] processed 6300/10000
+[instance 67] processed 6400/10000
+[instance 67] processed 6500/10000
+[instance 67] processed 6600/10000
+[instance 67] processed 6700/10000
+[instance 67] processed 6800/10000
+[instance 67] processed 6900/10000
+[instance 67] processed 7000/10000
+[instance 67] processed 7100/10000
+[instance 67] processed 7200/10000
+[instance 67] processed 7300/10000
+[instance 67] processed 7400/10000
+[instance 67] processed 7500/10000
+[instance 67] processed 7600/10000
+[instance 67] processed 7700/10000
+[instance 67] processed 7800/10000
+[instance 67] processed 7900/10000
+[instance 67] processed 8000/10000
+[instance 67] processed 8100/10000
+[instance 67] processed 8200/10000
+[instance 67] processed 8300/10000
+[instance 67] processed 8400/10000
+[instance 67] processed 8500/10000
+[instance 67] processed 8600/10000
+[instance 67] processed 8700/10000
+[instance 67] processed 8800/10000
+[instance 67] processed 8900/10000
+[instance 67] processed 9000/10000
+[instance 67] processed 9100/10000
+[instance 67] processed 9200/10000
+[instance 67] processed 9300/10000
+[instance 67] processed 9400/10000
+[instance 67] processed 9500/10000
+[instance 67] processed 9600/10000
+[instance 67] processed 9700/10000
+[instance 67] processed 9800/10000
+[instance 67] processed 9900/10000
+[instance 67] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 68] processed 100/10000
+[instance 68] processed 200/10000
+[instance 68] processed 300/10000
+[instance 68] processed 400/10000
+[instance 68] processed 500/10000
+[instance 68] processed 600/10000
+[instance 68] processed 700/10000
+[instance 68] processed 800/10000
+[instance 68] processed 900/10000
+[instance 68] processed 1000/10000
+[instance 68] processed 1100/10000
+[instance 68] processed 1200/10000
+[instance 68] processed 1300/10000
+[instance 68] processed 1400/10000
+[instance 68] processed 1500/10000
+[instance 68] processed 1600/10000
+[instance 68] processed 1700/10000
+[instance 68] processed 1800/10000
+[instance 68] processed 1900/10000
+[instance 68] processed 2000/10000
+[instance 68] processed 2100/10000
+[instance 68] processed 2200/10000
+[instance 68] processed 2300/10000
+[instance 68] processed 2400/10000
+[instance 68] processed 2500/10000
+[instance 68] processed 2600/10000
+[instance 68] processed 2700/10000
+[instance 68] processed 2800/10000
+[instance 68] processed 2900/10000
+[instance 68] processed 3000/10000
+[instance 68] processed 3100/10000
+[instance 68] processed 3200/10000
+[instance 68] processed 3300/10000
+[instance 68] processed 3400/10000
+[instance 68] processed 3500/10000
+[instance 68] processed 3600/10000
+[instance 68] processed 3700/10000
+[instance 68] processed 3800/10000
+[instance 68] processed 3900/10000
+[instance 68] processed 4000/10000
+[instance 68] processed 4100/10000
+[instance 68] processed 4200/10000
+[instance 68] processed 4300/10000
+[instance 68] processed 4400/10000
+[instance 68] processed 4500/10000
+[instance 68] processed 4600/10000
+[instance 68] processed 4700/10000
+[instance 68] processed 4800/10000
+[instance 68] processed 4900/10000
+[instance 68] processed 5000/10000
+[instance 68] processed 5100/10000
+[instance 68] processed 5200/10000
+[instance 68] processed 5300/10000
+[instance 68] processed 5400/10000
+[instance 68] processed 5500/10000
+[instance 68] processed 5600/10000
+[instance 68] processed 5700/10000
+[instance 68] processed 5800/10000
+[instance 68] processed 5900/10000
+[instance 68] processed 6000/10000
+[instance 68] processed 6100/10000
+[instance 68] processed 6200/10000
+[instance 68] processed 6300/10000
+[instance 68] processed 6400/10000
+[instance 68] processed 6500/10000
+[instance 68] processed 6600/10000
+[instance 68] processed 6700/10000
+[instance 68] processed 6800/10000
+[instance 68] processed 6900/10000
+[instance 68] processed 7000/10000
+[instance 68] processed 7100/10000
+[instance 68] processed 7200/10000
+[instance 68] processed 7300/10000
+[instance 68] processed 7400/10000
+[instance 68] processed 7500/10000
+[instance 68] processed 7600/10000
+[instance 68] processed 7700/10000
+[instance 68] processed 7800/10000
+[instance 68] processed 7900/10000
+[instance 68] processed 8000/10000
+[instance 68] processed 8100/10000
+[instance 68] processed 8200/10000
+[instance 68] processed 8300/10000
+[instance 68] processed 8400/10000
+[instance 68] processed 8500/10000
+[instance 68] processed 8600/10000
+[instance 68] processed 8700/10000
+[instance 68] processed 8800/10000
+[instance 68] processed 8900/10000
+[instance 68] processed 9000/10000
+[instance 68] processed 9100/10000
+[instance 68] processed 9200/10000
+[instance 68] processed 9300/10000
+[instance 68] processed 9400/10000
+[instance 68] processed 9500/10000
+[instance 68] processed 9600/10000
+[instance 68] processed 9700/10000
+[instance 68] processed 9800/10000
+[instance 68] processed 9900/10000
+[instance 68] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 69] processed 100/10000
+[instance 69] processed 200/10000
+[instance 69] processed 300/10000
+[instance 69] processed 400/10000
+[instance 69] processed 500/10000
+[instance 69] processed 600/10000
+[instance 69] processed 700/10000
+[instance 69] processed 800/10000
+[instance 69] processed 900/10000
+[instance 69] processed 1000/10000
+[instance 69] processed 1100/10000
+[instance 69] processed 1200/10000
+[instance 69] processed 1300/10000
+[instance 69] processed 1400/10000
+[instance 69] processed 1500/10000
+[instance 69] processed 1600/10000
+[instance 69] processed 1700/10000
+[instance 69] processed 1800/10000
+[instance 69] processed 1900/10000
+[instance 69] processed 2000/10000
+[instance 69] processed 2100/10000
+[instance 69] processed 2200/10000
+[instance 69] processed 2300/10000
+[instance 69] processed 2400/10000
+[instance 69] processed 2500/10000
+[instance 69] processed 2600/10000
+[instance 69] processed 2700/10000
+[instance 69] processed 2800/10000
+[instance 69] processed 2900/10000
+[instance 69] processed 3000/10000
+[instance 69] processed 3100/10000
+[instance 69] processed 3200/10000
+[instance 69] processed 3300/10000
+[instance 69] processed 3400/10000
+[instance 69] processed 3500/10000
+[instance 69] processed 3600/10000
+[instance 69] processed 3700/10000
+[instance 69] processed 3800/10000
+[instance 69] processed 3900/10000
+[instance 69] processed 4000/10000
+[instance 69] processed 4100/10000
+[instance 69] processed 4200/10000
+[instance 69] processed 4300/10000
+[instance 69] processed 4400/10000
+[instance 69] processed 4500/10000
+[instance 69] processed 4600/10000
+[instance 69] processed 4700/10000
+[instance 69] processed 4800/10000
+[instance 69] processed 4900/10000
+[instance 69] processed 5000/10000
+[instance 69] processed 5100/10000
+[instance 69] processed 5200/10000
+[instance 69] processed 5300/10000
+[instance 69] processed 5400/10000
+[instance 69] processed 5500/10000
+[instance 69] processed 5600/10000
+[instance 69] processed 5700/10000
+[instance 69] processed 5800/10000
+[instance 69] processed 5900/10000
+[instance 69] processed 6000/10000
+[instance 69] processed 6100/10000
+[instance 69] processed 6200/10000
+[instance 69] processed 6300/10000
+[instance 69] processed 6400/10000
+[instance 69] processed 6500/10000
+[instance 69] processed 6600/10000
+[instance 69] processed 6700/10000
+[instance 69] processed 6800/10000
+[instance 69] processed 6900/10000
+[instance 69] processed 7000/10000
+[instance 69] processed 7100/10000
+[instance 69] processed 7200/10000
+[instance 69] processed 7300/10000
+[instance 69] processed 7400/10000
+[instance 69] processed 7500/10000
+[instance 69] processed 7600/10000
+[instance 69] processed 7700/10000
+[instance 69] processed 7800/10000
+[instance 69] processed 7900/10000
+[instance 69] processed 8000/10000
+[instance 69] processed 8100/10000
+[instance 69] processed 8200/10000
+[instance 69] processed 8300/10000
+[instance 69] processed 8400/10000
+[instance 69] processed 8500/10000
+[instance 69] processed 8600/10000
+[instance 69] processed 8700/10000
+[instance 69] processed 8800/10000
+[instance 69] processed 8900/10000
+[instance 69] processed 9000/10000
+[instance 69] processed 9100/10000
+[instance 69] processed 9200/10000
+[instance 69] processed 9300/10000
+[instance 69] processed 9400/10000
+[instance 69] processed 9500/10000
+[instance 69] processed 9600/10000
+[instance 69] processed 9700/10000
+[instance 69] processed 9800/10000
+[instance 69] processed 9900/10000
+[instance 69] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 70] processed 100/10000
+[instance 70] processed 200/10000
+[instance 70] processed 300/10000
+[instance 70] processed 400/10000
+[instance 70] processed 500/10000
+[instance 70] processed 600/10000
+[instance 70] processed 700/10000
+[instance 70] processed 800/10000
+[instance 70] processed 900/10000
+[instance 70] processed 1000/10000
+[instance 70] processed 1100/10000
+[instance 70] processed 1200/10000
+[instance 70] processed 1300/10000
+[instance 70] processed 1400/10000
+[instance 70] processed 1500/10000
+[instance 70] processed 1600/10000
+[instance 70] processed 1700/10000
+[instance 70] processed 1800/10000
+[instance 70] processed 1900/10000
+[instance 70] processed 2000/10000
+[instance 70] processed 2100/10000
+[instance 70] processed 2200/10000
+[instance 70] processed 2300/10000
+[instance 70] processed 2400/10000
+[instance 70] processed 2500/10000
+[instance 70] processed 2600/10000
+[instance 70] processed 2700/10000
+[instance 70] processed 2800/10000
+[instance 70] processed 2900/10000
+[instance 70] processed 3000/10000
+[instance 70] processed 3100/10000
+[instance 70] processed 3200/10000
+[instance 70] processed 3300/10000
+[instance 70] processed 3400/10000
+[instance 70] processed 3500/10000
+[instance 70] processed 3600/10000
+[instance 70] processed 3700/10000
+[instance 70] processed 3800/10000
+[instance 70] processed 3900/10000
+[instance 70] processed 4000/10000
+[instance 70] processed 4100/10000
+[instance 70] processed 4200/10000
+[instance 70] processed 4300/10000
+[instance 70] processed 4400/10000
+[instance 70] processed 4500/10000
+[instance 70] processed 4600/10000
+[instance 70] processed 4700/10000
+[instance 70] processed 4800/10000
+[instance 70] processed 4900/10000
+[instance 70] processed 5000/10000
+[instance 70] processed 5100/10000
+[instance 70] processed 5200/10000
+[instance 70] processed 5300/10000
+[instance 70] processed 5400/10000
+[instance 70] processed 5500/10000
+[instance 70] processed 5600/10000
+[instance 70] processed 5700/10000
+[instance 70] processed 5800/10000
+[instance 70] processed 5900/10000
+[instance 70] processed 6000/10000
+[instance 70] processed 6100/10000
+[instance 70] processed 6200/10000
+[instance 70] processed 6300/10000
+[instance 70] processed 6400/10000
+[instance 70] processed 6500/10000
+[instance 70] processed 6600/10000
+[instance 70] processed 6700/10000
+[instance 70] processed 6800/10000
+[instance 70] processed 6900/10000
+[instance 70] processed 7000/10000
+[instance 70] processed 7100/10000
+[instance 70] processed 7200/10000
+[instance 70] processed 7300/10000
+[instance 70] processed 7400/10000
+[instance 70] processed 7500/10000
+[instance 70] processed 7600/10000
+[instance 70] processed 7700/10000
+[instance 70] processed 7800/10000
+[instance 70] processed 7900/10000
+[instance 70] processed 8000/10000
+[instance 70] processed 8100/10000
+[instance 70] processed 8200/10000
+[instance 70] processed 8300/10000
+[instance 70] processed 8400/10000
+[instance 70] processed 8500/10000
+[instance 70] processed 8600/10000
+[instance 70] processed 8700/10000
+[instance 70] processed 8800/10000
+[instance 70] processed 8900/10000
+[instance 70] processed 9000/10000
+[instance 70] processed 9100/10000
+[instance 70] processed 9200/10000
+[instance 70] processed 9300/10000
+[instance 70] processed 9400/10000
+[instance 70] processed 9500/10000
+[instance 70] processed 9600/10000
+[instance 70] processed 9700/10000
+[instance 70] processed 9800/10000
+[instance 70] processed 9900/10000
+[instance 70] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12
+[instance 71] processed 100/10000
+[instance 71] processed 200/10000
+[instance 71] processed 300/10000
+[instance 71] processed 400/10000
+[instance 71] processed 500/10000
+[instance 71] processed 600/10000
+[instance 71] processed 700/10000
+[instance 71] processed 800/10000
+[instance 71] processed 900/10000
+[instance 71] processed 1000/10000
+[instance 71] processed 1100/10000
+[instance 71] processed 1200/10000
+[instance 71] processed 1300/10000
+[instance 71] processed 1400/10000
+[instance 71] processed 1500/10000
+[instance 71] processed 1600/10000
+[instance 71] processed 1700/10000
+[instance 71] processed 1800/10000
+[instance 71] processed 1900/10000
+[instance 71] processed 2000/10000
+[instance 71] processed 2100/10000
+[instance 71] processed 2200/10000
+[instance 71] processed 2300/10000
+[instance 71] processed 2400/10000
+[instance 71] processed 2500/10000
+[instance 71] processed 2600/10000
+[instance 71] processed 2700/10000
+[instance 71] processed 2800/10000
+[instance 71] processed 2900/10000
+[instance 71] processed 3000/10000
+[instance 71] processed 3100/10000
+[instance 71] processed 3200/10000
+[instance 71] processed 3300/10000
+[instance 71] processed 3400/10000
+[instance 71] processed 3500/10000
+[instance 71] processed 3600/10000
+[instance 71] processed 3700/10000
+[instance 71] processed 3800/10000
+[instance 71] processed 3900/10000
+[instance 71] processed 4000/10000
+[instance 71] processed 4100/10000
+[instance 71] processed 4200/10000
+[instance 71] processed 4300/10000
+[instance 71] processed 4400/10000
+[instance 71] processed 4500/10000
+[instance 71] processed 4600/10000
+[instance 71] processed 4700/10000
+[instance 71] processed 4800/10000
+[instance 71] processed 4900/10000
+[instance 71] processed 5000/10000
+[instance 71] processed 5100/10000
+[instance 71] processed 5200/10000
+[instance 71] processed 5300/10000
+[instance 71] processed 5400/10000
+[instance 71] processed 5500/10000
+[instance 71] processed 5600/10000
+[instance 71] processed 5700/10000
+[instance 71] processed 5800/10000
+[instance 71] processed 5900/10000
+[instance 71] processed 6000/10000
+[instance 71] processed 6100/10000
+[instance 71] processed 6200/10000
+[instance 71] processed 6300/10000
+[instance 71] processed 6400/10000
+[instance 71] processed 6500/10000
+[instance 71] processed 6600/10000
+[instance 71] processed 6700/10000
+[instance 71] processed 6800/10000
+[instance 71] processed 6900/10000
+[instance 71] processed 7000/10000
+[instance 71] processed 7100/10000
+[instance 71] processed 7200/10000
+[instance 71] processed 7300/10000
+[instance 71] processed 7400/10000
+[instance 71] processed 7500/10000
+[instance 71] processed 7600/10000
+[instance 71] processed 7700/10000
+[instance 71] processed 7800/10000
+[instance 71] processed 7900/10000
+[instance 71] processed 8000/10000
+[instance 71] processed 8100/10000
+[instance 71] processed 8200/10000
+[instance 71] processed 8300/10000
+[instance 71] processed 8400/10000
+[instance 71] processed 8500/10000
+[instance 71] processed 8600/10000
+[instance 71] processed 8700/10000
+[instance 71] processed 8800/10000
+[instance 71] processed 8900/10000
+[instance 71] processed 9000/10000
+[instance 71] processed 9100/10000
+[instance 71] processed 9200/10000
+[instance 71] processed 9300/10000
+[instance 71] processed 9400/10000
+[instance 71] processed 9500/10000
+[instance 71] processed 9600/10000
+[instance 71] processed 9700/10000
+[instance 71] processed 9800/10000
+[instance 71] processed 9900/10000
+[instance 71] processed 10000/10000
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12

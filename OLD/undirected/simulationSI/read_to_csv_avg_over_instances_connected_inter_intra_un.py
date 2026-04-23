@@ -5,9 +5,9 @@ from pathlib import Path
 # -----------------------
 # CONFIG
 # -----------------------
-simID = "SIsimUNDIRECTED20260415095123"
-Nv = "1000"
-k = "4"
+simID = "SIsimUNDIRECTED20260421160626" #SIsim20260401112526
+Nv = "20"
+k = "2"
 
 curves_dir = Path(f"/home/lnf/Desktop/00_sim_SI/{simID}/N{Nv}_k{k}/Curves")
 

@@ -1,0 +1,5 @@
+Main process pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Workers pinned to cores: [0, 1, 2, 3, 4, 5]
+Reserved free cores: [6, 7]
+Scheduling 10000 realizations using 6 workers, chunk_size=100, MAX_IN_FLIGHT=12

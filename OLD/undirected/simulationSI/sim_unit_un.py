@@ -3,6 +3,7 @@ import os
 import time
 import multiprocessing
 from concurrent.futures import ProcessPoolExecutor, as_completed, wait, FIRST_COMPLETED
+import csv
 
 from graph_un import *
 from step_un import *
@@ -37,8 +38,9 @@ def run_one_realization(args):
     v2_sorted_by_v1,
     v1_sorted_by_v2,
     edge_ids_sorted_by_v2,
+    deg, 
     ptr_v1,
-    ptr_v2, N_edges, n_states,
+    ptr_v2, N_edges, n_states,n_edge_types,
      fractions_initial, allowed_edges, inv_edge_rates, allowed_vertices, inv_vertex_rates,
      time_grid_t, N_time_bins, T_max) = args
     
@@ -62,6 +64,8 @@ def run_one_realization(args):
 
     times = []
     counts_in_time = []
+    edge_type_counts_in_time = []
+    tripoint_type_counts_in_time = []
 
     num_new_1_edge_causal = 0
     num_new_2_chains = 0
@@ -78,11 +82,69 @@ def run_one_realization(args):
 
     current_time = 0.0
     current_counts = np.bincount(vertex_states, minlength=n_states)
+    edge_type_current_counts = np.bincount(edge_types, minlength=n_edge_types) # (SS,SI,II)
+
+
+    m = np.zeros(N_vertices_in_LCC, dtype=np.int64)
+
+    m[v1_sorted] += vertex_states[v2_sorted_by_v1]
+    m[v2_sorted_by_v1] += vertex_states[v1_sorted]
+
+    S = (vertex_states == 0)
+    I = (vertex_states == 1)
+
+    degmm = deg - m
+
+    deg_s = deg[S]
+    m_s = m[S]
+    degmm_s = degmm[S]
+
+    deg_i = deg[I]
+    m_i = m[I]
+    degmm_i = degmm[I]
+
+    # =====================================================
+    # SKM INITIALIZATION (dense, vectorized)
+    # =====================================================
+
+    k_max = deg.max()
+
+    # Dense matrix: rows = k, cols = m
+    skm = np.zeros((k_max + 1, k_max + 1), dtype=np.int64)
+
+    # Accumulate counts
+    np.add.at(skm, (deg_s, m_s), 1)
+
+    '''
+    skm = np.empty(k_max + 1, dtype=object)
+    for k in range(k_max + 1):
+        skm[k] = np.zeros(k + 1, dtype=np.int64)
+
+    for i in S:
+        k = deg[i]
+        m_i = m[i]
+        skm[k][m_i] += 1
+    '''
+    # for some k, s will be empty, but i do this for easier comparison between realizations and with numerics
+    # acess as s[k][m]
+
+    #tripoint_type_current_counts = np.zeros(6, dtype=int) #np.bincount(tripoint_types, minlength=n_tripoint_types) # (SSS,SSI = ISS,ISI,SIS,SII = IIS ,III) -  ignore for now
+    tripoint_type_current_counts = np.zeros(6, dtype=int)
+
+    tripoint_type_current_counts[0] = np.sum(degmm_s * (degmm_s - 1) // 2)
+    tripoint_type_current_counts[1] = np.sum(m_s*degmm_s)
+    tripoint_type_current_counts[2] = np.sum(m_s*(m_s-1) // 2)
+    tripoint_type_current_counts[3] = np.sum(degmm_i * (degmm_i - 1) // 2)
+    tripoint_type_current_counts[4] = np.sum(m_i*degmm_i)
+    tripoint_type_current_counts[5] = np.sum(m_i*(m_i-1) // 2)
+
     check = 1
 
     while current_time < T_max and check:
         times.append(current_time)
         counts_in_time.append(current_counts)
+        edge_type_counts_in_time.append(edge_type_current_counts)
+        tripoint_type_counts_in_time.append(tripoint_type_current_counts)
 
         total_1_edge_causal += num_new_1_edge_causal
         total_2_chains += num_new_2_chains
@@ -101,12 +163,16 @@ def run_one_realization(args):
          num_new_1_edge_causal,
          num_new_2_chains,
          num_new_2_instars,
-         num_new_2_outstars) = step(
+         num_new_2_outstars,
+         edge_type_current_counts,
+         tripoint_type_current_counts,
+         m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,skm) = step(
                                         causal,
                                         causal_in,
                                         causal_out,
                                         N_edges,
                                         vertex_states,
+                                        skm,
                                         events,
                                         edge_types,
                                         allowed_edges,
@@ -117,20 +183,24 @@ def run_one_realization(args):
                                         v2_sorted_by_v1,
                                         v1_sorted_by_v2,
                                         edge_ids_sorted_by_v2,
+                                        deg, m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,
                                         ptr_v1,
                                         ptr_v2,
                                         n_states,
+                                        n_edge_types,
                                         current_time,
                                         current_counts
                                     )
 
     projected_counts = project_to_time_grid(times, counts_in_time, time_grid_t)
+    projected_edge_type_counts = project_to_time_grid(times, edge_type_counts_in_time, time_grid_t)
+    projected_tripoint_type_counts = project_to_time_grid(times, tripoint_type_counts_in_time, time_grid_t)
     projected_num_of_1_edge_causal = project_to_time_grid(times, num_of_1_edge_causal_in_time, time_grid_t)
     projected_num_of_2_chains = project_to_time_grid(times, num_of_2_chains_in_time, time_grid_t)
     projected_num_of_2_instars = project_to_time_grid(times, num_of_2_instars_in_time, time_grid_t)
     projected_num_of_2_outstars = project_to_time_grid(times, num_of_2_outstars_in_time, time_grid_t)
 
-    return (projected_counts, projected_num_of_1_edge_causal, projected_num_of_2_chains, projected_num_of_2_instars, projected_num_of_2_outstars, current_time)
+    return (projected_counts, projected_edge_type_counts, projected_tripoint_type_counts, projected_num_of_1_edge_causal, projected_num_of_2_chains, projected_num_of_2_instars, projected_num_of_2_outstars, current_time)
 
 def run_realization_chunk(args):
     chunk_size, args_template = args
@@ -142,7 +212,7 @@ def run_realization_chunk(args):
     return results
 
 
-def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_states,fractions_initial,
+def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_states,n_edge_types,fractions_initial,
                      allowed_edges,inv_edge_rates,allowed_vertices,inv_vertex_rates,
                      time_grid_t,N_time_bins,T_max,
                      filename,graphs_dir,curves_dir,curves_dir_full,hrcak,
@@ -198,6 +268,14 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
         N_edges = len(v1_sorted)
 
+        deg = np.zeros(N_vertices_in_LCC, dtype=np.int64)
+    
+        np.add.at(deg, v1_sorted, 1)
+        np.add.at(deg, v2_sorted_by_v1, 1)
+
+        N_2edges = np.sum(deg * (deg - 1) // 2)
+
+
         ptr_v1 = v1_pointer(v1_sorted, N_vertices_in_LCC)
         ptr_v2 = v2_pointer(v2_sorted, N_vertices_in_LCC)
 
@@ -210,16 +288,39 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
             N_vertices_full=N_vertices_full,
             p_edges=p_edges,
             N_vertices_in_LCC = N_vertices_in_LCC,
+            N_edges = N_edges,
+            N_2edges = N_2edges,
             v1_sorted=v1_sorted,
             v2_sorted_by_v1=v2_sorted_by_v1
         )
 
+        graph_path_csv = graphs_dir / f"graph_short_info_ER_undirected_instanceNo{n_valid_graphs:04d}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.csv"
+        np.savetxt(
+            graph_path_csv,
+            [[
+                n_valid_graphs,
+                N_vertices_full,
+                p_edges,
+                N_vertices_in_LCC,
+                N_edges,
+                N_2edges
+            ]],
+            delimiter=",",
+            header="instance_number,N_vertices_full,p_edges,N_vertices_in_LCC,N_edges,N_2edges",
+            comments=""
+        )
         ######################################
         # ZEROING THE IN_ONE_INSTANCE ARRAYS #
         ######################################
 
         mean_counts_in_time_in_one_instance = np.zeros((N_time_bins, n_states))
         M2_counts_in_time_in_one_instance = np.zeros((N_time_bins, n_states))
+
+        mean_edge_type_counts_in_time_in_one_instance = np.zeros((N_time_bins, n_edge_types)) # (SS,SI,II)
+        M2_edge_type_counts_in_time_in_one_instance = np.zeros((N_time_bins, n_edge_types))
+
+        mean_tripoint_type_counts_in_time_in_one_instance = np.zeros((N_time_bins, 6)) # (SSS,SSI = ISS,ISI,SIS,SII = IIS ,III)
+        M2_tripoint_type_counts_in_time_in_one_instance = np.zeros((N_time_bins, 6)) 
 
         mean_num_of_1_edge_causal_in_time_in_one_instance = np.zeros(N_time_bins)
         M2_num_of_1_edge_causal_in_time_in_one_instance = np.zeros(N_time_bins)
@@ -269,10 +370,12 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                          v2_sorted_by_v1,
                          v1_sorted_by_v2,
                          edge_ids_sorted_by_v2,
+                         deg, 
                          ptr_v1,
                          ptr_v2,
                          N_edges,
                          n_states,
+                         n_edge_types,
                          fractions_initial,
                          allowed_edges,
                          inv_edge_rates,
@@ -280,7 +383,8 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                          inv_vertex_rates,
                          time_grid_t,
                          N_time_bins,
-                         T_max)
+                         T_max
+                         )
 
         # reset running statistics (already zeroed above)
         processed = 0
@@ -316,6 +420,8 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                         chunk_results = fut.result()
 
                         for (projected_counts,
+                             projected_edge_type_counts,
+                             projected_tripoint_type_counts,
                             projected_num_of_1_edge_causal,
                             projected_num_of_2_chains,
                             projected_num_of_2_instars,
@@ -334,6 +440,23 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                                 mean_counts_in_time_in_one_instance,
                                 M2_counts_in_time_in_one_instance
                             )
+
+                            (mean_edge_type_counts_in_time_in_one_instance,
+                            M2_edge_type_counts_in_time_in_one_instance) = update_online_mean_var(
+                                projected_edge_type_counts,
+                                processed,
+                                mean_edge_type_counts_in_time_in_one_instance,
+                                M2_edge_type_counts_in_time_in_one_instance
+                            )
+
+                            (mean_tripoint_type_counts_in_time_in_one_instance,
+                            M2_tripoint_type_counts_in_time_in_one_instance) = update_online_mean_var(
+                                projected_tripoint_type_counts,
+                                processed,
+                                mean_tripoint_type_counts_in_time_in_one_instance,
+                                M2_tripoint_type_counts_in_time_in_one_instance
+                            )
+                            
 
                             (mean_num_of_1_edge_causal_in_time_in_one_instance,
                             M2_num_of_1_edge_causal_in_time_in_one_instance) = update_online_mean_var(
@@ -374,7 +497,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
                             if processed in stability_checker:
                                 curves_path = curves_dir / f"curves_instanceNo{n_valid_graphs:04d}_Nprocesses{processed}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
-                                curves_path_full = curves_dir_full / f"curves_FULL_instanceNo{n_valid_graphs:04d}_Nprocesses{i_process+1}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
+                                curves_path_full = curves_dir_full / f"curves_FULL_instanceNo{n_valid_graphs:04d}_Nprocesses{processed}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
                                 check_disk_space(hrcak, min_free_GB=5)
                                 np.savez_compressed(
                                     curves_path,
@@ -386,6 +509,10 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                                     time_grid=time_grid_t,
                                     mean_fractions=mean_counts_in_time_in_one_instance / N_vertices_in_LCC,
                                     var_fractions=(M2_counts_in_time_in_one_instance/ (N_vertices_in_LCC**2) / max(1, processed-1)),
+                                    mean_edge_type_counts_in_time_in_one_instance=mean_edge_type_counts_in_time_in_one_instance/ N_edges,
+                                    var_edge_type_counts=(M2_edge_type_counts_in_time_in_one_instance/ (N_edges**2) / max(1, processed-1)),
+                                    mean_tripoint_type_counts_in_time_in_one_instance=mean_tripoint_type_counts_in_time_in_one_instance/ N_2edges,
+                                    var_tripoint_type_counts=(M2_tripoint_type_counts_in_time_in_one_instance/ (N_2edges**2) / max(1, processed-1)),
                                     mean_num_of_1_edge_causal_in_time_in_one_instance=mean_num_of_1_edge_causal_in_time_in_one_instance/ N_vertices_in_LCC,
                                     var_num_of_1_edge_causal_in_time_in_one_instance=M2_num_of_1_edge_causal_in_time_in_one_instance/ (N_vertices_in_LCC**2) / max(1, processed-1),
                                     mean_num_of_2_chains_in_time_in_one_instance=mean_num_of_2_chains_in_time_in_one_instance/ N_vertices_in_LCC,
@@ -428,11 +555,44 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                 causal_in = np.zeros(N_vertices_in_LCC, dtype=int)
                 causal_out = np.zeros(N_vertices_in_LCC, dtype=int)
 
+                m = np.zeros(N_vertices_in_LCC, dtype=np.int64)
+
+                m[v1_sorted] += vertex_states[v2_sorted_by_v1]
+                m[v2_sorted_by_v1] += vertex_states[v1_sorted]
+
+                S = (vertex_states == 0)
+                I = (vertex_states == 1)
+
+                degmm = deg - m
+
+                deg_s = deg[S]
+                m_s = m[S]
+                degmm_s = degmm[S]
+
+                deg_i = deg[I]
+                m_i = m[I]
+                degmm_i = degmm[I]
+
+
+                # =====================================================
+                # SKM INITIALIZATION (dense, vectorized)
+                # =====================================================
+
+                k_max = deg.max()
+
+                # Dense matrix: rows = k, cols = m
+                skm = np.zeros((k_max + 1, k_max + 1), dtype=np.int64)
+
+                # Accumulate counts
+                np.add.at(skm, (deg_s, m_s), 1)
+
                 # =====================================================
                 # TRACKING
                 # =====================================================
                 times = []
                 counts_in_time = []
+                edge_type_counts_in_time = []
+                tripoint_type_counts_in_time = []
 
                 num_new_1_edge_causal = 0
                 num_new_2_chains = 0
@@ -451,6 +611,8 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
                 current_time = 0.0
                 current_counts = np.bincount(vertex_states, minlength=n_states)
+                edge_type_current_counts = np.bincount(edge_types, minlength=n_edge_types) # (SS,SI,II)
+                tripoint_type_current_counts = np.zeros(6, dtype=int) # (SSS,SSI = ISS,ISI,SIS,SII = IIS ,III) -  ignore for now
                 check = 1
 
                 # =====================================================
@@ -460,6 +622,8 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
                     times.append(current_time)
                     counts_in_time.append(current_counts)
+                    edge_type_counts_in_time.append(edge_type_current_counts)
+                    tripoint_type_counts_in_time.append(tripoint_type_current_counts)
 
                     total_1_edge_causal += num_new_1_edge_causal
                     total_2_chains += num_new_2_chains
@@ -479,12 +643,16 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                     num_new_1_edge_causal,
                     num_new_2_chains,
                     num_new_2_instars,
-                    num_new_2_outstars) = step(
+                    num_new_2_outstars,
+                    edge_type_current_counts,
+                    tripoint_type_current_counts,
+                    m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,skm) = step(
                         causal,
                         causal_in,
                         causal_out,
                         N_edges,
                         vertex_states,
+                        skm,
                         events,
                         edge_types,
                         allowed_edges,
@@ -495,9 +663,11 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                         v2_sorted_by_v1,
                         v1_sorted_by_v2,
                         edge_ids_sorted_by_v2,
+                        deg, m, S, I, deg_s,deg_i, m_s, m_i, degmm_s, degmm_i,
                         ptr_v1,
                         ptr_v2,
                         n_states,
+                        n_edge_types,
                         current_time,
                         current_counts
                     )
@@ -515,6 +685,27 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                     i_process,
                     mean_counts_in_time_in_one_instance,
                     M2_counts_in_time_in_one_instance
+                )
+
+
+                projected_edge_type_counts = project_to_time_grid(times, edge_type_counts_in_time, time_grid_t)
+
+                (mean_edge_type_counts_in_time_in_one_instance,
+                M2_edge_type_counts_in_time_in_one_instance) = update_online_mean_var(
+                    projected_edge_type_counts,
+                    processed,
+                    mean_edge_type_counts_in_time_in_one_instance,
+                    M2_edge_type_counts_in_time_in_one_instance
+                )
+
+                projected_tripoint_type_counts = project_to_time_grid(times, tripoint_type_counts_in_time, time_grid_t)
+
+                (mean_tripoint_type_counts_in_time_in_one_instance,
+                M2_tripoint_type_counts_in_time_in_one_instance) = update_online_mean_var(
+                    projected_tripoint_type_counts,
+                    processed,
+                    mean_tripoint_type_counts_in_time_in_one_instance,
+                    M2_tripoint_type_counts_in_time_in_one_instance
                 )
 
                 projected_num_of_1_edge_causal = project_to_time_grid(
@@ -578,8 +769,15 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                         N_vertices_in_LCC=N_vertices_in_LCC,
                         N_processes=i_process + 1,
                         time_grid=time_grid_t,
+
                         mean_fractions=mean_counts_in_time_in_one_instance / N_vertices_in_LCC,
                         var_fractions=(M2_counts_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, i_process)),
+
+                        mean_edge_type_counts_in_time_in_one_instance=mean_edge_type_counts_in_time_in_one_instance / N_edges,
+                        var_edge_type_counts=(M2_edge_type_counts_in_time_in_one_instance / (N_edges**2) / max(1, i_process)),
+
+                        mean_tripoint_type_counts_in_time_in_one_instance=mean_tripoint_type_counts_in_time_in_one_instance / N_2edges,
+                        var_tripoint_type_counts=(M2_tripoint_type_counts_in_time_in_one_instance / (N_2edges**2) / max(1, i_process)),
 
                         mean_num_of_1_edge_causal_in_time_in_one_instance=mean_num_of_1_edge_causal_in_time_in_one_instance / N_vertices_in_LCC,
                         var_num_of_1_edge_causal_in_time_in_one_instance=M2_num_of_1_edge_causal_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, i_process),

@@ -33,21 +33,21 @@ def _worker_initializer(nice_level, allowed_cores, seed_offset=0):
 
 # Run a single independent realization (safe to execute in a worker process)
 def run_one_realization(args):
-    (N_vertices_full,N_vertices_in_LCC, v1_sorted,
-    v2_sorted_by_v1,
-    v1_sorted_by_v2,
-    edge_ids_sorted_by_v2,
-    ptr_v1,
-    ptr_v2, N_edges, n_states,
+    (N_vertices_full,N_vertices, sources, sources_sorted, targets_sorted_by_source, sources_sorted_by_target, targets_sorted,
+     edge_ids_sorted_by_target, ptr_src, ptr_tgt, N_edges, n_states,
      fractions_initial, allowed_edges, inv_edge_rates, allowed_vertices, inv_vertex_rates,
      time_grid_t, N_time_bins, T_max) = args
     
+    print("\n\nNEW REALIZATION STARTED\n")
+    print("\nThis realization is running on the following instance:\n")
+    graph_show = np.column_stack((sources_sorted, targets_sorted_by_source))
+    print("\n",graph_show,"\n")
 
 
 
     # INITIALIZE STATES
-    vertex_states = initial_vertex_states_SI(N_vertices_in_LCC,np.arange(N_vertices_in_LCC), fractions_initial)
-    edge_types = find_edge_types(v1_sorted, v2_sorted_by_v1, vertex_states, n_states)
+    vertex_states = initial_vertex_states_SI(N_vertices, sources, fractions_initial)
+    edge_types = find_edge_types(sources_sorted,targets_sorted_by_source,vertex_states,n_states)
     edge_events = init_edge_events(edge_types, allowed_edges, inv_edge_rates)
     vertex_events = init_vertex_events(vertex_states, allowed_vertices, inv_vertex_rates, N_edges)
 
@@ -57,8 +57,8 @@ def run_one_realization(args):
     n_infected_init = sum(vertex_states)
 
     causal = np.zeros(N_edges, dtype=bool)
-    causal_in  = np.zeros(N_vertices_in_LCC, dtype=int)
-    causal_out = np.zeros(N_vertices_in_LCC, dtype=int)
+    causal_in  = np.zeros(N_vertices, dtype=int)
+    causal_out = np.zeros(N_vertices, dtype=int)
 
     times = []
     counts_in_time = []
@@ -93,7 +93,8 @@ def run_one_realization(args):
         num_of_2_instars_in_time.append(total_2_instars)
         num_of_2_outstars_in_time.append(total_2_outstars)
 
-
+        print("t: ",current_time)
+        print("vertex states:", vertex_states)
 
         (check,
          current_time,
@@ -113,16 +114,16 @@ def run_one_realization(args):
                                         inv_edge_rates,
                                         allowed_vertices,
                                         inv_vertex_rates,
-                                        v1_sorted,
-                                        v2_sorted_by_v1,
-                                        v1_sorted_by_v2,
-                                        edge_ids_sorted_by_v2,
-                                        ptr_v1,
-                                        ptr_v2,
+                                        sources_sorted,
+                                        targets_sorted_by_source,
+                                        sources_sorted_by_target,
+                                        edge_ids_sorted_by_target,
+                                        ptr_src,
+                                        ptr_tgt,
                                         n_states,
                                         current_time,
                                         current_counts
-                                    )
+                                        )
 
     projected_counts = project_to_time_grid(times, counts_in_time, time_grid_t)
     projected_num_of_1_edge_causal = project_to_time_grid(times, num_of_1_edge_causal_in_time, time_grid_t)
@@ -145,7 +146,7 @@ def run_realization_chunk(args):
 def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_states,fractions_initial,
                      allowed_edges,inv_edge_rates,allowed_vertices,inv_vertex_rates,
                      time_grid_t,N_time_bins,T_max,
-                     filename,graphs_dir,curves_dir,curves_dir_full,hrcak,
+                     filename,graphs_dir,curves_dir,hrcak,
                      stability_checker,
                     parallel_mode='realizations', num_workers=None, nice_level=10,
                     inner_num_workers=1, chunk_size=10):
@@ -160,8 +161,8 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
     try:
         os.sched_setaffinity(0, allowed_cores)
-        print(f"Main process pinned to cores: {allowed_cores}")
-        print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
+        #print(f"Main process pinned to cores: {allowed_cores}")
+        #print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
     except Exception:
         pass
 
@@ -178,40 +179,40 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
         # CONSTRUCT GRAPH #
         ###################
 
-        v1_sorted_full_idx , v2_sorted_by_v1_full_idx = generate_undirected_ER_graph(
+        sources_sorted_full_idx, targets_sorted_by_source_full_idx = generate_undirected_ER_graph(
         N_vertices_full, p_edges
         )
 
-        (N_vertices_in_LCC,
-        v1_sorted,
-        v2_sorted_by_v1) = take_largest_connected_component(
+        (N_vertices,
+        sources_sorted,
+        targets_sorted_by_source) = take_largest_connected_component(
             N_vertices_full,
-            v1_sorted_full_idx , v2_sorted_by_v1_full_idx
+            sources_sorted_full_idx,
+            targets_sorted_by_source_full_idx
             )
         
-        if N_vertices_in_LCC == 0:  # figure out what to expect and keep it ijn a few %
+        if N_vertices == 0:  # figure out what to expect and keep it ijn a few %
             i_instance += 1
             continue
 
-        (v1_sorted_by_v2, v2_sorted,
-        edge_ids_sorted_by_v2) = sort_v1_by_v2(v1_sorted, v2_sorted_by_v1)
+        (sources_sorted_by_target, targets_sorted,
+        edge_ids_sorted_by_target) = sort_by_target(sources_sorted, targets_sorted_by_source)
 
-        N_edges = len(v1_sorted)
+        N_edges = len(sources_sorted)
 
-        ptr_v1 = v1_pointer(v1_sorted, N_vertices_in_LCC)
-        ptr_v2 = v2_pointer(v2_sorted, N_vertices_in_LCC)
+        ptr_src = source_pointer(sources_sorted, N_vertices)
+        ptr_tgt = target_pointer(targets_sorted, N_vertices)
 
-
-        graph_path = graphs_dir / f"graph_ER_undirected_instanceNo{n_valid_graphs:04d}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
+        graph_path = graphs_dir / f"graph_ER_directed_instanceNo{n_valid_graphs:04d}_N{N_vertices_full}_Nconnected{N_vertices}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
         check_disk_space(hrcak, min_free_GB=5)
         np.savez_compressed(
             graph_path,
             instance_number = n_valid_graphs,
             N_vertices_full=N_vertices_full,
             p_edges=p_edges,
-            N_vertices_in_LCC = N_vertices_in_LCC,
-            v1_sorted=v1_sorted,
-            v2_sorted_by_v1=v2_sorted_by_v1
+            N_vertices_connected = N_vertices,
+            sources=sources_sorted,
+            targets=targets_sorted_by_source
         )
 
         ######################################
@@ -229,8 +230,6 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
         M2_num_of_2_instars_in_time_in_one_instance = np.zeros(N_time_bins)
         mean_num_of_2_outstars_in_time_in_one_instance = np.zeros(N_time_bins)
         M2_num_of_2_outstars_in_time_in_one_instance = np.zeros(N_time_bins)    
-
-        # CAUSAL MOTIFS ARE NONSENSE IN THIS FOR NOW
 
         # Parallel execution of processes (each realization is independent)
         if N_processes_per_instance <= 0:
@@ -253,24 +252,26 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
         _n_workers = min(_n_workers, len(allowed_cores))
         MAX_IN_FLIGHT = 2 * _n_workers
 
-        print(f"Workers pinned to cores: {sorted(allowed_cores)}")
-        print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
-        
+        #print(f"Workers pinned to cores: {sorted(allowed_cores)}")
+        #print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
+        '''
         print(
             f"Scheduling {N_processes_per_instance} realizations "
             f"using {_n_workers} workers, chunk_size={chunk_size}, "
             f"MAX_IN_FLIGHT={MAX_IN_FLIGHT}"
         )
-        
+        '''
         args_template = (
                          N_vertices_full,
-                         N_vertices_in_LCC,
-                         v1_sorted,
-                         v2_sorted_by_v1,
-                         v1_sorted_by_v2,
-                         edge_ids_sorted_by_v2,
-                         ptr_v1,
-                         ptr_v2,
+                         N_vertices,
+                         sources,
+                         sources_sorted,
+                         targets_sorted_by_source,
+                         sources_sorted_by_target,
+                         targets_sorted,
+                         edge_ids_sorted_by_target,
+                         ptr_src,
+                         ptr_tgt,
                          N_edges,
                          n_states,
                          fractions_initial,
@@ -373,77 +374,55 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                                 print(f"[instance {n_valid_graphs}] processed {processed}/{N_processes_per_instance}")
 
                             if processed in stability_checker:
-                                curves_path = curves_dir / f"curves_instanceNo{n_valid_graphs:04d}_Nprocesses{processed}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
-                                curves_path_full = curves_dir_full / f"curves_FULL_instanceNo{n_valid_graphs:04d}_Nprocesses{i_process+1}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
+                                curves_path = curves_dir / f"curves_instanceNo{n_valid_graphs:04d}_Nprocesses{processed}_N{N_vertices_full}_Nconnected{N_vertices}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
                                 check_disk_space(hrcak, min_free_GB=5)
                                 np.savez_compressed(
                                     curves_path,
                                     instance_number=n_valid_graphs,
                                     N_vertices_full=N_vertices_full,
                                     p_edges=p_edges,
-                                    N_vertices_in_LCC=N_vertices_in_LCC,
+                                    N_vertices_connected=N_vertices,
                                     N_processes=processed,
                                     time_grid=time_grid_t,
-                                    mean_fractions=mean_counts_in_time_in_one_instance / N_vertices_in_LCC,
-                                    var_fractions=(M2_counts_in_time_in_one_instance/ (N_vertices_in_LCC**2) / max(1, processed-1)),
-                                    mean_num_of_1_edge_causal_in_time_in_one_instance=mean_num_of_1_edge_causal_in_time_in_one_instance/ N_vertices_in_LCC,
-                                    var_num_of_1_edge_causal_in_time_in_one_instance=M2_num_of_1_edge_causal_in_time_in_one_instance/ (N_vertices_in_LCC**2) / max(1, processed-1),
-                                    mean_num_of_2_chains_in_time_in_one_instance=mean_num_of_2_chains_in_time_in_one_instance/ N_vertices_in_LCC,
-                                    var_num_of_2_chains_in_time_in_one_instance=M2_num_of_2_chains_in_time_in_one_instance/ (N_vertices_in_LCC**2) / max(1, processed-1),
-                                    mean_num_of_2_instars_in_time_in_one_instance=mean_num_of_2_instars_in_time_in_one_instance/ N_vertices_in_LCC,
-                                    var_num_of_2_instars_in_time_in_one_instance=M2_num_of_2_instars_in_time_in_one_instance/ (N_vertices_in_LCC**2) / max(1, processed-1),
-                                    mean_num_of_2_outstars_in_time_in_one_instance=mean_num_of_2_outstars_in_time_in_one_instance/ N_vertices_in_LCC,
-                                    var_num_of_2_outstars_in_time_in_one_instance=M2_num_of_2_outstars_in_time_in_one_instance/ (N_vertices_in_LCC**2) / max(1, processed-1),
+                                    mean_fractions=mean_counts_in_time_in_one_instance / N_vertices,
+                                    var_fractions=(M2_counts_in_time_in_one_instance/ (N_vertices**2) / max(1, processed-1)),
+                                    mean_num_of_1_edge_causal_in_time_in_one_instance=mean_num_of_1_edge_causal_in_time_in_one_instance/ N_vertices,
+                                    var_num_of_1_edge_causal_in_time_in_one_instance=M2_num_of_1_edge_causal_in_time_in_one_instance/ (N_vertices**2) / max(1, processed-1),
+                                    mean_num_of_2_chains_in_time_in_one_instance=mean_num_of_2_chains_in_time_in_one_instance/ N_vertices,
+                                    var_num_of_2_chains_in_time_in_one_instance=M2_num_of_2_chains_in_time_in_one_instance/ (N_vertices**2) / max(1, processed-1),
+                                    mean_num_of_2_instars_in_time_in_one_instance=mean_num_of_2_instars_in_time_in_one_instance/ N_vertices,
+                                    var_num_of_2_instars_in_time_in_one_instance=M2_num_of_2_instars_in_time_in_one_instance/ (N_vertices**2) / max(1, processed-1),
+                                    mean_num_of_2_outstars_in_time_in_one_instance=mean_num_of_2_outstars_in_time_in_one_instance/ N_vertices,
+                                    var_num_of_2_outstars_in_time_in_one_instance=M2_num_of_2_outstars_in_time_in_one_instance/ (N_vertices**2) / max(1, processed-1),
                                 )
 
 
 
         except Exception as e:
+            # Fall back to serial execution if parallel fails
             print(f"Parallel execution failed ({e}), falling back to serial loop")
-
             for i_process in range(N_processes_per_instance):
-
-                # =====================================================
-                # INITIAL CONDITIONS (consistent with main pipeline)
-                # =====================================================
-                vertex_states = initial_vertex_states_SI(
-                    N_vertices_in_LCC,
-                    np.arange(N_vertices_in_LCC),
-                    fractions_initial
-                )
-
-                edge_types = find_edge_types(
-                    v1_sorted,
-                    v2_sorted_by_v1,
-                    vertex_states,
-                    n_states
-                )
-
+                vertex_states = initial_vertex_states_SI(N_vertices, sources, fractions_initial) # before it was N_vertices
+                edge_types = find_edge_types(sources_sorted,targets_sorted_by_source,vertex_states,n_states)
                 edge_events = init_edge_events(edge_types, allowed_edges, inv_edge_rates)
                 vertex_events = init_vertex_events(vertex_states, allowed_vertices, inv_vertex_rates, N_edges)
 
                 events = np.vstack((edge_events, vertex_events))
 
-                causal = np.zeros(N_edges, dtype=bool)
-                causal_in = np.zeros(N_vertices_in_LCC, dtype=int)
-                causal_out = np.zeros(N_vertices_in_LCC, dtype=int)
+                n_infected_init = sum(vertex_states)
 
-                # =====================================================
-                # TRACKING
-                # =====================================================
+                causal = np.zeros(N_edges, dtype=bool)
+                causal_in  = np.zeros(N_vertices, dtype=int)
+                causal_out = np.zeros(N_vertices, dtype=int)
+
                 times = []
                 counts_in_time = []
 
                 num_new_1_edge_causal = 0
-                num_new_2_chains = 0
-                num_new_2_instars = 0
-                num_new_2_outstars = 0
-
                 total_1_edge_causal = 0
                 total_2_chains = 0
                 total_2_instars = 0
-                total_2_outstars = 0
-
+                total_2_outstars = 0    
                 num_of_1_edge_causal_in_time = []
                 num_of_2_chains_in_time = []
                 num_of_2_instars_in_time = []
@@ -453,11 +432,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                 current_counts = np.bincount(vertex_states, minlength=n_states)
                 check = 1
 
-                # =====================================================
-                # MAIN LOOP (UNDIRECTED step)
-                # =====================================================
-                while current_time < T_max and check:
-
+                while current_time<T_max and check:
                     times.append(current_time)
                     counts_in_time.append(current_counts)
 
@@ -465,162 +440,111 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                     total_2_chains += num_new_2_chains
                     total_2_instars += num_new_2_instars
                     total_2_outstars += num_new_2_outstars
-
                     num_of_1_edge_causal_in_time.append(total_1_edge_causal)
                     num_of_2_chains_in_time.append(total_2_chains)
                     num_of_2_instars_in_time.append(total_2_instars)
                     num_of_2_outstars_in_time.append(total_2_outstars)
 
-                    
+                    print("t: ",current_time)
 
-                    (check,
-                    current_time,
+                    (check, 
+                    current_time, 
                     current_counts,
                     num_new_1_edge_causal,
                     num_new_2_chains,
                     num_new_2_instars,
                     num_new_2_outstars) = step(
-                        causal,
-                        causal_in,
-                        causal_out,
-                        N_edges,
-                        vertex_states,
-                        events,
-                        edge_types,
-                        allowed_edges,
-                        inv_edge_rates,
-                        allowed_vertices,
-                        inv_vertex_rates,
-                        v1_sorted,
-                        v2_sorted_by_v1,
-                        v1_sorted_by_v2,
-                        edge_ids_sorted_by_v2,
-                        ptr_v1,
-                        ptr_v2,
-                        n_states,
-                        current_time,
-                        current_counts
-                    )
+                                            causal,
+                                            causal_in,
+                                            causal_out,
+                                            N_edges,
+                                            vertex_states,
+                                            events,
+                                            edge_types,
+                                            allowed_edges,
+                                            inv_edge_rates,
+                                            allowed_vertices,
+                                            inv_vertex_rates,
+                                            sources_sorted,
+                                            targets_sorted_by_source,
+                                            sources_sorted_by_target,
+                                            edge_ids_sorted_by_target,
+                                            ptr_src,
+                                            ptr_tgt,
+                                            n_states,
+                                            current_time,
+                                            current_counts
+                                            )
 
-                # =====================================================
-                # POST-PROCESSING
-                # =====================================================
                 t_max_reached.append(current_time)
+                print("\n")
 
                 projected_counts = project_to_time_grid(times, counts_in_time, time_grid_t)
 
                 (mean_counts_in_time_in_one_instance,
                 M2_counts_in_time_in_one_instance) = update_online_mean_var(
-                    projected_counts,
-                    i_process,
-                    mean_counts_in_time_in_one_instance,
-                    M2_counts_in_time_in_one_instance
-                )
+                                                                projected_counts,
+                                                                i_process,
+                                                                mean_counts_in_time_in_one_instance,
+                                                                M2_counts_in_time_in_one_instance
+                                                                    )
 
-                projected_num_of_1_edge_causal = project_to_time_grid(
-                    times, num_of_1_edge_causal_in_time, time_grid_t
-                )
+                var_counts_in_time_in_one_instance = M2_counts_in_time_in_one_instance / max(1, i_process)
+                mean_fractions_in_time_in_one_instance = mean_counts_in_time_in_one_instance / N_vertices
+                var_fractions_in_time_in_one_instance = var_counts_in_time_in_one_instance / (N_vertices ** 2)
+
+                projected_num_of_1_edge_causal = project_to_time_grid(times, num_of_1_edge_causal_in_time,time_grid_t)
 
                 (mean_num_of_1_edge_causal_in_time_in_one_instance,
                 M2_num_of_1_edge_causal_in_time_in_one_instance) = update_online_mean_var(
-                    projected_num_of_1_edge_causal,
-                    i_process,
-                    mean_num_of_1_edge_causal_in_time_in_one_instance,
-                    M2_num_of_1_edge_causal_in_time_in_one_instance
-                )
+                                                                                        projected_num_of_1_edge_causal,
+                                                                                        i_process,
+                                                                                        mean_num_of_1_edge_causal_in_time_in_one_instance,
+                                                                                        M2_num_of_1_edge_causal_in_time_in_one_instance
+                                                                                                )
+                
+                var_num_of_1_edge_causal_in_time_in_one_instance = M2_num_of_1_edge_causal_in_time_in_one_instance / max(1, i_process)
 
-                projected_num_of_2_chains = project_to_time_grid(
-                    times, num_of_2_chains_in_time, time_grid_t
-                )
+        
 
-                (mean_num_of_2_chains_in_time_in_one_instance,
-                M2_num_of_2_chains_in_time_in_one_instance) = update_online_mean_var(
-                    projected_num_of_2_chains,
-                    i_process,
-                    mean_num_of_2_chains_in_time_in_one_instance,
-                    M2_num_of_2_chains_in_time_in_one_instance
-                )
+                projected_num_of_2_chains = project_to_time_grid(times, num_of_2_chains_in_time,time_grid_t)
+                
+                var_num_of_2_chains_in_time_in_one_instance = M2_num_of_2_chains_in_time_in_one_instance / max(1, i_process)
 
-                projected_num_of_2_instars = project_to_time_grid(
-                    times, num_of_2_instars_in_time, time_grid_t
-                )
+                projected_num_of_2_instars = project_to_time_grid(times, num_of_2_instars_in_time,time_grid_t)
+                
+                var_num_of_2_instars_in_time_in_one_instance = M2_num_of_2_instars_in_time_in_one_instance / max(1, i_process)
 
-                (mean_num_of_2_instars_in_time_in_one_instance,
-                M2_num_of_2_instars_in_time_in_one_instance) = update_online_mean_var(
-                    projected_num_of_2_instars,
-                    i_process,
-                    mean_num_of_2_instars_in_time_in_one_instance,
-                    M2_num_of_2_instars_in_time_in_one_instance
-                )
-
-                projected_num_of_2_outstars = project_to_time_grid(
-                    times, num_of_2_outstars_in_time, time_grid_t
-                )
-
-                (mean_num_of_2_outstars_in_time_in_one_instance,
-                M2_num_of_2_outstars_in_time_in_one_instance) = update_online_mean_var(
-                    projected_num_of_2_outstars,
-                    i_process,
-                    mean_num_of_2_outstars_in_time_in_one_instance,
-                    M2_num_of_2_outstars_in_time_in_one_instance
-                )
+                projected_num_of_2_outstars = project_to_time_grid(times, num_of_2_outstars_in_time,time_grid_t)
+                
+                var_num_of_2_outstars_in_time_in_one_instance = M2_num_of_2_outstars_in_time_in_one_instance / max(1, i_process)
 
                 if i_process + 1 in stability_checker:
-                    curves_path = curves_dir / f"curves_instanceNo{n_valid_graphs:04d}_Nprocesses{i_process+1}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
-                    curves_path_full = curves_dir_full / f"curves_FULL_instanceNo{n_valid_graphs:04d}_Nprocesses{i_process+1}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
+                    curves_path = curves_dir / f"curves_instanceNo{n_valid_graphs:04d}_Nprocesses{i_process+1}_N{N_vertices_full}_Nconnected{N_vertices}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
                     check_disk_space(hrcak, min_free_GB=5)
-
                     np.savez_compressed(
                         curves_path,
-                        instance_number=n_valid_graphs,
+                        instance_number = n_valid_graphs,
                         N_vertices_full=N_vertices_full,
                         p_edges=p_edges,
-                        N_vertices_in_LCC=N_vertices_in_LCC,
-                        N_processes=i_process + 1,
+                        N_vertices_connected = N_vertices,
+                        N_processes = i_process+1,
                         time_grid=time_grid_t,
-                        mean_fractions=mean_counts_in_time_in_one_instance / N_vertices_in_LCC,
-                        var_fractions=(M2_counts_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, i_process)),
-
-                        mean_num_of_1_edge_causal_in_time_in_one_instance=mean_num_of_1_edge_causal_in_time_in_one_instance / N_vertices_in_LCC,
-                        var_num_of_1_edge_causal_in_time_in_one_instance=M2_num_of_1_edge_causal_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, i_process),
-
-                        mean_num_of_2_chains_in_time_in_one_instance=mean_num_of_2_chains_in_time_in_one_instance / N_vertices_in_LCC,
-                        var_num_of_2_chains_in_time_in_one_instance=M2_num_of_2_chains_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, i_process),
-
-                        mean_num_of_2_instars_in_time_in_one_instance=mean_num_of_2_instars_in_time_in_one_instance / N_vertices_in_LCC,
-                        var_num_of_2_instars_in_time_in_one_instance=M2_num_of_2_instars_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, i_process),
-
-                        mean_num_of_2_outstars_in_time_in_one_instance=mean_num_of_2_outstars_in_time_in_one_instance / N_vertices_in_LCC,
-                        var_num_of_2_outstars_in_time_in_one_instance=M2_num_of_2_outstars_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, i_process),
-                    )
-
-                    np.savez_compressed(
-                        curves_path_full,
-                        instance_number=n_valid_graphs,
-                        N_vertices_full=N_vertices_full,
-                        p_edges=p_edges,
-                        N_vertices_in_LCC=N_vertices_full,
-                        N_processes=i_process + 1,
-                        time_grid=time_grid_t,
-                        mean_fractions_full=mean_counts_in_time_in_one_instance / N_vertices_full,
-                        var_fractions_full=(M2_counts_in_time_in_one_instance / (N_vertices_full**2) / max(1, i_process)),
-
-                        mean_num_of_1_edge_causal_in_time_in_one_instance_full=mean_num_of_1_edge_causal_in_time_in_one_instance / N_vertices_full,
-                        var_num_of_1_edge_causal_in_time_in_one_instance_full=M2_num_of_1_edge_causal_in_time_in_one_instance / (N_vertices_full**2) / max(1, i_process),
-
-                        mean_num_of_2_chains_in_time_in_one_instance_full=mean_num_of_2_chains_in_time_in_one_instance / N_vertices_full,
-                        var_num_of_2_chains_in_time_in_one_instance_full=M2_num_of_2_chains_in_time_in_one_instance / (N_vertices_full**2) / max(1, i_process),
-
-                        mean_num_of_2_instars_in_time_in_one_instance_full=mean_num_of_2_instars_in_time_in_one_instance / N_vertices_full,
-                        var_num_of_2_instars_in_time_in_one_instance_full=M2_num_of_2_instars_in_time_in_one_instance / (N_vertices_full**2) / max(1, i_process),
-
-                        mean_num_of_2_outstars_in_time_in_one_instance_full=mean_num_of_2_outstars_in_time_in_one_instance / N_vertices_full,
-                        var_num_of_2_outstars_in_time_in_one_instance_full=M2_num_of_2_outstars_in_time_in_one_instance / (N_vertices_full**2) / max(1, i_process),
+                        mean_fractions=mean_fractions_in_time_in_one_instance,
+                        var_fractions=var_fractions_in_time_in_one_instance,
+                        mean_num_of_1_edge_causal_in_time_in_one_instance = mean_num_of_1_edge_causal_in_time_in_one_instance,
+                        var_num_of_1_edge_causal_in_time_in_one_instance = var_num_of_1_edge_causal_in_time_in_one_instance,
+                        mean_num_of_2_chains_in_time_in_one_instance = mean_num_of_2_chains_in_time_in_one_instance,
+                        var_num_of_2_chains_in_time_in_one_instance = var_num_of_2_chains_in_time_in_one_instance,
+                        mean_num_of_2_instars_in_time_in_one_instance = mean_num_of_2_instars_in_time_in_one_instance,
+                        var_num_of_2_instars_in_time_in_one_instance = var_num_of_2_instars_in_time_in_one_instance,
+                        mean_num_of_2_outstars_in_time_in_one_instance = mean_num_of_2_outstars_in_time_in_one_instance,
+                        var_num_of_2_outstars_in_time_in_one_instance = var_num_of_2_outstars_in_time_in_one_instance
                     )
 
         n_valid_graphs += 1
         i_instance += 1
-        
+        print("\n")
 
     t_max_reached = np.asarray(t_max_reached)
     N_realizations = N_instances*N_processes_per_instance
