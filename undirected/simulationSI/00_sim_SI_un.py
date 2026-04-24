@@ -47,7 +47,7 @@ ks =  [2] # [2,5,10,20,50,100,200,500,1000,2000,5000,10000]
 
 n_states = 2
 
-fractions_initial = np.array([0.01])  # fraction for state 1; state 0 inferred
+fractions_initial = np.array([0.1])  # fraction for state 1; state 0 inferred
 
 edge_rates=np.array([-1.0,  1.0, -1.0]) # must be a NumPy array
 allowed_edges, inv_edge_rates = prep_rates(edge_rates)
