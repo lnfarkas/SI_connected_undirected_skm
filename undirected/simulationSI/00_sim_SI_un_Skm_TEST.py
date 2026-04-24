@@ -10,7 +10,7 @@ import time
 from graph_un import *
 from step_un import *
 from time_grid import *
-from sim_unit_un import *
+from sim_unit_un_Skm_TEST import *
 #from sim_unit_random_regular import * # this is the only difference in code from the ER version, the rest is the same
 
 ########

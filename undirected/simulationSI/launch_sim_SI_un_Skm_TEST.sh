@@ -10,7 +10,7 @@ LOG="log_${TS}.txt"
 PIDFILE="process_id.txt"
 
 # Run script in background, redirect output, and save PID
-nohup python3 00_sim_SI_un.py > "$LOG" 2>&1 &
+nohup python3 00_sim_SI_un_Skm_TEST.py > "$LOG" 2>&1 &
 
 # Append PID and timestamp to file
 echo "$! $TS" >> "$PIDFILE"

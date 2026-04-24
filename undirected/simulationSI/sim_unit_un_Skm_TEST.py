@@ -87,8 +87,9 @@ def run_one_realization(args):
 
     m = np.zeros(N_vertices_in_LCC, dtype=np.int64)
 
-    m[v1_sorted] += vertex_states[v2_sorted_by_v1]
-    m[v2_sorted_by_v1] += vertex_states[v1_sorted]
+    # each edge contributes symmetrically
+    np.add.at(m, v1_sorted, vertex_states[v2_sorted_by_v1])
+    np.add.at(m, v2_sorted_by_v1, vertex_states[v1_sorted])
 
     degmm = deg - m
 
@@ -540,8 +541,9 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
                 m = np.zeros(N_vertices_in_LCC, dtype=np.int64)
 
-                m[v1_sorted] += vertex_states[v2_sorted_by_v1]
-                m[v2_sorted_by_v1] += vertex_states[v1_sorted]
+                # each edge contributes symmetrically
+                np.add.at(m, v1_sorted, vertex_states[v2_sorted_by_v1])
+                np.add.at(m, v2_sorted_by_v1, vertex_states[v1_sorted])
 
                 degmm = deg - m
 
