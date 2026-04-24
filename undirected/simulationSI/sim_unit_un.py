@@ -105,7 +105,7 @@ def run_one_realization(args):
 
     while current_time < T_max and check:
         times.append(current_time)
-        counts_in_time.append(current_counts)
+        counts_in_time.append(current_counts.copy())
 
         total_1_edge_causal += num_new_1_edge_causal
         total_2_chains += num_new_2_chains
@@ -115,7 +115,7 @@ def run_one_realization(args):
         num_of_2_chains_in_time.append(total_2_chains)
         num_of_2_instars_in_time.append(total_2_instars)
         num_of_2_outstars_in_time.append(total_2_outstars)
-        Skm_in_time.append(Skm_current)
+        Skm_in_time.append(Skm_current.copy())
 
 
 
@@ -151,12 +151,13 @@ def run_one_realization(args):
                                     )
 
     projected_counts = project_to_time_grid(times, counts_in_time, time_grid_t)
+    projected_Skm = project_to_time_grid(times, Skm_in_time, time_grid_t)
     projected_num_of_1_edge_causal = project_to_time_grid(times, num_of_1_edge_causal_in_time, time_grid_t)
     projected_num_of_2_chains = project_to_time_grid(times, num_of_2_chains_in_time, time_grid_t)
     projected_num_of_2_instars = project_to_time_grid(times, num_of_2_instars_in_time, time_grid_t)
     projected_num_of_2_outstars = project_to_time_grid(times, num_of_2_outstars_in_time, time_grid_t)
 
-    return (projected_counts, projected_num_of_1_edge_causal, projected_num_of_2_chains, projected_num_of_2_instars, projected_num_of_2_outstars, current_time)
+    return (projected_counts, projected_Skm, projected_num_of_1_edge_causal, projected_num_of_2_chains, projected_num_of_2_instars, projected_num_of_2_outstars, current_time)
 
 def run_realization_chunk(args):
     chunk_size, args_template = args
@@ -359,6 +360,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                         chunk_results = fut.result()
 
                         for (projected_counts,
+                             projected_Skm,
                             projected_num_of_1_edge_causal,
                             projected_num_of_2_chains,
                             projected_num_of_2_instars,
@@ -376,6 +378,14 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                                 processed,
                                 mean_counts_in_time_in_one_instance,
                                 M2_counts_in_time_in_one_instance
+                            )
+
+                            (mean_Skm_in_time_in_one_instance,
+                            M2_Skm_in_time_in_one_instance) = update_online_mean_var(
+                                projected_Skm,
+                                processed,
+                                mean_Skm_in_time_in_one_instance,
+                                M2_Skm_in_time_in_one_instance
                             )
 
                             (mean_num_of_1_edge_causal_in_time_in_one_instance,
@@ -429,6 +439,8 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                                     time_grid=time_grid_t,
                                     mean_fractions=mean_counts_in_time_in_one_instance / N_vertices_in_LCC,
                                     var_fractions=(M2_counts_in_time_in_one_instance/ (N_vertices_in_LCC**2) / max(1, processed-1)),
+                                    mean_Skm = mean_Skm_in_time_in_one_instance / N_vertices_in_LCC,
+                                    var_Skm = M2_Skm_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, processed-1),
                                     mean_num_of_1_edge_causal_in_time_in_one_instance=mean_num_of_1_edge_causal_in_time_in_one_instance/ N_vertices_in_LCC,
                                     var_num_of_1_edge_causal_in_time_in_one_instance=M2_num_of_1_edge_causal_in_time_in_one_instance/ (N_vertices_in_LCC**2) / max(1, processed-1),
                                     mean_num_of_2_chains_in_time_in_one_instance=mean_num_of_2_chains_in_time_in_one_instance/ N_vertices_in_LCC,
@@ -585,6 +597,16 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                     M2_counts_in_time_in_one_instance
                 )
 
+                projected_Skm = project_to_time_grid(times, Skm_in_time, time_grid_t)
+
+                (mean_Skm_in_time_in_one_instance,
+                M2_Skm_in_time_in_one_instance) = update_online_mean_var(
+                    projected_Skm,
+                    processed,
+                    mean_Skm_in_time_in_one_instance,
+                    M2_Skm_in_time_in_one_instance
+                )
+
                 projected_num_of_1_edge_causal = project_to_time_grid(
                     times, num_of_1_edge_causal_in_time, time_grid_t
                 )
@@ -648,6 +670,9 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                         time_grid=time_grid_t,
                         mean_fractions=mean_counts_in_time_in_one_instance / N_vertices_in_LCC,
                         var_fractions=(M2_counts_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, i_process)),
+
+                        mean_Skm = mean_Skm_in_time_in_one_instance / N_vertices_in_LCC,
+                        var_Skm = M2_Skm_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, i_process),
 
                         mean_num_of_1_edge_causal_in_time_in_one_instance=mean_num_of_1_edge_causal_in_time_in_one_instance / N_vertices_in_LCC,
                         var_num_of_1_edge_causal_in_time_in_one_instance=M2_num_of_1_edge_causal_in_time_in_one_instance / (N_vertices_in_LCC**2) / max(1, i_process),
