@@ -151,44 +151,7 @@ def run_one_realization(args):
         S_skm = Skm_current.sum()
         print('S_from_vertex_state, S_from_Skm: ',S_actual, S_skm)
 
-######################### CHECK
 
-        S_actual = np.sum(vertex_states == 0)
-        S_skm = Skm_current.sum()
-
-        if S_actual != S_skm:
-            print("\n MISMATCH DETECTED!")
-            print("S from vertex_states:", S_actual)
-            print("S from Skm:", S_skm)
-
-            # Optional: locate where mismatch comes from
-            is_S = (vertex_states == 0)
-
-            # recompute m from scratch
-            m_check = np.zeros_like(m)
-            np.add.at(m_check, v1_sorted, vertex_states[v2_sorted_by_v1])
-            np.add.at(m_check, v2_sorted_by_v1, vertex_states[v1_sorted])
-
-            k_vals = deg[is_S]
-            m_vals = m_check[is_S]
-
-            Skm_reconstructed = np.zeros_like(Skm_current)
-            np.add.at(Skm_reconstructed, (k_vals, m_vals), 1)
-
-            print("Reconstructed Skm sum:", Skm_reconstructed.sum())
-
-            # Compare tensors
-            diff = Skm_current - Skm_reconstructed
-            nz = np.argwhere(diff != 0)
-
-            print("Nonzero differences (k,m, diff):")
-            for k_, m_ in nz:
-                print(k_, m_, diff[k_, m_])
-
-            raise RuntimeError("Skm inconsistency detected")
-        else:
-            print("\n no mismatch")
-##########################################
 
         (check,
          current_time,
@@ -459,6 +422,16 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                                 M2_Skm_in_time_in_one_instance
                             )
 
+                            # checker 
+                            mean_S = mean_counts_in_time_in_one_instance[:, 0]
+                            mean_S_from_Skm = mean_Skm_in_time_in_one_instance.sum(axis=(1, 2))
+                            diff = mean_S - mean_S_from_Skm
+                            max_abs_diff = np.max(np.abs(diff))
+                            
+                            print("processed: ",processed)
+                            print("Max |mean_S - sum(mean_Skm)| =", max_abs_diff)
+
+
                             (mean_num_of_1_edge_causal_in_time_in_one_instance,
                             M2_num_of_1_edge_causal_in_time_in_one_instance) = update_online_mean_var(
                                 projected_num_of_1_edge_causal,
@@ -714,6 +687,15 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
                     mean_num_of_2_instars_in_time_in_one_instance,
                     M2_num_of_2_instars_in_time_in_one_instance
                 )
+
+                # checker 
+                mean_S = mean_counts_in_time_in_one_instance[:, 0]
+                mean_S_from_Skm = mean_Skm_in_time_in_one_instance.sum(axis=(1, 2))
+                diff = mean_S - mean_S_from_Skm
+                max_abs_diff = np.max(np.abs(diff))
+
+                print("processed: ",processed)
+                print("Max |mean_S - sum(mean_Skm)| =", max_abs_diff)
 
                 projected_num_of_2_outstars = project_to_time_grid(
                     times, num_of_2_outstars_in_time, time_grid_t
