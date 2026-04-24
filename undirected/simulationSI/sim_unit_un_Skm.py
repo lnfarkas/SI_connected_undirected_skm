@@ -43,12 +43,7 @@ def run_one_realization(args):
     ptr_v2, N_edges, n_states,
      fractions_initial, allowed_edges, inv_edge_rates, allowed_vertices, inv_vertex_rates,
      time_grid_t, N_time_bins, T_max) = args
-    
 
-    print("\nworking on the following instance:")
-    for x, y in zip(v1_sorted, v2_sorted_by_v1):
-        print(x, y)
-    
 
     # INITIALIZE STATES
     vertex_states = initial_vertex_states_SI(N_vertices_in_LCC,np.arange(N_vertices_in_LCC), fractions_initial)
@@ -106,22 +101,6 @@ def run_one_realization(args):
 
     np.add.at(Skm_current, (k_vals, m_vals), 1)
 
-    '''
-    k_grid, m_grid = np.indices(Skm_current.shape)
-
-    Skm_df = pd.DataFrame({
-        "k": k_grid.ravel(),
-        "m": m_grid.ravel(),
-        "Skm": Skm_current.ravel()
-    })
-
-    out_file = f"Initial_Skm_test.csv"
-    print(f"Saved Skm with (k,m) labels to: {out_file}")
-    #print("vertex_states",vertex_states)
-    #print("m",m)
-
-    Skm_df.to_csv(out_file, index=False)
-    '''
 
     check = 1
 
@@ -138,57 +117,6 @@ def run_one_realization(args):
         num_of_2_instars_in_time.append(total_2_instars)
         num_of_2_outstars_in_time.append(total_2_outstars)
         Skm_in_time.append(Skm_current.copy())
-
-        print('vertex_states:', vertex_states)
-        print('            k:', deg)
-        print('            m:', m)
-        print(", ".join(
-            f"S_{k}_{m_val}:{Skm_current[k, m_val]}"
-            for k, m_val in np.argwhere(Skm_current > 0)
-        ))
-
-        S_actual = np.sum(vertex_states == 0)
-        S_skm = Skm_current.sum()
-        print('S_from_vertex_state, S_from_Skm: ',S_actual, S_skm)
-
-######################### CHECK
-
-        S_actual = np.sum(vertex_states == 0)
-        S_skm = Skm_current.sum()
-
-        if S_actual != S_skm:
-            print("\n MISMATCH DETECTED!")
-            print("S from vertex_states:", S_actual)
-            print("S from Skm:", S_skm)
-
-            # Optional: locate where mismatch comes from
-            is_S = (vertex_states == 0)
-
-            # recompute m from scratch
-            m_check = np.zeros_like(m)
-            np.add.at(m_check, v1_sorted, vertex_states[v2_sorted_by_v1])
-            np.add.at(m_check, v2_sorted_by_v1, vertex_states[v1_sorted])
-
-            k_vals = deg[is_S]
-            m_vals = m_check[is_S]
-
-            Skm_reconstructed = np.zeros_like(Skm_current)
-            np.add.at(Skm_reconstructed, (k_vals, m_vals), 1)
-
-            print("Reconstructed Skm sum:", Skm_reconstructed.sum())
-
-            # Compare tensors
-            diff = Skm_current - Skm_reconstructed
-            nz = np.argwhere(diff != 0)
-
-            print("Nonzero differences (k,m, diff):")
-            for k_, m_ in nz:
-                print(k_, m_, diff[k_, m_])
-
-            raise RuntimeError("Skm inconsistency detected")
-        else:
-            print("\n no mismatch")
-##########################################
 
         (check,
          current_time,
@@ -258,8 +186,8 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
     try:
         os.sched_setaffinity(0, allowed_cores)
-        #print(f"Main process pinned to cores: {allowed_cores}")
-        #print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
+        print(f"Main process pinned to cores: {allowed_cores}")
+        print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
     except Exception:
         pass
 
@@ -368,15 +296,15 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
         _n_workers = min(_n_workers, len(allowed_cores))
         MAX_IN_FLIGHT = 2 * _n_workers
 
-        #print(f"Workers pinned to cores: {sorted(allowed_cores)}")
-        #print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
-        '''
+        print(f"Workers pinned to cores: {sorted(allowed_cores)}")
+        print(f"Reserved free cores: {list(range(cpu_total - N_RESERVED_CORES, cpu_total))}")
+        
         print(
             f"Scheduling {N_processes_per_instance} realizations "
             f"using {_n_workers} workers, chunk_size={chunk_size}, "
             f"MAX_IN_FLIGHT={MAX_IN_FLIGHT}"
         )
-        '''
+        
         args_template = (
                          N_vertices_full,
                          N_vertices_in_LCC,
@@ -493,8 +421,8 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
                             processed += 1
 
-                            #if processed % 100 == 0:
-                                #print(f"[instance {n_valid_graphs}] processed {processed}/{N_processes_per_instance}")
+                            if processed % 100 == 0:
+                                print(f"[instance {n_valid_graphs}] processed {processed}/{N_processes_per_instance}")
 
                             if processed in stability_checker:
                                 curves_path = curves_dir / f"curves_instanceNo{n_valid_graphs:04d}_Nprocesses{processed}_N{N_vertices_full}_Nconnected{N_vertices_in_LCC}_k{p_edges*(N_vertices_full-1)}_{filename}.npz"
@@ -525,7 +453,7 @@ def run_sim(N_instances,N_processes_per_instance,N_vertices_full,p_edges,n_state
 
 
         except Exception as e:
-            #print(f"Parallel execution failed ({e}), falling back to serial loop")
+            print(f"Parallel execution failed ({e}), falling back to serial loop")
 
             for i_process in range(N_processes_per_instance):
 

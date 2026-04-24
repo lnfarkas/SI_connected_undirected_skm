@@ -5,7 +5,7 @@ from pathlib import Path
 # -----------------------
 # CONFIG
 # -----------------------
-simID = "SIsimUNDIRECTED20260424101341" #SIsim20260401112526
+simID = "SIsimUNDIRECTED20260424152654" #SIsim20260401112526
 Nv = "20"
 k = "2"
 
@@ -76,15 +76,11 @@ print("Flattening Skm (sparse)...")
 
 for k_val in range(Kp1):
     for m_val in range(Mp1):
-        mean_series = mean_Skm[:, k_val, m_val]
+        col_mean = f"mean_Skm_k{k_val}_m{m_val}"
+        col_var  = f"var_Skm_k{k_val}_m{m_val}"
 
-        # keep only nonzero trajectories
-        if np.any(mean_series != 0):
-            col_mean = f"mean_Skm_k{k_val}_m{m_val}"
-            col_var  = f"var_Skm_k{k_val}_m{m_val}"
-
-            mean_Skm_sparse_cols[col_mean] = mean_series
-            var_Skm_sparse_cols[col_var]   = var_Skm[:, k_val, m_val]
+        mean_Skm_sparse_cols[col_mean] = mean_Skm[:, k_val, m_val]
+        var_Skm_sparse_cols[col_var]   = var_Skm[:, k_val, m_val]
 
 print(f"Kept {len(mean_Skm_sparse_cols)} Skm columns (sparse)")
 

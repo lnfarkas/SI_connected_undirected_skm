@@ -5,10 +5,13 @@ from pathlib import Path
 
 tol = 0.5 # WATCH OUT! Tolerance (0.01 = 1%) for the N_vertices_in_LCC
 
-simID = "SIsimUNDIRECTED20260424101341" #SIsim20260401112526
+simID = "SIsimUNDIRECTED20260424152654" #SIsim20260401112526
 Nv = "20"
 k = "2"
 
+
+"/home/lnf/Desktop/00_sim_SI/SIsimUNDIRECTED20260424140333/N20_k2/Curves/curves_average_filtered_inter_intra_Skm_SIsimUNDIRECTED20260424140333_N20_k2.npz"
+"/home/lnf/Desktop/00_sim_SI/SIsimUNDIRECTED20260424142206/N20_k2/Curves/curves_average_filtered_inter_intra_Skm_SIsimUNDIRECTED20260424142206_N20_k2.npz"
 curves_dir = Path(f"/home/lnf/Desktop/00_sim_SI/{simID}/N{Nv}_k{k}/Curves")
 
 # ------------------ Gather Files ------------------
